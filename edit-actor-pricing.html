@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Actor Pricing</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2em;
+      }
+      .actor-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1em;
+      }
+      .actor-card img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 1em;
+      }
+      .actor-info {
+        flex: 1;
+      }
+      .price-input {
+        width: 80px;
+      }
+      .save-btn {
+        margin-top: 2em;
+        padding: 0.5em 1.5em;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Edit Actor Pricing</h1>
+    <div id="actor-list"></div>
+    <button class="save-btn" onclick="savePricing()">Save Pricing</button>
+    <script>
+      let actors = [];
+      fetch("actors-top500.json")
+        .then((res) => res.json())
+        .then((data) => {
+          actors = data;
+          renderActors();
+        });
+
+      function renderActors() {
+        const container = document.getElementById("actor-list");
+        container.innerHTML = "";
+        actors.forEach((actor, idx) => {
+          const card = document.createElement("div");
+          card.className = "actor-card";
+          card.innerHTML = `
+          <img src="${actor.image || ""}" alt="${actor.name}">
+          <div class="actor-info">
+            <strong>${actor.name}</strong><br>
+            <label>Price: $<input type="number" class="price-input" value="${
+              actor.price !== null ? actor.price : ""
+            }" onchange="updatePrice(${idx}, this.value)"></label>
+          </div>
+        `;
+          container.appendChild(card);
+        });
+      }
+
+      function updatePrice(idx, value) {
+        actors[idx].price = value ? Number(value) : null;
+      }
+
+      function savePricing() {
+        const dataStr = JSON.stringify(actors, null, 2);
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "actors-top500.json";
+        a.click();
+        URL.revokeObjectURL(url);
+        alert(
+          "Pricing data saved! Downloaded as actors-top500.json. Replace your server file to update."
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - CAA</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="fonts/style.css" rel="stylesheet" />
+    <style>
+      body {
+        background: #292d34;
+        color: #fff;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Hero Container Fix */
+      .hero-container {
+        position: relative;
+        min-height: 100vh; /* Full screen hero section */
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        background: #b71c2c;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      .caa-logo {
+        font-size: 3.2rem;
+        font-weight: bold;
+        letter-spacing: -2px;
+        margin-top: 32px;
+        margin-left: 32px;
+        margin-bottom: 0;
+        color: #fff;
+        line-height: 1;
+        position: relative;
+        z-index: 2;
+      }
+
+      .about-hero-content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        max-width: 90%;
+        margin: 0;
+      }
+
+      .about-hero-content h1 {
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 2.5rem;
+        color: #fff;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        line-height: 1.25;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      @media (max-width: 900px) {
+        .caa-logo {
+          margin-left: 18px;
+          font-size: 2.2rem;
+        }
+        .about-hero-content {
+          margin-left: 18px;
+          margin-bottom: 32px;
+          max-width: 90%;
+        }
+        .about-hero-content h1 {
+          font-size: 1.9rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .caa-logo {
+          font-size: 72px;
+          margin-top: 40px;
+          margin-left: 24px;
+        }
+        .about-hero-content {
+          margin-bottom: 24px;
+          margin-left: 16px;
+          padding: 0 10px;
+          max-width: 95%;
+        }
+        .about-hero-content h1 {
+          font-size: 2.2rem;
+          line-height: 1.2;
+          text-align: left;
+        }
+      }
+
+      .menu-icon {
+        position: absolute;
+        top: 48px;
+        right: 32px;
+        width: 36px;
+        height: 36px;
+        z-index: 2;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .menu-icon span {
+        display: block;
+        width: 100%;
+        height: 4px;
+        background: #fff;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      /* About CAA Section */
+      .about-caa-section {
+        background: #fff;
+        color: #292d34;
+        border-radius: 0 0 8px 8px;
+        max-width: 100%; /* Increased width slightly */
+        margin: 0 auto;
+        padding: 40px 40px; /* Increased left/right padding */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 3;
+      }
+
+      /* Removed extra margin-top that caused blank space */
+      .about-caa-title {
+        font-size: 1.2rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.5px;
+        color: #292d34;
+      }
+
+      .about-caa-divider {
+        border: none;
+        border-top: 2px solid #bfc3c7;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+        width: 100%;
+      }
+
+      .about-caa-headline {
+        font-size: 1.5rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        color: #b72c36;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+      }
+
+      .about-caa-text {
+        font-size: 1rem;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        color: #292d34;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 600px) {
+        .about-caa-section {
+          padding: 20px 16px; /* Mobile padding */
+        }
+        .about-caa-headline {
+          font-size: 1.1rem;
+        }
+        .about-caa-title {
+          font-size: 1rem;
+        }
+      }
+    </style>
+    <style>
+      .caa-footer {
+        background: #b71c2c;
+        color: #fff;
+        padding: 0 0 32px 0;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        margin-top: 0;
+        border: none;
+      }
+      .caa-footer-content.desktop-footer {
+        max-width: 100vw;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 64px 0 0 0;
+      }
+      .footer-main-row {
+        display: flex;
+        width: 85vw;
+        max-width: 1600px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 120px;
+        margin-bottom: 32px;
+      }
+      .footer-logo-col {
+        flex: 0 0 320px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .caa-footer-logo {
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-size: 100px;
+        letter-spacing: -2px;
+        margin: 0 0 0 0;
+        line-height: 1;
+      }
+      .footer-links-col {
+        flex: 1 1 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .footer-links-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 0;
+      }
+      .footer-links-list li {
+        margin-bottom: 18px;
+      }
+      .footer-links-list a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        transition: text-decoration 0.2s;
+      }
+      .footer-links-list a:hover {
+        text-decoration: underline;
+      }
+      .caa-footer-divider {
+        width: 90%;
+        margin: 32px 0 16px 0;
+        border: none;
+        border-top: 2px solid #fff2;
+      }
+      .footer-bottom-row {
+        width: 85vw;
+        max-width: 1600px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0;
+      }
+      .footer-bottom-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 18px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+      .footer-bottom-links a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .footer-divider {
+        color: #fff;
+        opacity: 0.7;
+        font-size: 18px;
+        margin: 0 8px;
+      }
+      .footer-bottom-social {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 16px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+      .caa-footer-instagram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #fff;
+        margin-left: 4px;
+        transition: box-shadow 0.2s;
+      }
+      .caa-footer-instagram:hover {
+        box-shadow: 0 0 0 2px #b71c2c;
+      }
+      .caa-footer-follow-label {
+        font-size: 16px;
+        margin-right: 8px;
+        color: #fff;
+      }
+      @media (max-width: 1200px) {
+        .footer-main-row,
+        .footer-bottom-row {
+          width: 98vw;
+          gap: 48px;
+        }
+        .caa-footer-logo {
+          font-size: 80px;
+        }
+      }
+      @media (max-width: 900px) {
+        .footer-main-row,
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          width: 98vw;
+          gap: 0;
+        }
+        .footer-logo-col {
+          margin-bottom: 24px;
+        }
+        .footer-links-col {
+          margin-bottom: 24px;
+        }
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+      }
+      @media (max-width: 600px) {
+        .caa-footer-content.desktop-footer {
+          padding: 32px 0 0 0;
+        }
+        .caa-footer-logo {
+          font-size: 48px;
+        }
+        .footer-links-list a {
+          font-size: 18px;
+        }
+        .footer-bottom-links {
+          font-size: 14px;
+        }
+        .footer-bottom-social {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <div class="hero-container">
+      <div class="hero-bg"></div>
+      <div class="caa-logo">CAA</div>
+      <div class="menu-icon" id="menuIcon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav class="caa-navbar" id="caaNavbar">
+        <div class="navbar-header">
+          <span class="caa-logo">CAA</span>
+          <span class="navbar-close" id="navbarClose">&times;</span>
+        </div>
+        <div class="navbar-overlay-content">
+          <h1 class="navbar-main-links">
+            <a class="nav-main-link" href="musicians-singers.html"
+              >Musicians & Singers</a
+            ><br />
+            <a class="nav-main-link" href="actors-actresses.html"
+              >Actors and Actresses</a
+            ><br />
+            <a class="nav-main-link" href="sports-personalities.html"
+              >Sports Personalities (Athlete-Celebrities)</a
+            ><br />
+            <a class="nav-main-link" href="social-media-influencers.html"
+              >Social Media Influencers</a
+            ><br />
+            <a class="nav-main-link" href="models-fashion-icons.html"
+              >Models & Fashion Icons</a
+            ><br />
+          </h1>
+          <ul class="navbar-secondary-links">
+            <li>
+              <a href="about-us.html" class="nav-secondary-link">About</a>
+            </li>
+            <!-- <li><a href="#" class="nav-secondary-link">Careers</a></li> -->
+            <li><a href="#" class="nav-secondary-link">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="about-hero-content">
+        <h1>Contact</h1>
+        <form
+          class="contact-form"
+          action="mailto:your@email.com"
+          method="POST"
+          enctype="text/plain"
+        >
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="What's this about?"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Tell us more about your inquiry..."
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <span>Send Message</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <style>
+        .contact-form {
+          max-width: 90%;
+          margin: 0 auto;
+          padding: 0;
+        }
+
+        .form-group {
+          margin-bottom: 24px;
+          position: relative;
+        }
+
+        .form-group label {
+          display: block;
+          margin-bottom: 8px;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 0.95rem;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea {
+          width: 190%;
+          padding: 16px 20px;
+          background: rgba(255, 255, 255, 0.95);
+          border: 2px solid transparent;
+          border-radius: 12px;
+          font-size: 1.1rem;
+          font-family: inherit;
+          color: #333;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          backdrop-filter: blur(10px);
+          margin-left: -60%;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+          outline: none;
+          border-color: #b71c2c;
+          background: rgba(255, 255, 255, 1);
+          box-shadow: 0 8px 30px rgba(183, 28, 44, 0.2);
+          transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+          color: rgba(51, 51, 51, 0.6);
+          font-style: italic;
+        }
+
+        .form-group textarea {
+          min-height: 120px;
+          resize: vertical;
+          font-family: inherit;
+        }
+
+        .submit-btn {
+          width: 110%;
+          padding: 18px 0;
+          background: white;
+          color: #b71c2c;
+          font-weight: 600;
+          font-size: 1.2rem;
+          border: 2px solid #b71c2c;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          position: relative;
+          overflow: hidden;
+          margin-left: -5%;
+        }
+
+        .submit-btn::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+          );
+          transition: left 0.5s;
+        }
+
+        .submit-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 35px rgba(183, 28, 44, 0.4);
+          background: #b71c2c;
+          color: white;
+        }
+
+        .submit-btn:hover::before {
+          left: 100%;
+        }
+
+        .submit-btn:active {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 15px rgba(183, 28, 44, 0.3);
+        }
+
+        .submit-btn svg {
+          transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover svg {
+          transform: translateX(3px);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+          .contact-form {
+            max-width: 100%;
+            padding: 0 10px;
+          }
+
+          .form-group {
+            margin-bottom: 20px;
+          }
+
+          .form-group input,
+          .form-group textarea {
+            padding: 14px 16px;
+            font-size: 1rem;
+          }
+
+          .submit-btn {
+            padding: 16px 0;
+            font-size: 1.1rem;
+          }
+        }
+      </style>
+    </div>
+
+    <!-- About CAA Section -->
+    <section class="about-caa-section">
+      <br /><br />
+      <h2 class="about-caa-title staggered">About CAA</h2>
+      <hr class="about-caa-divider staggered" />
+      <h3 class="about-caa-headline staggered">
+        CAA delivers world-class opportunities to world-class clients.
+      </h3>
+      <p class="about-caa-text staggered">
+        Positioned at the nexus of talent, content, brands, technology, sports,
+        and live events, CAA creates limitless opportunities for the
+        storytellers, trendsetters, icons, and thought leaders who shape popular
+        culture.
+      </p>
+      <p class="about-caa-text staggered">
+        Across film, television, music, sports, brands, the creator economy, and
+        beyond, we represent thousands of the world’s leading actors, directors,
+        writers, producers, musical artists, comedians, authors, athletes,
+        coaches, broadcasters, teams, leagues, digital creators, designers,
+        fashion talent, consumer brands, and more.
+      </p>
+    </section>
+
+    <!-- Stagger Animation Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var staggeredEls = document.querySelectorAll(".staggered");
+        staggeredEls.forEach(function (el, i) {
+          el.style.opacity = 0;
+          el.style.transform = "translateY(24px)";
+          setTimeout(function () {
+            el.style.transition =
+              "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
+            el.style.opacity = 1;
+            el.style.transform = "translateY(0)";
+          }, 400 + i * 200);
+        });
+      });
+    </script>
+    <footer class="caa-footer">
+      <div class="caa-footer-content desktop-footer">
+        <div class="footer-main-row">
+          <div class="footer-logo-col">
+            <div class="caa-footer-logo">CAA</div>
+          </div>
+          <div class="footer-links-col">
+            <ul class="footer-links-list">
+              <li><a href="about-us.html">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Client Privacy Notice</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <ul class="footer-links-list">
+              <li><a href="#">Social Responsibility</a></li>
+              <li><a href="#">Foundation</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="caa-footer-divider" />
+        <div class="footer-bottom-row">
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="#">Terms of Use</a>
+            <span class="footer-divider">|</span>
+            <a href="#">Accessibility</a>
+          </div>
+          <div class="footer-bottom-social">
+            <span class="caa-footer-follow-label">Follow us:</span>
+            <a href="#" class="caa-footer-instagram" aria-label="Instagram">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="24" height="24" rx="6" fill="#fff" />
+                <path
+                  d="M12 8.4A3.6 3.6 0 1 0 12 15.6 3.6 3.6 0 0 0 12 8.4Zm0 5.9A2.3 2.3 0 1 1 12 9.7a2.3 2.3 0 0 1 0 4.6Zm4.5-6.1a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0ZM17.7 7.1a3.6 3.6 0 0 0-3.6-3.6H9.9a3.6 3.6 0 0 0-3.6 3.6v4.2a3.6 3.6 0 0 0 3.6 3.6h4.2a3.6 3.6 0 0 0 3.6-3.6V7.1Zm-1.2 4.2a2.4 2.4 0 0 1-2.4 2.4H9.9a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h4.2a2.4 2.4 0 0 1 2.4 2.4v4.2Z"
+                  fill="#B71C2C"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+  // Navbar open/close logic
+  document.addEventListener("DOMContentLoaded", function () {
+    var menuIcon = document.getElementById("menuIcon");
+    var navbar = document.getElementById("caaNavbar");
+    var navbarClose = document.getElementById("navbarClose");
+    if (menuIcon && navbar && navbarClose) {
+      menuIcon.onclick = function () {
+        navbar.classList.add("active");
+      };
+      navbarClose.onclick = function () {
+        navbar.classList.remove("active");
+      };
+    }
+  });
+</script>
+
+<style>
+  .caa-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #292d34;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .caa-navbar.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 0 24px;
+  }
+  .caa-navbar .caa-logo {
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: -2px;
+    margin: 0;
+  }
+  .navbar-close {
+    font-size: 2.6rem;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 300;
+    margin-left: 16px;
+  }
+  .navbar-overlay-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    margin-left: 32px;
+  }
+  .navbar-main-links {
+    font-size: 1.7rem;
+    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+    font-weight: bold;
+    color: #bfc1c4;
+    margin-bottom: 2.5rem;
+  }
+  .nav-main-link {
+    display: block;
+    font-size: 1.7rem;
+    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+    font-weight: bold;
+    color: #bfc1c4;
+    margin-bottom: 0.7rem;
+  }
+  .navbar-secondary-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .navbar-secondary-links li {
+    margin-bottom: 0.5rem;
+  }
+  .nav-secondary-link {
+    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+    color: #bfc1c4;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  .nav-secondary-link:hover {
+    color: #fff;
+  }
+  @media (min-width: 600px) {
+    .caa-navbar {
+      width: 400px;
+      left: 0;
+    }
+    .navbar-overlay-content {
+      margin-left: 48px;
+    }
+  }
+  @media (max-width: 600px) {
+    .footer-main-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+    .footer-logo-col {
+      flex: none;
+      margin-bottom: 10px;
+    }
+    .caa-footer-logo {
+      font-size: 64px;
+      margin-bottom: 0;
+    }
+    .footer-links-col {
+      margin-top: 0;
+    }
+  }
+</style>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musician Details & Booking</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="fonts/style.css" rel="stylesheet" />
+    <style>
+      body {
+        background: white;
+        color: #fff;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+      .hero-container {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+      }
+      .hero-bg {
+        background: url("musician.jpeg") center center/cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+      .caa-logo {
+        font-size: 3.2rem;
+        font-weight: bold;
+        letter-spacing: -2px;
+        margin-top: 32px;
+        margin-left: 32px;
+        margin-bottom: 0;
+        color: #fff;
+        line-height: 1;
+        position: relative;
+        z-index: 2;
+      }
+      .about-hero-content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
+        margin-left: 36px;
+        margin-bottom: 48px;
+        max-width: 340px;
+      }
+      .about-hero-content h1 {
+        font-size: 2.6rem;
+        font-weight: bold;
+        margin-bottom: 2.5rem;
+        color: #fff;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        line-height: 1.25;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+      @media (max-width: 900px) {
+        .caa-logo {
+          margin-left: 18px;
+          font-size: 2.2rem;
+        }
+        .about-hero-content {
+          margin-left: 18px;
+          margin-bottom: 32px;
+        }
+      }
+      @media (max-width: 600px) {
+        .hero-container {
+          min-height: 420px;
+        }
+        .about-hero-content h1 {
+          font-size: 1.5rem;
+        }
+      }
+      .container {
+        max-width: 700px;
+        margin: 48px auto;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(60, 60, 120, 0.1);
+        padding: 40px 32px 32px 32px;
+      }
+      .celebrity-header {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        margin-bottom: 36px;
+      }
+      .celebrity-img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+      .celebrity-info {
+        flex: 1;
+      }
+      .celebrity-name {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+      }
+      .celebrity-price {
+        font-size: 1.4rem;
+        color: #2a2a2a;
+        margin-bottom: 18px;
+        font-weight: 500;
+      }
+      .booking-form {
+        margin-top: 40px;
+      }
+      .booking-form label {
+        display: block;
+        margin: 20px 0 8px;
+        font-weight: 600;
+        color: #222;
+      }
+      .booking-form select,
+      .booking-form textarea,
+      .booking-form input[type="text"],
+      .booking-form input[type="email"],
+      .booking-form input[type="tel"] {
+        width: 100%;
+        padding: 12px;
+        border: 1.5px solid #bfc9d1;
+        border-radius: 6px;
+        font-size: 1.05rem;
+        background: #f8fafc;
+        transition: border 0.2s, box-shadow 0.2s;
+        margin-bottom: 6px;
+      }
+      .booking-form select:focus,
+      .booking-form textarea:focus,
+      .booking-form input[type="text"]:focus,
+      .booking-form input[type="email"]:focus,
+      .booking-form input[type="tel"]:focus {
+        border: 1.5px solid #6c63ff;
+        outline: none;
+        box-shadow: 0 0 0 2px #e0e7ff;
+      }
+      .booking-form textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+      .booking-form button {
+        margin-top: 28px;
+        background: linear-gradient(90deg, #ff6363 0%, #ef4848 100%);
+        color: #fff;
+        border: none;
+        padding: 15px 38px;
+        border-radius: 6px;
+        font-size: 1.13rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(76, 110, 245, 0.08);
+      }
+      .booking-form button:hover {
+        background: linear-gradient(90deg, #48c6ef 0%, #6c63ff 100%);
+        box-shadow: 0 4px 16px rgba(76, 110, 245, 0.13);
+      }
+      .form-note {
+        color: #5a5a5a;
+        font-size: 1.01rem;
+        margin-bottom: 22px;
+        background: #f0f4fa;
+        padding: 12px 18px;
+        border-radius: 5px;
+      }
+      @media (max-width: 700px) {
+        .container {
+          padding: 12px;
+        }
+        .celebrity-header {
+          flex-direction: column;
+          gap: 18px;
+        }
+        .celebrity-img {
+          width: 100%;
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-container">
+      <div class="hero-bg"></div>
+      <div class="caa-logo">CAA</div>
+      <div class="about-hero-content">
+        <h1>Musician Details & Booking</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="celebrity-header">
+        <img
+          id="celebrity-img"
+          class="celebrity-img"
+          src=""
+          alt="Musician Photo"
+        />
+        <div class="celebrity-info">
+          <div id="celebrity-name" class="celebrity-name"></div>
+          <div id="celebrity-price" class="celebrity-price"></div>
+        </div>
+      </div>
+      <form class="booking-form" id="bookingForm">
+        <div class="form-note">
+          <h2>Tell us about your event!</h2>
+          <br />During normal business hours, we respond to most inquiries
+          within 4 hours.
+        </div>
+        <label for="musician-name">Musician Name*</label>
+        <input
+          type="text"
+          id="musician-name"
+          name="musician-name"
+          readonly
+          style="background: #f5f5f5; color: #888; margin-bottom: 18px"
+        />
+        <label for="event-name">Event Name*</label>
+        <input
+          type="text"
+          id="event-name"
+          name="event-name"
+          required
+          placeholder="Enter the event name"
+        />
+        <label for="email">Your Email *</label>
+        <input
+          type="email"
+          id="email"
+          required
+          placeholder="Enter your email address"
+        />
+        <label for="phone">Phone Number*</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          placeholder="Enter your phone number"
+          pattern="[0-9\-\+\s\(\)]{7,}"
+        />
+        <label for="sex">Sex*</label>
+        <select id="sex" name="sex" required>
+          <option value="">Select...</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+          <option value="prefer-not-to-say">Prefer not to say</option>
+        </select>
+        <label for="nearest-airport">Nearest Airport*</label>
+        <input
+          type="text"
+          id="nearest-airport"
+          name="nearest-airport"
+          required
+          placeholder="Enter nearest airport"
+        />
+        <label for="talent-budget"
+          >Please select your approximate talent budget *</label
+        >
+        <select id="talent-budget" required>
+          <option value="">Select...</option>
+          <option value="$5,000 or less">$5,000 or less</option>
+          <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+          <option value="$10,000 - $20,000">$10,000 - $20,000</option>
+          <option value="$20,000 - $30,000">$20,000 - $30,000</option>
+          <option value="$30,000 - $50,000">$30,000 - $50,000</option>
+          <option value="$50,000 - $100,000">$50,000 - $100,000</option>
+          <option value="$100,000 - $500,000">$100,000 - $500,000</option>
+          <option value="$500,000 and above">$500,000 and above</option>
+        </select>
+        <label for="event-type">Type of Event*</label>
+        <select id="event-type">
+          <option value="">Select...</option>
+          <option>Birthday</option>
+          <option>Meet and Greet</option>
+          <option>Convention/Trade Show</option>
+          <option>Cooking Demo</option>
+          <option>Endorsement/Spokesperson</option>
+          <option>Funeral</option>
+          <option>Musical Performance</option>
+          <option>Personal Appearance</option>
+          <option>Satellite Media Tour</option>
+          <option>Speaking Engagement</option>
+          <option>Virtual Event</option>
+          <option>Wedding</option>
+        </select>
+        <label for="event-details">Event Details*</label>
+        <textarea
+          id="event-details"
+          placeholder="Tell us more about your event..."
+        ></textarea>
+        <button type="submit" style="margin-bottom: 4rem">
+          Submit Booking Request
+        </button>
+      </form>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+      <script>
+        (function () {
+          emailjs.init("YOUR_USER_ID");
+        })();
+        document
+          .getElementById("bookingForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            var form = this;
+            var formData = {
+              musician_name: document.getElementById("musician-name").value,
+              event_name: document.getElementById("event-name").value,
+              email: document.getElementById("email").value,
+              phone: document.getElementById("phone").value,
+              sex: document.getElementById("sex").value,
+              nearest_airport: document.getElementById("nearest-airport").value,
+              talent_budget: document.getElementById("talent-budget").value,
+              event_type: document.getElementById("event-type").value,
+              event_details: document.getElementById("event-details").value,
+            };
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData).then(
+              function (response) {
+                Swal.fire(
+                  "Success!",
+                  "Your booking request has been sent. We will contact you soon.",
+                  "success"
+                );
+                form.reset();
+              },
+              function (error) {
+                Swal.fire(
+                  "Error",
+                  "There was a problem sending your request. Please try again later.",
+                  "error"
+                );
+              }
+            );
+          });
+      </script>
+    </div>
+    <footer class="caa-footer">
+      <!-- You can copy the footer from actor-details.html if needed -->
+    </footer>
+    <script>
+      // Populate musician details from URL param and JSON or fallback
+      async function loadMusicianDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get("name");
+        document.getElementById("celebrity-name").textContent =
+          name || "Musician";
+        let found = null;
+        try {
+          const resp = await fetch("musicians-top500.json");
+          const musicians = await resp.json();
+          found = musicians.find(
+            (a) => a.name.toLowerCase() === (name || "").toLowerCase()
+          );
+        } catch {}
+        let price = found && found.price ? found.price : "$199";
+        let img = found && found.image ? found.image : "";
+        if (!img && name) {
+          // Try Deezer API
+          try {
+            const proxy = "https://corsproxy.io/?";
+            const url = `${proxy}https://api.deezer.com/search/artist?q=${encodeURIComponent(
+              name
+            )}`;
+            const resp = await fetch(url);
+            const data = await resp.json();
+            if (data && data.data && data.data.length > 0) {
+              img =
+                data.data[0].picture_xl ||
+                data.data[0].picture_big ||
+                data.data[0].picture ||
+                "";
+            }
+          } catch {}
+        }
+        document.getElementById("celebrity-img").src = img || "musician.jpeg";
+        document.getElementById("celebrity-img").alt = name || "Musician";
+        document.getElementById("celebrity-price").textContent = price;
+        // Autofill musician name in form
+        const musicianNameInput = document.getElementById("musician-name");
+        if (musicianNameInput)
+          musicianNameInput.value = decodeURIComponent(name || "");
+      }
+      loadMusicianDetails();
+    </script>
+  </body>
+</html>

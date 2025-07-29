@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - CAA</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="fonts/style.css" rel="stylesheet" />
+    <style>
+      body {
+        background: #292d34;
+        color: #fff;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Hero Container Fix */
+      .hero-container {
+        position: relative;
+        min-height: 100vh; /* Full screen hero section */
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        background: url("celebrities.jpg") center center/cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      .caa-logo {
+        font-size: 3.2rem;
+        font-weight: bold;
+        letter-spacing: -2px;
+        margin-top: 32px;
+        margin-left: 32px;
+        margin-bottom: 0;
+        color: #fff;
+        line-height: 1;
+        position: relative;
+        z-index: 2;
+      }
+
+      .about-hero-content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
+        margin-left: 36px;
+        margin-bottom: 48px;
+        max-width: 340px;
+      }
+
+      .about-hero-content h1 {
+        font-size: 2.6rem;
+        font-weight: bold;
+        margin-bottom: 2.5rem;
+        color: #fff;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        line-height: 1.25;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      @media (max-width: 900px) {
+        .caa-logo {
+          margin-left: 18px;
+          font-size: 2.2rem;
+        }
+        .about-hero-content {
+          margin-left: 18px;
+          margin-bottom: 32px;
+          max-width: 90vw;
+        }
+        .about-hero-content h1 {
+          font-size: 1.9rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .caa-logo {
+          font-size: 72px;
+          margin-top: 40px;
+          margin-left: 24px;
+        }
+        .about-hero-content {
+          margin-bottom: 24px;
+          margin-left: 16px;
+          padding: 0 10px;
+          max-width: 95vw;
+        }
+        .about-hero-content h1 {
+          font-size: 2.2rem;
+          line-height: 1.2;
+          text-align: left;
+        }
+      }
+
+      .menu-icon {
+        position: absolute;
+        top: 48px;
+        right: 32px;
+        width: 36px;
+        height: 36px;
+        z-index: 2;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .menu-icon span {
+        display: block;
+        width: 100%;
+        height: 4px;
+        background: #fff;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      /* About CAA Section */
+      .about-caa-section {
+        background: #fff;
+        color: #292d34;
+        border-radius: 0 0 8px 8px;
+        max-width: 100%; /* Increased width slightly */
+        margin: 0 auto;
+        padding: 40px 40px; /* Increased left/right padding */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 3;
+      }
+
+      /* Removed extra margin-top that caused blank space */
+      .about-caa-title {
+        font-size: 1.2rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.5px;
+        color: #292d34;
+      }
+
+      .about-caa-divider {
+        border: none;
+        border-top: 2px solid #bfc3c7;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+        width: 100%;
+      }
+
+      .about-caa-headline {
+        font-size: 1.5rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        color: #b72c36;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+      }
+
+      .about-caa-text {
+        font-size: 1rem;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        color: #292d34;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 600px) {
+        .about-caa-section {
+          padding: 20px 16px; /* Mobile padding */
+        }
+        .about-caa-headline {
+          font-size: 1.1rem;
+        }
+        .about-caa-title {
+          font-size: 1rem;
+        }
+      }
+    </style>
+    <style>
+      .caa-footer {
+        background: #b71c2c;
+        color: #fff;
+        padding: 0 0 32px 0;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        margin-top: 0;
+        border: none;
+      }
+      .caa-footer-content.desktop-footer {
+        max-width: 100vw;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 64px 0 0 0;
+      }
+      .footer-main-row {
+        display: flex;
+        width: 85vw;
+        max-width: 1600px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 120px;
+        margin-bottom: 32px;
+      }
+      .footer-logo-col {
+        flex: 0 0 320px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .caa-footer-logo {
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-size: 100px;
+        letter-spacing: -2px;
+        margin: 0 0 0 0;
+        line-height: 1;
+      }
+      .footer-links-col {
+        flex: 1 1 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .footer-links-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 0;
+      }
+      .footer-links-list li {
+        margin-bottom: 18px;
+      }
+      .footer-links-list a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        transition: text-decoration 0.2s;
+      }
+      .footer-links-list a:hover {
+        text-decoration: underline;
+      }
+      .caa-footer-divider {
+        width: 90%;
+        margin: 32px 0 16px 0;
+        border: none;
+        border-top: 2px solid #fff2;
+      }
+      .footer-bottom-row {
+        width: 85vw;
+        max-width: 1600px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0;
+      }
+      .footer-bottom-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 18px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+      .footer-bottom-links a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .footer-divider {
+        color: #fff;
+        opacity: 0.7;
+        font-size: 18px;
+        margin: 0 8px;
+      }
+      .footer-bottom-social {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 16px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+      .caa-footer-instagram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #fff;
+        margin-left: 4px;
+        transition: box-shadow 0.2s;
+      }
+      .caa-footer-instagram:hover {
+        box-shadow: 0 0 0 2px #b71c2c;
+      }
+      .caa-footer-follow-label {
+        font-size: 16px;
+        margin-right: 8px;
+        color: #fff;
+      }
+      @media (max-width: 1200px) {
+        .footer-main-row,
+        .footer-bottom-row {
+          width: 98vw;
+          gap: 48px;
+        }
+        .caa-footer-logo {
+          font-size: 80px;
+        }
+      }
+      @media (max-width: 900px) {
+        .footer-main-row,
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          width: 98vw;
+          gap: 0;
+        }
+        .footer-logo-col {
+          margin-bottom: 24px;
+        }
+        .footer-links-col {
+          margin-bottom: 24px;
+        }
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+      }
+      @media (max-width: 600px) {
+        .caa-footer-content.desktop-footer {
+          padding: 32px 0 0 0;
+        }
+        .caa-footer-logo {
+          font-size: 48px;
+        }
+        .footer-links-list a {
+          font-size: 18px;
+        }
+        .footer-bottom-links {
+          font-size: 14px;
+        }
+        .footer-bottom-social {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <div class="hero-container">
+      <div class="hero-bg"></div>
+      <div class="caa-logo">CAA</div>
+      <div class="menu-icon" id="menuIcon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav class="caa-navbar" id="caaNavbar">
+        <div class="navbar-header">
+          <span class="caa-logo">CAA</span>
+          <span class="navbar-close" id="navbarClose">&times;</span>
+        </div>
+        <div class="navbar-overlay-content">
+          <h1 class="navbar-main-links">
+            <a class="nav-main-link" href="musicians-singers.html"
+              >Musicians & Singers</a
+            ><br />
+            <a class="nav-main-link" href="actors-actresses.html"
+              >Actors and Actresses</a
+            ><br />
+            <a class="nav-main-link" href="sports-personalities.html"
+              >Sports Personalities (Athlete-Celebrities)</a
+            ><br />
+            <!-- <a class="nav-main-link" href="social-media-influencers.html"
+              >Social Media Influencers</a
+            ><br />
+            <a class="nav-main-link" href="models-fashion-icons.html"
+              >Models & Fashion Icons</a
+            ><br /> -->
+          </h1>
+          <ul class="navbar-secondary-links">
+            <li>
+              <a href="about-us.html" class="nav-secondary-link">About</a>
+            </li>
+            <!-- <li><a href="#" class="nav-secondary-link">Careers</a></li> -->
+            <li>
+              <a href="contact.html" class="nav-secondary-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div
+        class="about-hero-content"
+        style="
+          min-height: 80vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        "
+      >
+        <h1 style="color: #b71c2c">Actors &Actresses</h1>
+        <form
+          class="hero-search-form"
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+          "
+        >
+          <input
+            type="text"
+            placeholder="Search actors or actresses..."
+            style="
+              padding: 10px 16px 10px 40px;
+              border-radius: 24px 0 0 24px;
+              border: 1px solid #ccc;
+              outline: none;
+              font-size: 1rem;
+              width: 260px;
+            "
+            id="actor-search-input"
+          />
+          <button
+            type="submit"
+            style="
+              padding: 10px 24px;
+              border-radius: 0 24px 24px 0;
+              border: none;
+              background: #b71c2c;
+              color: #fff;
+              font-size: 1rem;
+              cursor: pointer;
+              transition: background 0.2s;
+            "
+          >
+            Search
+          </button>
+        </form>
+        <div id="search-result"></div>
+        <p
+          style="
+            color: #bfc1c4;
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+          "
+        >
+          <b>Scroll Down</b>
+        </p>
+      </div>
+    </div>
+
+    <!-- About CAA Section -->
+    <section class="about-caa-section">
+      <br /><br />
+      <h2 class="about-caa-title staggered">Actors</h2>
+      <hr class="about-caa-divider staggered" />
+      <h3 class="about-caa-headline staggered">
+        CAA delivers world-class opportunities to world-class clients.
+      </h3>
+      <div
+        id="celebrity-cards"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: 24px;
+          justify-content: center;
+          margin-top: 32px;
+        "
+      ></div>
+      <script>
+        async function getPopularActorsWithPricing() {
+          const response = await fetch("actors-top500.json");
+          const actors = await response.json();
+
+          // Sort actors with images first, then by price descending (if set)
+          actors.sort((a, b) => {
+            if (a.image && !b.image) return -1;
+            if (!a.image && b.image) return 1;
+            if (a.price && b.price) return b.price - a.price;
+            if (a.price) return -1;
+            if (b.price) return 1;
+            return 0;
+          });
+
+          // Render cards
+          const container = document.getElementById("celebrity-cards");
+          container.innerHTML = "";
+          actors.slice(0, 20).forEach((actor) => {
+            const card = document.createElement("div");
+            card.className = "celebrity-card";
+            card.style.cursor = "pointer";
+            card.addEventListener("click", function () {
+              window.location.href = `actor-details.html?name=${encodeURIComponent(
+                actor.name
+              )}`;
+            });
+            if (actor.image) {
+              const img = document.createElement("img");
+              img.src = actor.image;
+              img.alt = actor.name;
+              img.style.width = "100%";
+              img.style.height = "200px";
+              img.style.objectFit = "cover";
+              card.appendChild(img);
+            }
+            const name = document.createElement("div");
+            name.textContent = actor.name;
+            name.style.fontWeight = "bold";
+            card.appendChild(name);
+            const price = document.createElement("div");
+            price.textContent =
+              "Price: " +
+              (actor.price !== null && actor.price !== undefined
+                ? actor.price
+                : "Not Set");
+            card.appendChild(price);
+            container.appendChild(card);
+          });
+        }
+        document.addEventListener(
+          "DOMContentLoaded",
+          getPopularActorsWithPricing
+        );
+      </script>
+    </section>
+
+    <!-- Stagger Animation Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var staggeredEls = document.querySelectorAll(".staggered");
+        staggeredEls.forEach(function (el, i) {
+          el.style.opacity = 0;
+          el.style.transform = "translateY(24px)";
+          setTimeout(function () {
+            el.style.transition =
+              "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
+            el.style.opacity = 1;
+            el.style.transform = "translateY(0)";
+          }, 400 + i * 200);
+        });
+      });
+    </script>
+    <footer class="caa-footer">
+      <div class="caa-footer-content desktop-footer">
+        <div class="footer-main-row">
+          <div class="footer-logo-col">
+            <div class="caa-footer-logo">CAA</div>
+          </div>
+          <div class="footer-links-col">
+            <ul class="footer-links-list">
+              <li><a href="#">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="#">Client Privacy Notice</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <ul class="footer-links-list">
+              <li><a href="#">Social Responsibility</a></li>
+              <li><a href="#">Foundation</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="caa-footer-divider" />
+        <div class="footer-bottom-row">
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="#">Terms of Use</a>
+            <span class="footer-divider">|</span>
+            <a href="#">Accessibility</a>
+          </div>
+          <div class="footer-bottom-social">
+            <span class="caa-footer-follow-label">Follow us:</span>
+            <a href="#" class="caa-footer-instagram" aria-label="Instagram">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="24" height="24" rx="6" fill="#fff" />
+                <path
+                  d="M12 8.4A3.6 3.6 0 1 0 12 15.6 3.6 3.6 0 0 0 12 8.4Zm0 5.9A2.3 2.3 0 1 1 12 9.7a2.3 2.3 0 0 1 0 4.6Zm4.5-6.1a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0ZM17.7 7.1a3.6 3.6 0 0 0-3.6-3.6H9.9a3.6 3.6 0 0 0-3.6 3.6v4.2a3.6 3.6 0 0 0 3.6 3.6h4.2a3.6 3.6 0 0 0 3.6-3.6V7.1Zm-1.2 4.2a2.4 2.4 0 0 1-2.4 2.4H9.9a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h4.2a2.4 2.4 0 0 1 2.4 2.4v4.2Z"
+                  fill="#B71C2C"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+  // Navbar open/close logic
+  document.addEventListener("DOMContentLoaded", function () {
+    var menuIcon = document.getElementById("menuIcon");
+    var navbar = document.getElementById("caaNavbar");
+    var navbarClose = document.getElementById("navbarClose");
+    if (menuIcon && navbar && navbarClose) {
+      menuIcon.onclick = function () {
+        navbar.classList.add("active");
+      };
+      navbarClose.onclick = function () {
+        navbar.classList.remove("active");
+      };
+    }
+  });
+</script>
+
+<style>
+  .caa-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #292d34;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .caa-navbar.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 0 24px;
+  }
+  .caa-navbar .caa-logo {
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: -2px;
+    margin: 0;
+  }
+  .navbar-close {
+    font-size: 2.6rem;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 300;
+    margin-left: 16px;
+  }
+  .navbar-overlay-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    margin-left: 32px;
+  }
+  .navbar-main-links {
+    font-size: 1.7rem;
+    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+    font-weight: bold;
+    color: #bfc1c4;
+    margin-bottom: 2.5rem;
+  }
+  .nav-main-link {
+    display: block;
+    font-size: 1.7rem;
+    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+    font-weight: bold;
+    color: #bfc1c4;
+    margin-bottom: 0.7rem;
+  }
+  .navbar-secondary-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .navbar-secondary-links li {
+    margin-bottom: 0.5rem;
+  }
+  .nav-secondary-link {
+    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+    color: #bfc1c4;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  .nav-secondary-link:hover {
+    color: #fff;
+  }
+  @media (min-width: 600px) {
+    .caa-navbar {
+      width: 400px;
+      left: 0;
+    }
+    .navbar-overlay-content {
+      margin-left: 48px;
+    }
+  }
+  @media (max-width: 600px) {
+    .footer-main-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+    .footer-logo-col {
+      flex: none;
+      margin-bottom: 10px;
+    }
+    .caa-footer-logo {
+      font-size: 64px;
+      margin-bottom: 0;
+    }
+    .footer-links-col {
+      margin-top: 0;
+    }
+  }
+</style>
+
+<script>
+  // --- Search Form Logic ---
+  document
+    .querySelector(".hero-search-form")
+    .addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const input = document.getElementById("actor-search-input");
+      const query = input.value.trim();
+      if (!query) return;
+      const resultDiv = document.getElementById("search-result");
+      resultDiv.innerHTML = "";
+      // 1. Check local JSON for partial matches
+      let actors = [];
+      try {
+        const resp = await fetch("actors-top500.json");
+        actors = await resp.json();
+      } catch {}
+      let localMatches = actors.filter((a) =>
+        a.name.toLowerCase().includes(query.toLowerCase())
+      );
+      // 2. Query TMDb API for more matches
+      resultDiv.innerHTML = "Searching TMDb...";
+      const tmdbApiKey =
+        window.TMDB_API_KEY || "cf324c1862aff1f7ccd25c8e397e7ced";
+      const url = `https://api.themoviedb.org/3/search/person?api_key=${tmdbApiKey}&query=${encodeURIComponent(
+        query
+      )}`;
+      let tmdbMatches = [];
+      try {
+        const resp = await fetch(url);
+        const data = await resp.json();
+        if (data && data.results && data.results.length > 0) {
+          tmdbMatches = data.results.map((person) => ({
+            name: person.name,
+            image: person.profile_path
+              ? `https://image.tmdb.org/t/p/w500${person.profile_path}`
+              : "",
+            price: "$199",
+          }));
+        }
+      } catch {}
+      // Merge and deduplicate by name
+      let allMatches = [
+        ...localMatches.map((a) => ({
+          name: a.name,
+          image: a.image,
+          price: a.price ? a.price : "$199",
+        })),
+        ...tmdbMatches,
+      ];
+      const seen = new Set();
+      allMatches = allMatches.filter((a) => {
+        if (seen.has(a.name.toLowerCase())) return false;
+        seen.add(a.name.toLowerCase());
+        return true;
+      });
+      if (allMatches.length === 0) {
+        resultDiv.innerHTML = "No results found on CAA.";
+        return;
+      }
+      // Render as carousel
+      resultDiv.innerHTML = `
+    <div class=\"carousel-wrapper\">
+      <button class=\"carousel-arrow left\" aria-label=\"Scroll left\">&#8592;</button>
+      <div class=\"carousel-container\" id=\"carousel-container\">${allMatches
+        .filter((a) => a.name && a.name.trim() !== "")
+        .map(
+          (a) =>
+            `<div class="actor-card" onclick="window.location.href='actor-details.html?name=${encodeURIComponent(
+              a.name
+            )}'"><img src="${a.image}" alt="${
+              a.name
+            }" class="actor-img"><div class="actor-info"><b>${
+              a.name
+            }</b><div class="actor-price">${a.price}</div></div></div>`
+        )
+        .join("")}</div>
+      <button class=\"carousel-arrow right\" aria-label=\"Scroll right\">&#8594;</button>
+    </div>`;
+      // Carousel scroll logic
+      const carousel = document.getElementById("carousel-container");
+      const leftBtn = document.querySelector(".carousel-arrow.left");
+      const rightBtn = document.querySelector(".carousel-arrow.right");
+      if (carousel && leftBtn && rightBtn) {
+        leftBtn.onclick = () => {
+          carousel.scrollBy({ left: -260, behavior: "smooth" });
+        };
+        rightBtn.onclick = () => {
+          carousel.scrollBy({ left: 260, behavior: "smooth" });
+        };
+      }
+    });
+</script>
+<style>
+  .actor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 24px 28px 20px 28px;
+    margin: 24px auto;
+    width: 240px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+  }
+  .actor-img {
+    width: 180px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 0;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    background: #fff;
+  }
+  .actor-info {
+    text-align: center;
+    color: #111;
+  }
+  .actor-info b {
+    color: #111;
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+  .actor-price {
+    color: #111;
+    font-weight: bold;
+    font-size: 1.15em;
+    margin-top: 10px;
+  }
+</style>
+<style>
+  @media (min-width: 768px) {
+    .carousel-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 24px;
+      justify-content: flex-start;
+      align-items: stretch;
+      margin-left: 50%;
+      width: 1000px;
+    }
+    .actor-card {
+      min-width: 260px;
+      max-width: 300px;
+      flex: 0 0 auto;
+      margin-bottom: 0;
+    }
+  }
+</style>
