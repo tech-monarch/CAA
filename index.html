@@ -198,54 +198,7 @@
         </div>
       </div>
 
-      <!-- Talent Section -->
-      <div id="talent-section" class="fade-section">
-        <h1 style="color: #b72c36; cursor: pointer" class="back-btn">
-          For Talent
-        </h1>
-        <div class="section-list" style="margin-top: 32px">
-          <div class="animated-item">Entertainment Talent</div>
-          <div class="animated-item">Sports Talent</div>
-          <div class="animated-item">Live Event Booking</div>
-          <div class="animated-item">CAA China</div>
-          <div class="animated-item">CAA Foundation</div>
-          <div class="animated-item">Talent Business Ventures</div>
-          <div class="animated-item">Books</div>
-        </div>
-      </div>
-
-      <!-- Brands Section -->
-      <div id="brands-section" class="fade-section">
-        <h1 style="color: #b72c36; cursor: pointer" class="back-btn">
-          For Brands
-        </h1>
-        <div class="section-list" style="margin-top: 32px">
-          <div class="animated-item">Brand Consulting</div>
-          <div class="animated-item">CCA Brand Management</div>
-          <div class="animated-item">CAA China</div>
-          <div class="animated-item">Digital Media</div>
-          <div class="animated-item">Media and Entertainment</div>
-          <div class="animated-item">Partnerships</div>
-          <div class="animated-item">Partnerships Sales</div>
-          <div class="animated-item">CAA Brand Studio</div>
-        </div>
-      </div>
-
-      <!-- Enterprise Section -->
-      <div id="enterprise-section" class="fade-section">
-        <h1 style="color: #b72c36; cursor: pointer" class="back-btn">
-          For Enterprise
-        </h1>
-        <div class="section-list" style="margin-top: 32px">
-          <div class="animated-item">CAA Icon</div>
-          <div class="animated-item">CAA Evaluation</div>
-          <div class="animated-item">EBG</div>
-          <div class="animated-item">Executive Research</div>
-          <div class="animated-item">Sports Licensing</div>
-          <div class="animated-item">Sports Property Sales</div>
-          <div class="animated-item">Management Consulting</div>
-        </div>
-      </div>
+    
     </div>
 
     <script>
@@ -280,53 +233,7 @@
           }
         );
 
-        // Sections
-        const originalSection = document.getElementById("original-section");
-        const talentSection = document.getElementById("talent-section");
-        const brandsSection = document.getElementById("brands-section");
-        const enterpriseSection = document.getElementById("enterprise-section");
-
-        const forTalent = lines[0];
-        const forBrands = lines[1];
-        const forEnterprise = lines[2];
-
-        function showSection(section) {
-          // Hide all
-          [
-            originalSection,
-            talentSection,
-            brandsSection,
-            enterpriseSection,
-          ].forEach((sec) => sec.classList.remove("active"));
-          // Show selected
-          section.classList.add("active");
-
-          // Animate list items
-          const items = section.querySelectorAll(".animated-item");
-          items.forEach((item, idx) => {
-            item.classList.remove("show");
-            setTimeout(() => {
-              item.classList.add("show");
-            }, idx * 120);
-          });
-        }
-
-        // Add toggle events
-        forTalent.style.cursor = "pointer";
-        forTalent.addEventListener("click", () => showSection(talentSection));
-
-        forBrands.style.cursor = "pointer";
-        forBrands.addEventListener("click", () => showSection(brandsSection));
-
-        forEnterprise.style.cursor = "pointer";
-        forEnterprise.addEventListener("click", () =>
-          showSection(enterpriseSection)
-        );
-
-        // Back buttons
-        document.querySelectorAll(".back-btn").forEach((btn) => {
-          btn.addEventListener("click", () => showSection(originalSection));
-        });
+        
       });
     </script>
   </body>
