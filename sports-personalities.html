@@ -726,118 +726,6 @@
       }
     </style>
 
-    <script>
-      // Card rendering logic
-      function renderCelebrityCards(athletes) {
-        const celebrityCards = document.getElementById("celebrity-cards");
-        celebrityCards.innerHTML = "";
-        athletes.forEach((athletes) => {
-          const card = document.createElement("div");
-          card.className = "celebrity-card";
-          card.innerHTML = `
-  <img src="${athletes.image}" alt="${athletes.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-  <h3>${athletes
-    .name}</h3>
-  
-`;
-          celebrityCards.appendChild(card);
-        });
-      }
-      // --- Search Form Logic ---
-      document
-        .querySelector(".hero-search-form")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
-          const input = document.getElementById("musician-search-input");
-          const query = input.value.trim();
-          if (!query) return;
-          const resultDiv = document.getElementById("search-result");
-          resultDiv.innerHTML = "Searching...";
-          // First, search in local musicians-top500.json
-          let musicians = [];
-          try {
-            const res = await fetch("musicians-top500.json");
-            musicians = await res.json();
-          } catch (err) {}
-          let filtered = musicians.filter((m) =>
-            m.name.toLowerCase().includes(query.toLowerCase())
-          );
-          let allMatches = filtered.map((m) => ({
-            name: m.name,
-            image: m.image,
-            price: m.price ? m.price : "$199",
-            link: m.link,
-          }));
-          if (allMatches.length === 0) {
-            // If not found, search Deezer API using a CORS proxy
-            try {
-              const proxy = "https://corsproxy.io/?";
-              const deezerRes = await fetch(
-                `${proxy}https://api.deezer.com/search/artist?q=${encodeURIComponent(
-                  query
-                )}`
-              );
-              const deezerData = await deezerRes.json();
-              if (deezerData.data && deezerData.data.length > 0) {
-                allMatches = deezerData.data.map((artist) => ({
-                  name: artist.name,
-                  image:
-                    artist.picture_xl || artist.picture_big || artist.picture,
-                  price: "$199",
-                  link: artist.link,
-                }));
-                resultDiv.innerHTML = `<b>Showing results from Deezer API</b>`;
-              } else {
-                resultDiv.innerHTML = "No results found.";
-                return;
-              }
-            } catch (err) {
-              resultDiv.innerHTML = "Error searching Deezer API.";
-              return;
-            }
-          } else {
-            resultDiv.innerHTML = `<b>Showing results from local database</b>`;
-          }
-          // Render as carousel
-          const limitedMatches = allMatches.slice(0, 4);
-          resultDiv.innerHTML += `\n<div class=\"carousel-wrapper\">\n  <button class=\"carousel-arrow left\" aria-label=\"Scroll left\">&#8592;</button>\n  <div class=\"carousel-container\" id=\"carousel-container\">${limitedMatches
-            .filter((a) => a.name && a.name.trim() !== "")
-            .map(
-              (a, idx) =>
-                `<div class=\"actor-card\" data-name=\"${encodeURIComponent(
-                  a.name
-                )}\"><img src=\"${a.image}\" alt=\"${
-                  a.name
-                }\" class=\"actor-img\"><div class=\"actor-info\"><b>${
-                  a.name
-                }</b><div class=\"actor-price\">${a.price}</div></div></div>`
-            )
-            .join(
-              ""
-            )}</div>\n  <button class=\"carousel-arrow right\" aria-label=\"Scroll right\">&#8594;</button>\n</div>`;
-          // Carousel scroll logic
-          const carousel = document.getElementById("carousel-container");
-          const leftBtn = document.querySelector(".carousel-arrow.left");
-          const rightBtn = document.querySelector(".carousel-arrow.right");
-          if (carousel && leftBtn && rightBtn) {
-            leftBtn.onclick = () => {
-              carousel.scrollBy({ left: -260, behavior: "smooth" });
-            };
-            rightBtn.onclick = () => {
-              carousel.scrollBy({ left: 260, behavior: "smooth" });
-            };
-          }
-          // Add click handler for navigation
-          if (carousel) {
-            carousel.querySelectorAll(".actor-card").forEach((card) => {
-              card.addEventListener("click", function () {
-                const name = card.getAttribute("data-name");
-                window.location.href = `musician-details.html?name=${name}`;
-              });
-            });
-          }
-        });
-    </script>
     <style>
       .actor-card {
         display: flex;
@@ -943,257 +831,18 @@
 </html>
 
 <script>
-  async function getPopularAthletes() {
-    const response = await fetch("sports-top500.json");
-    const athletes = await response.json();
-
-    // Sort athletes with images first, then by name
-    athletes.sort((a, b) => {
-      if (a.image && !b.image) return -1;
-      if (!a.image && b.image) return 1;
-      if (a.name && b.name) return a.name.localeCompare(b.name);
-      return 0;
-    });
-
-    // Render cards
-    const container = document.getElementById("celebrity-cards");
-    container.innerHTML = "";
-    athletes.slice(0, 20).forEach((athlete) => {
-      const card = document.createElement("div");
-      card.className = "celebrity-card";
-      card.style.cursor = "pointer";
-      card.addEventListener("click", function () {
-        window.location.href = `sports-personalities.html?name=${encodeURIComponent(
-          athlete.name
-        )}`;
-      });
-      if (athlete.image) {
-        const img = document.createElement("img");
-        img.src = athlete.image;
-        img.alt = athlete.name;
-        img.style.width = "100%";
-        img.style.height = "200px";
-        img.style.objectFit = "cover";
-        card.appendChild(img);
-      }
-      const name = document.createElement("div");
-      name.textContent = athlete.name;
-      name.style.fontWeight = "bold";
-      card.appendChild(name);
-      const sport = document.createElement("div");
-      sport.textContent = athlete.sport ? `Sport: ${athlete.sport}` : "";
-      card.appendChild(sport);
-      const team = document.createElement("div");
-      team.textContent = athlete.team ? `Team: ${athlete.team}` : "";
-      card.appendChild(team);
-      container.appendChild(card);
-    });
-  }
-  document.addEventListener(
-    "DOMContentLoaded",
-    getPopularAthletes
-  );
-</script><script>
-document.querySelector(".hero-search-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const input = document.getElementById("sports-search-input");
-  const query = input.value.trim();
-  if (!query) return;
-  const resultDiv = document.getElementById("search-result");
-  resultDiv.innerHTML = "Searching...";
-  let players = [];
-  try {
-    const res = await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(query)}`);
-    const data = await res.json();
-    players = data.player || [];
-  } catch (err) {}
-  if (players.length === 0) {
-    resultDiv.innerHTML = "No results found.";
-    return;
-  } else {
-    resultDiv.innerHTML = `<b>Showing results from TheSportsDB</b>`;
-  }
-  const limitedMatches = players.slice(0, 4);
-  resultDiv.innerHTML += `\n<div class=\"carousel-wrapper\">\n  <button class=\"carousel-arrow left\" aria-label=\"Scroll left\">&#8592;</button>\n  <div class=\"carousel-container\" id=\"carousel-container\">${limitedMatches
-    .filter((a) => a.strPlayer && a.strPlayer.trim() !== "")
-    .map(
-      (a, idx) =>
-        `<div class=\"actor-card\" data-name=\"${encodeURIComponent(
-          a.strPlayer
-        )}\"><img src=\"${a.strCutout || "celebrities.jpg"}\" alt=\"${
-          a.strPlayer
-        }\" class=\"actor-img\"><div class=\"actor-info\"><b>${
-          a.strPlayer
-        }</b><div class=\"actor-price\">${a.strSport || "Sport: N/A"}</div></div></div>`
-    )
-    .join("")}</div>\n  <button class=\"carousel-arrow right\" aria-label=\"Scroll right\">&#8594;</button>\n</div>`;
-  const carousel = document.getElementById("carousel-container");
-  const leftBtn = document.querySelector(".carousel-arrow.left");
-  const rightBtn = document.querySelector(".carousel-arrow.right");
-  if (carousel && leftBtn && rightBtn) {
-    leftBtn.onclick = () => {
-      carousel.scrollBy({ left: -260, behavior: "smooth" });
-    };
-    rightBtn.onclick = () => {
-      carousel.scrollBy({ left: 260, behavior: "smooth" });
-    };
-  }
-  if (carousel) {
-    carousel.querySelectorAll(".actor-card").forEach((card) => {
-      card.addEventListener("click", function () {
-        const name = card.getAttribute("data-name");
-        window.location.href = `sports-personality-details.html?name=${name}`;
-      });
-    });
-  }
-});
-</script>
-    <style>
-      .actor-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: #fff;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        padding: 24px 28px 20px 28px;
-        margin: 24px auto;
-        width: 240px;
-        cursor: pointer;
-        transition: box-shadow 0.2s, transform 0.2s;
-        border: 1px solid #e5e5e5;
-        border-radius: 0;
-      }
-      .actor-img {
-        width: 180px;
-        height: 240px;
-        object-fit: cover;
-        border-radius: 0;
-        margin-bottom: 18px;
-        border: 1px solid #ddd;
-        background: #fff;
-      }
-      .actor-info {
-        text-align: center;
-        color: #111;
-      }
-      .actor-info b {
-        color: #111;
-        font-size: 1.25em;
-        font-weight: bold;
-      }
-      .actor-price {
-        color: #111;
-        font-weight: bold;
-        font-size: 1.15em;
-        margin-top: 10px;
-      }
-    </style>
-    <style>
-      @media (min-width: 768px) {
-        .carousel-container {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          gap: 24px;
-          justify-content: flex-start;
-          align-items: stretch;
-          margin-left: 50%;
-          width: 1000px;
-        }
-        .actor-card {
-          min-width: 260px;
-          max-width: 300px;
-          flex: 0 0 auto;
-          margin-bottom: 0;
-        }
-      }
-    </style>
-    <script>
-      // Carousel scroll logic
-      const carousel = document.getElementById("carousel-container");
-      const leftBtn = document.querySelector(".carousel-arrow.left");
-      // Card rendering logic
-      // Render musician cards
-      function renderCelebrityCards(musicians) {
-        celebrityCards.innerHTML = "";
-        musicians.forEach((musician) => {
-          const card = document.createElement("div");
-          card.className = "celebrity-card";
-          card.innerHTML = `
-  <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-  <h3>${musician.name}</h3>
-`;
-          celebrityCards.appendChild(card);
-        });
-      }
-    </script>
-    <style>
-      @media (min-width: 768px) {
-        .carousel-container {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          gap: 24px;
-          justify-content: flex-start;
-          align-items: stretch;
-          margin-left: 50%;
-          width: 1000px;
-        }
-        .actor-card {
-          min-width: 260px;
-          max-width: 300px;
-          flex: 0 0 auto;
-          margin-bottom: 0;
-        }
-      }
-    </style>
-</style>
-
-<style>
-  @media (min-width: 600px) {
-    .caa-navbar {
-      width: 400px;
-      left: 0;
-    }
-    .navbar-overlay-content {
-      margin-left: 48px;
-    }
-  }
-  @media (max-width: 600px) {
-    .footer-main-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-      margin-bottom: 34px;
-    }
-    .footer-logo-col {
-      flex: none;
-      margin-bottom: 10px;
-    }
-    .caa-footer-logo {
-      font-size: 64px;
-      margin-bottom: 0;
-    }
-    .footer-links-col {
-      margin-top: 0;
-    }
-  }
-</style>
-
-<script>
   // Card rendering logic
-  function renderCelebrityCards(musicians) {
+  function renderCelebrityCards(athletes) {
     const celebrityCards = document.getElementById("celebrity-cards");
     celebrityCards.innerHTML = "";
-    musicians.forEach((musician) => {
+    athletes.forEach((athlete) => {
       const card = document.createElement("div");
       card.className = "celebrity-card";
       card.innerHTML = `
-  <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-  <h3>${musician.name}</h3>
-  
+  <img src="${athlete.image}" alt="${athlete.name}" onerror="this.onerror=null;this.src='celebritieus.jpg';">
+  <h3>${athlete.name}</h3>
+  <p>${athlete.sport}</p>
+  <p>${athlete.team}</p>
 `;
       celebrityCards.appendChild(card);
     });
@@ -1208,89 +857,24 @@ document.querySelector(".hero-search-form").addEventListener("submit", async fun
       if (!query) return;
       const resultDiv = document.getElementById("search-result");
       resultDiv.innerHTML = "Searching...";
-      // First, search in local musicians-top500.json
-      let musicians = [];
+      // Search in local sports-top500.json
+      let athletes = [];
       try {
-        const res = await fetch("musicians-top500.json");
-        musicians = await res.json();
-      } catch (err) {}
-      let filtered = musicians.filter((m) =>
-        m.name.toLowerCase().includes(query.toLowerCase())
+        const res = await fetch("sports-top500.json");
+        athletes = await res.json();
+      } catch (err) {
+        resultDiv.innerHTML = "Error loading athlete data.";
+        return;
+      }
+      let filtered = athletes.filter((a) =>
+        a.name.toLowerCase().includes(query.toLowerCase())
       );
-      let allMatches = filtered.map((m) => ({
-        name: m.name,
-        image: m.image,
-        price: m.price ? m.price : "$199",
-        link: m.link,
-      }));
-      if (allMatches.length === 0) {
-        // If not found, search Deezer API using a CORS proxy
-        try {
-          const proxy = "https://corsproxy.io/?";
-          const deezerRes = await fetch(
-            `${proxy}https://api.deezer.com/search/artist?q=${encodeURIComponent(
-              query
-            )}`
-          );
-          const deezerData = await deezerRes.json();
-          if (deezerData.data && deezerData.data.length > 0) {
-            allMatches = deezerData.data.map((artist) => ({
-              name: artist.name,
-              image:
-                artist.picture_xl || artist.picture_big || artist.picture,
-              price: "$199",
-              link: artist.link,
-            }));
-            resultDiv.innerHTML = `<b>Showing results from Deezer API</b>`;
-          } else {
-            resultDiv.innerHTML = "No results found.";
-            return;
-          }
-        } catch (err) {
-          resultDiv.innerHTML = "Error searching Deezer API.";
-          return;
-        }
-      } else {
-        resultDiv.innerHTML = `<b>Showing results from local database</b>`;
+      if (filtered.length === 0) {
+        resultDiv.innerHTML = "No athlete found matching your search.";
+        return;
       }
-      // Render as carousel
-      const limitedMatches = allMatches.slice(0, 4);
-      resultDiv.innerHTML += `\n<div class=\"carousel-wrapper\">\n  <button class=\"carousel-arrow left\" aria-label=\"Scroll left\">&#8592;</button>\n  <div class=\"carousel-container\" id=\"carousel-container\">${limitedMatches
-        .filter((a) => a.name && a.name.trim() !== "")
-        .map(
-          (a, idx) =>
-            `<div class=\"actor-card\" data-name=\"${encodeURIComponent(
-              a.name
-            )}\"><img src=\"${a.image}\" alt=\"${
-              a.name
-            }\" class=\"actor-img\"><div class=\"actor-info\"><b>${
-              a.name
-            }</b><div class=\"actor-price\">${a.price}</div></div></div>`
-        )
-        .join(
-          ""
-        )}</div>\n  <button class=\"carousel-arrow right\" aria-label=\"Scroll right\">&#8594;</button>\n</div>`;
-      // Carousel scroll logic
-      const carousel = document.getElementById("carousel-container");
-      const leftBtn = document.querySelector(".carousel-arrow.left");
-      const rightBtn = document.querySelector(".carousel-arrow.right");
-      if (carousel && leftBtn && rightBtn) {
-        leftBtn.onclick = () => {
-          carousel.scrollBy({ left: -260, behavior: "smooth" });
-        };
-        rightBtn.onclick = () => {
-          carousel.scrollBy({ left: 260, behavior: "smooth" });
-        };
-      }
-      // Add click handler for navigation
-      if (carousel) {
-        carousel.querySelectorAll(".actor-card").forEach((card) => {
-          card.addEventListener("click", function () {
-            const name = card.getAttribute("data-name");
-            window.location.href = `musician-details.html?name=${name}`;
-          });
-        });
-      }
+      resultDiv.innerHTML = `<b>Showing results from sports database</b>`;
+      renderCelebrityCards(filtered);
     });
 </script>
 <style>
@@ -1354,25 +938,6 @@ document.querySelector(".hero-search-form").addEventListener("submit", async fun
     }
   }
 </style>
-<script>
-  // Carousel scroll logic
-  const carousel = document.getElementById("carousel-container");
-  const leftBtn = document.querySelector(".carousel-arrow.left");
-  // Card rendering logic
-  // Render musician cards
-  function renderCelebrityCards(musicians) {
-    celebrityCards.innerHTML = "";
-    musicians.forEach((musician) => {
-      const card = document.createElement("div");
-      card.className = "celebrity-card";
-      card.innerHTML = `
-  <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-  <h3>${musician.name}</h3>
-`;
-      celebrityCards.appendChild(card);
-    });
-  }
-</script>
 <style>
   @media (min-width: 768px) {
     .carousel-container {

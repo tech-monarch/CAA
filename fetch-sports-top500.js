@@ -25,11 +25,10 @@ const fs = require("fs");
         team: player.strTeam || null,
       });
     }
-    if (sportsPersonalities.length >= 500) break;
   }
   fs.writeFileSync(
     "sports-top500.json",
-    JSON.stringify(sportsPersonalities.slice(0, 500), null, 2)
+    JSON.stringify(sportsPersonalities, null, 2)
   );
-  console.log("Done.");
+  console.log(`Fetched ${sportsPersonalities.length} players.`);
 })();
