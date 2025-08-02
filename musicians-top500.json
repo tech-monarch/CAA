@@ -3,54 +3,63 @@
     "name": "Wizkid",
     "id": 3933641,
     "image": "https://cdn-images.dzcdn.net/images/artist/171332ffcaa66c2b5583d7630297be88/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/3933641"
+    "link": "https://www.deezer.com/artist/3933641",
+    "price": 155
   },
   {
     "name": "Kanye West",
     "id": 230,
     "image": "https://cdn-images.dzcdn.net/images/artist/bb76c2ee3b068726ab4c37b0aabdb57a/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/230"
+    "link": "https://www.deezer.com/artist/230",
+    "price": 517
   },
   {
     "name": "Burna Boy",
     "id": 4338602,
     "image": "https://cdn-images.dzcdn.net/images/artist/ad15b7f03325752d60db9e4d39c079ae/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/4338602"
+    "link": "https://www.deezer.com/artist/4338602",
+    "price": 547
   },
   {
     "name": "Ayra Starr",
     "id": 110616822,
     "image": "https://cdn-images.dzcdn.net/images/artist/dbbf92fde4a28452a455f885b065008e/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/110616822"
+    "link": "https://www.deezer.com/artist/110616822",
+    "price": 837
   },
   {
     "name": "Justin Bieber",
     "id": 288166,
     "image": "https://cdn-images.dzcdn.net/images/artist/d1883834aa398626a4d081faec05387f/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/288166"
+    "link": "https://www.deezer.com/artist/288166",
+    "price": 606
   },
   {
     "name": "Fireboy Dml",
     "id": 15190997,
     "image": "https://cdn-images.dzcdn.net/images/artist/816e7dc6e0a1520f537256ccad521921/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/15190997"
+    "link": "https://www.deezer.com/artist/15190997",
+    "price": 1500
   },
   {
     "name": "Dave",
     "id": 11256100,
     "image": "https://cdn-images.dzcdn.net/images/artist/eb2c8952b7328fdf32b3546d5ffab8c2/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/11256100"
+    "link": "https://www.deezer.com/artist/11256100",
+    "price": 156
   },
   {
     "name": "Tems",
     "id": 13905711,
     "image": "https://cdn-images.dzcdn.net/images/artist/6afe2edff567600abf781c3d8a29344b/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/13905711"
+    "link": "https://www.deezer.com/artist/13905711",
+    "price": 480
   },
   {
     "name": "Bella Shmurda",
     "id": 61061602,
     "image": "https://cdn-images.dzcdn.net/images/artist/7280c1996fd9ddb8a8aafe829706ff72/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/61061602"
+    "link": "https://www.deezer.com/artist/61061602",
+    "price": 720
   }
 ]

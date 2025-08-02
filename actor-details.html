@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Celebrity Details & Booking</title>
+    <title>Actor Details - CAA</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,721 +11,546 @@
     <link href="fonts/style.css" rel="stylesheet" />
     <style>
       body {
-        background: white;
+        background: #292d34;
         color: #fff;
         font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         min-height: 100vh;
         margin: 0;
         padding: 0;
       }
-      .hero-container {
-        position: relative;
-        min-height: 100vh;
-        width: 100%;
-        overflow: hidden;
-      }
-      .hero-bg {
-        background: url("celebrities.jpg") center center/cover no-repeat;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
-      .caa-logo {
-        font-size: 3.2rem;
-        font-weight: bold;
-        letter-spacing: -2px;
-        margin-top: 32px;
-        margin-left: 32px;
-        margin-bottom: 0;
-        color: #fff;
-        line-height: 1;
-        position: relative;
-        z-index: 2;
-      }
-      .about-hero-content {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        z-index: 2;
-        margin-left: 36px;
-        margin-bottom: 48px;
-        max-width: 340px;
-      }
-      .about-hero-content h1 {
-        font-size: 2.6rem;
-        font-weight: bold;
-        margin-bottom: 2.5rem;
-        color: #fff;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        line-height: 1.25;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-      }
-      @media (max-width: 900px) {
-        .caa-logo {
-          margin-left: 18px;
-          font-size: 2.2rem;
-        }
-        .about-hero-content {
-          margin-left: 18px;
-          margin-bottom: 32px;
-        }
-      }
-      @media (max-width: 600px) {
-        .hero-container {
-          min-height: 420px;
-        }
-        .about-hero-content h1 {
-          font-size: 1.5rem;
-        }
-      }
+
       .container {
-        max-width: 700px;
-        margin: 48px auto;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .person-details {
         background: #fff;
-        border-radius: 18px;
-        box-shadow: 0 8px 32px rgba(60, 60, 120, 0.1);
-        padding: 40px 32px 32px 32px;
+        color: #333;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
       }
-      .celebrity-header {
+
+      .person-header {
         display: flex;
-        align-items: center;
-        gap: 36px;
-        margin-bottom: 36px;
+        gap: 40px;
+        margin-bottom: 40px;
+        align-items: flex-start;
       }
-      .celebrity-img {
-        width: 200px;
-        height: 200px;
+
+      .person-image {
+        width: 300px;
+        height: 400px;
         object-fit: cover;
-        border-radius: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+        border: 3px solid #e5e5e5;
+        flex-shrink: 0;
       }
-      .celebrity-info {
+
+      .person-info {
         flex: 1;
       }
-      .celebrity-name {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #1a1a1a;
-        margin-bottom: 10px;
-        letter-spacing: 0.5px;
-      }
-      .celebrity-price {
-        font-size: 1.4rem;
-        color: #2a2a2a;
-        margin-bottom: 18px;
-        font-weight: 500;
-      }
-      .booking-form {
-        margin-top: 40px;
-      }
-      .booking-form label {
-        display: block;
-        margin: 20px 0 8px;
-        font-weight: 600;
-        color: #222;
-      }
-      .booking-form select,
-      .booking-form textarea,
-      .booking-form input[type="text"] {
-        width: 100%;
-        padding: 12px;
-        border: 1.5px solid #bfc9d1;
-        border-radius: 6px;
-        font-size: 1.05rem;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-        margin-bottom: 6px;
-      }
-      .booking-form select,
-      .booking-form textarea,
-      .booking-form input[type="tel"] {
-        width: 100%;
-        padding: 12px;
-        border: 1.5px solid #bfc9d1;
-        border-radius: 6px;
-        font-size: 1.05rem;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-        margin-bottom: 6px;
-      }
-      .booking-form select,
-      .booking-form textarea,
-      .booking-form input[type="email"] {
-        width: 100%;
-        padding: 12px;
-        border: 1.5px solid #bfc9d1;
-        border-radius: 6px;
-        font-size: 1.05rem;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-        margin-bottom: 6px;
-      }
-      .booking-form select:focus,
-      .booking-form textarea:focus,
-      .booking-form input[type="text"]:focus {
-        border: 1.5px solid #6c63ff;
-        outline: none;
-        box-shadow: 0 0 0 2px #e0e7ff;
-      }
-      .booking-form select:focus,
-      .booking-form textarea:focus,
-      .booking-form input[type="email"]:focus {
-        border: 1.5px solid #6c63ff;
-        outline: none;
-        box-shadow: 0 0 0 2px #e0e7ff;
-      }
-      .booking-form select:focus,
-      .booking-form textarea:focus,
-      .booking-form input[type="tel"]:focus {
-        border: 1.5px solid #6c63ff;
-        outline: none;
-        box-shadow: 0 0 0 2px #e0e7ff;
-      }
-      .booking-form textarea {
-        min-height: 90px;
-        resize: vertical;
-      }
-      .booking-form button {
-        margin-top: 28px;
-        background: linear-gradient(90deg, #ff6363 0%, #ef4848 100%);
-        color: #fff;
-        border: none;
-        padding: 15px 38px;
-        border-radius: 6px;
-        font-size: 1.13rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s, box-shadow 0.2s;
-        box-shadow: 0 2px 8px rgba(76, 110, 245, 0.08);
-      }
-      .booking-form button:hover {
-        background: linear-gradient(90deg, #48c6ef 0%, #6c63ff 100%);
-        box-shadow: 0 4px 16px rgba(76, 110, 245, 0.13);
-      }
-      .form-note {
-        color: #5a5a5a;
-        font-size: 1.01rem;
-        margin-bottom: 22px;
-        background: #f0f4fa;
-        padding: 12px 18px;
-        border-radius: 5px;
-      }
-      @media (max-width: 700px) {
-        .container {
-          padding: 12px;
-        }
-        .celebrity-header {
-          flex-direction: column;
-          gap: 18px;
-        }
-        .celebrity-img {
-          width: 100%;
-          height: 180px;
-        }
-      }
-    </style>
 
-    <style>
-      .caa-footer {
-        background: #b71c2c;
-        color: #fff;
-        padding: 0 0 32px 0;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
-        margin-top: 0;
-        border: none;
+      .person-name {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #b71c2c;
+        margin-bottom: 20px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
       }
-      .caa-footer-content.desktop-footer {
-        max-width: 100vw;
-        margin: 0;
+
+      .person-department {
+        font-size: 1.3rem;
+        color: #666;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+
+      .person-price {
+        font-size: 2rem;
+        color: #b71c2c;
+        font-weight: bold;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 15px 25px;
+        border-radius: 25px;
+        border: 2px solid #e9ecef;
+        display: inline-block;
+        margin-bottom: 30px;
+      }
+
+      .person-bio {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 30px;
+      }
+
+      .back-button {
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: linear-gradient(135deg, #a01828, #b71c2c);
+        transform: scale(1.05);
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .known-for {
+        margin-top: 30px;
+      }
+
+      .known-for h3 {
+        color: #b71c2c;
+        margin-bottom: 20px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+
+      .known-for-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+      }
+
+      .known-for-item {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #b71c2c;
+      }
+
+      /* Booking Form Styles */
+      .booking-form-section {
+        background: #fff;
+        color: #333;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+      }
+
+      .booking-form-section h2 {
+        color: #b71c2c;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+
+      .response-time {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+      }
+
+      .booking-form {
+        max-width: 100%;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        padding: 64px 0 0 0;
       }
-      .footer-main-row {
-        display: flex;
-        width: 85vw;
-        max-width: 1600px;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 120px;
-        margin-bottom: 32px;
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
       }
-      .footer-logo-col {
-        flex: 0 0 320px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
+
+      .form-group label {
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+        font-size: 1rem;
       }
-      .caa-footer-logo {
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        font-size: 100px;
-        letter-spacing: -2px;
-        margin: 0 0 0 0;
-        line-height: 1;
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 12px 15px;
+        border: 2px solid #e5e5e5;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        transition: border-color 0.3s ease;
       }
-      .footer-links-col {
-        flex: 1 1 0;
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #b71c2c;
+        box-shadow: 0 0 0 3px rgba(183, 28, 44, 0.1);
       }
-      .footer-links-list {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 0 0;
+
+      .form-group input[readonly] {
+        background-color: #f8f9fa;
+        color: #666;
       }
-      .footer-links-list li {
-        margin-bottom: 18px;
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
       }
-      .footer-links-list a {
+
+      .submit-button {
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
         color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        transition: text-decoration 0.2s;
-      }
-      .footer-links-list a:hover {
-        text-decoration: underline;
-      }
-      .caa-footer-divider {
-        width: 90%;
-        margin: 32px 0 16px 0;
         border: none;
-        border-top: 2px solid #fff2;
+        padding: 15px 40px;
+        border-radius: 25px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 300px;
       }
-      .footer-bottom-row {
-        width: 85vw;
-        max-width: 1600px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 0;
+
+      .submit-button:hover {
+        background: linear-gradient(135deg, #a01828, #b71c2c);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(183, 28, 44, 0.3);
       }
-      .footer-bottom-links {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        font-size: 18px;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-      }
-      .footer-bottom-links a {
-        color: #fff;
-        text-decoration: none;
-      }
-      .footer-divider {
-        color: #fff;
-        opacity: 0.7;
-        font-size: 18px;
-        margin: 0 8px;
-      }
-      .footer-bottom-social {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 16px;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-      }
-      .caa-footer-instagram {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #fff;
-        margin-left: 4px;
-        transition: box-shadow 0.2s;
-      }
-      .caa-footer-instagram:hover {
-        box-shadow: 0 0 0 2px #b71c2c;
-      }
-      .caa-footer-follow-label {
-        font-size: 16px;
-        margin-right: 8px;
-        color: #fff;
-      }
-      @media (max-width: 1200px) {
-        .footer-main-row,
-        .footer-bottom-row {
-          width: 98vw;
-          gap: 48px;
-        }
-        .caa-footer-logo {
-          font-size: 80px;
-        }
-      }
-      @media (max-width: 900px) {
-        .footer-main-row,
-        .footer-bottom-row {
+
+      @media (max-width: 768px) {
+        .person-header {
           flex-direction: column;
-          align-items: flex-start;
-          width: 98vw;
-          gap: 0;
+          align-items: center;
+          text-align: center;
         }
-        .footer-logo-col {
-          margin-bottom: 24px;
+
+        .person-image {
+          width: 250px;
+          height: 330px;
         }
-        .footer-links-col {
-          margin-bottom: 24px;
+
+        .person-name {
+          font-size: 2rem;
         }
-        .footer-bottom-row {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 12px;
+
+        .person-price {
+          font-size: 1.5rem;
         }
-      }
-      @media (max-width: 600px) {
-        .caa-footer-content.desktop-footer {
-          padding: 32px 0 0 0;
+
+        .container {
+          padding: 20px 15px;
         }
-        .caa-footer-logo {
-          font-size: 48px;
+
+        .person-details,
+        .booking-form-section {
+          padding: 25px;
         }
-        .footer-links-list a {
-          font-size: 18px;
+
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 15px;
         }
-        .footer-bottom-links {
-          font-size: 14px;
-        }
-        .footer-bottom-social {
-          font-size: 14px;
+
+        .booking-form-section h2 {
+          font-size: 1.5rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="hero-container">
-      <div class="hero-bg"></div>
-      <div class="caa-logo">CAA</div>
-      <div class="about-hero-content">
-        <h1>Celebrity Details & Booking</h1>
-      </div>
-    </div>
     <div class="container">
-      <div class="celebrity-header">
-        <img
-          id="celebrity-img"
-          class="celebrity-img"
-          src=""
-          alt="Celebrity Photo"
-        />
-        <div class="celebrity-info">
-          <div id="celebrity-name" class="celebrity-name"></div>
-          <div id="celebrity-price" class="celebrity-price"></div>
-        </div>
-      </div>
-      <form class="booking-form" id="bookingForm">
-        <div class="form-note">
-          <h2>Tell us about your event!</h2>
-          <br />During normal business hours, we respond to most inquiries
-          within 4 hours.
-        </div>
-        <label for="actor-name">Actor Name*</label>
-        <input
-          type="text"
-          id="actor-name"
-          name="actor-name"
-          readonly
-          style="background: #f5f5f5; color: #888; margin-bottom: 18px"
-        />
-        <label for="event-name">Event Name*</label>
-        <input
-          type="text"
-          id="event-name"
-          name="event-name"
-          required
-          placeholder="Enter the event name"
-        />
-        <label for="email">Your Email *</label>
-        <input
-          type="email"
-          id="email"
-          required
-          placeholder="Enter your email address"
-        />
-        <label for="phone">Phone Number*</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          required
-          placeholder="Enter your phone number"
-          pattern="[0-9\-\+\s\(\)]{7,}"
-        />
-        <label for="sex">Sex*</label>
-        <select id="sex" name="sex" required>
-          <option value="">Select...</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-          <option value="prefer-not-to-say">Prefer not to say</option>
-        </select>
-        <label for="nearest-airport">Nearest Airport*</label>
-        <input
-          type="text"
-          id="nearest-airport"
-          name="nearest-airport"
-          required
-          placeholder="Enter nearest airport"
-        />
-        <label for="talent-budget"
-          >Please select your approximate talent budget *</label
-        >
-        <select id="talent-budget" required>
-          <option value="">Select...</option>
-          <option value="$5,000 or less">$5,000 or less</option>
-          <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-          <option value="$10,000 - $20,000">$10,000 - $20,000</option>
-          <option value="$20,000 - $30,000">$20,000 - $30,000</option>
-          <option value="$30,000 - $50,000">$30,000 - $50,000</option>
-          <option value="$50,000 - $100,000">$50,000 - $100,000</option>
-          <option value="$100,000 - $500,000">$100,000 - $500,000</option>
-          <option value="$500,000 and above">$500,000 and above</option>
-        </select>
-        <label for="event-type">Type of Event*</label>
-        <select id="event-type">
-          <option value="">Select...</option>
-          <option>Birthday</option>
-          <option>Meet and Greet</option>
-          <option>Convention/Trade Show</option>
-          <option>Cooking Demo</option>
-          <option>Endorsement/Spokesperson</option>
-          <option>Funeral</option>
-          <option>Musical Performance</option>
-          <option>Personal Appearance</option>
-          <option>Satellite Media Tour</option>
-          <option>Speaking Engagement</option>
-          <option>Virtual Event</option>
-          <option>Wedding</option>
-        </select>
-        <label for="event-details">Event Details*</label>
-        <textarea
-          id="event-details"
-          placeholder="Tell us more about your event..."
-        ></textarea>
-        <button type="submit" style="margin-bottom: 4rem">
-          Submit Booking Request
-        </button>
-      </form>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-      <script>
-        (function () {
-          emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
-        })();
+      <a href="actors-actresses.html" class="back-button"
+        >← Back to Actors & Actresses</a
+      >
 
-        document
-          .getElementById("bookingForm")
-          .addEventListener("submit", function (e) {
-            e.preventDefault();
-            var form = this;
-            var formData = {
-              actor_name: document.getElementById("actor-name").value,
-              event_name: document.getElementById("event-name").value,
-              email: document.getElementById("email").value,
-              phone: document.getElementById("phone").value,
-              sex: document.getElementById("sex").value,
-              nearest_airport: document.getElementById("nearest-airport").value,
-              talent_budget: document.getElementById("talent-budget").value,
-              event_type: document.getElementById("event-type").value,
-              event_details: document.getElementById("event-details").value,
-            };
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData).then(
-              function (response) {
-                Swal.fire(
-                  "Success!",
-                  "Your booking request has been sent. We will contact you soon.",
-                  "success"
-                );
-                form.reset();
-              },
-              function (error) {
-                Swal.fire(
-                  "Error",
-                  "There was a problem sending your request. Please try again later.",
-                  "error"
-                );
-              }
-            );
-          });
-      </script>
-    </div>
-    <footer class="caa-footer">
-      <div class="caa-footer-content desktop-footer">
-        <div class="footer-main-row">
-          <div class="footer-logo-col" style="margin-bottom: 18px">
-            <div class="caa-footer-logo">CAA</div>
-          </div>
-          <div class="footer-links-col" style="margin-top: -14rem">
-            <ul class="footer-links-list">
-              <li><a href="#">About Us</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="#">Client Privacy Notice</a></li>
-            </ul>
-          </div>
-          <div class="footer-links-col">
-            <ul class="footer-links-list">
-              <li><a href="#">Social Responsibility</a></li>
-              <li><a href="#">Foundation</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
+      <div class="person-details">
+        <div class="person-header">
+          <img id="person-image" class="person-image" src="" alt="" />
+          <div class="person-info">
+            <h1 id="person-name" class="person-name"></h1>
+            <div id="person-department" class="person-department"></div>
+            <div id="person-price" class="person-price"></div>
+            <div id="person-bio" class="person-bio">
+              Loading actor details...
+            </div>
           </div>
         </div>
-        <hr class="caa-footer-divider" />
-        <div class="footer-bottom-row">
-          <div class="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Terms of Use</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Accessibility</a>
-          </div>
-          <div class="footer-bottom-social">
-            <span class="caa-footer-follow-label">Follow us:</span>
-            <a href="#" class="caa-footer-instagram" aria-label="Instagram">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="24" height="24" rx="6" fill="#fff" />
-                <path
-                  d="M12 8.4A3.6 3.6 0 1 0 12 15.6 3.6 3.6 0 0 0 12 8.4Zm0 5.9A2.3 2.3 0 1 1 12 9.7a2.3 2.3 0 0 1 0 4.6Zm4.5-6.1a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0ZM17.7 7.1a3.6 3.6 0 0 0-3.6-3.6H9.9a3.6 3.6 0 0 0-3.6 3.6v4.2a3.6 3.6 0 0 0 3.6 3.6h4.2a3.6 3.6 0 0 0 3.6-3.6V7.1Zm-1.2 4.2a2.4 2.4 0 0 1-2.4 2.4H9.9a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h4.2a2.4 2.4 0 0 1 2.4 2.4v4.2Z"
-                  fill="#B71C2C"
-                />
-              </svg>
-            </a>
-          </div>
+
+        <div id="known-for" class="known-for" style="display: none">
+          <h3>Known For</h3>
+          <div id="known-for-list" class="known-for-list"></div>
         </div>
       </div>
-    </footer>
-    <style>
-      .container {
-        max-width: 700px;
-        margin: 48px auto;
-        background: #fff;
-        border-radius: 18px;
-        box-shadow: 0 8px 32px rgba(60, 60, 120, 0.1);
-        padding: 40px 32px 32px 32px;
-        width: 100vw;
-        box-sizing: border-box;
-      }
-      @media (max-width: 900px) {
-        .container {
-          max-width: 98vw;
-          padding: 24px 6vw 24px 6vw;
-          margin: 24px auto;
-        }
-        .celebrity-header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 18px;
-        }
-        .celebrity-img {
-          width: 100%;
-          max-width: 320px;
-          height: auto;
-          margin: 0 auto;
-        }
-      }
-      @media (max-width: 600px) {
-        .container {
-          max-width: 100vw;
-          padding: 12px 2vw 18px 2vw;
-          margin: 0;
-          border-radius: 0;
-        }
-        .celebrity-header {
-          flex-direction: column;
-          align-items: center;
-          gap: 12px;
-        }
-        .celebrity-img {
-          width: 100vw;
-          max-width: 100vw;
-          height: auto;
-          border-radius: 0;
-        }
-        .celebrity-info {
-          width: 100%;
-          text-align: center;
-        }
-        .booking-form label,
-        .booking-form select,
-        .booking-form textarea,
-        .booking-form input[type="text"] {
-          font-size: 1rem;
-        }
-      }
-    </style>
+
+      <!-- Booking Form Section -->
+      <div class="booking-form-section">
+        <h2>Book This Actor</h2>
+        <p class="response-time">
+          During normal business hours, we respond to most inquiries within 4
+          hours.
+        </p>
+
+        <form id="booking-form" class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="person-name-field">Actor Name*</label>
+              <input
+                type="text"
+                id="person-name-field"
+                name="personName"
+                required
+                readonly
+              />
+            </div>
+            <div class="form-group">
+              <label for="event-name">Event Name*</label>
+              <input type="text" id="event-name" name="eventName" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Your Email*</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number*</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sex">Sex*</label>
+              <select id="sex" name="sex" required>
+                <option value="">Select...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                <option value="prefer-not-to-say">Prefer not to say</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="airport">Nearest Airport*</label>
+              <input type="text" id="airport" name="airport" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="budget"
+                >Please select your approximate talent budget*</label
+              >
+              <select id="budget" name="budget" required>
+                <option value="">Select...</option>
+                <option value="5000-or-less">$5,000 or less</option>
+                <option value="5000-10000">$5,000 - $10,000</option>
+                <option value="10000-20000">$10,000 - $20,000</option>
+                <option value="20000-30000">$20,000 - $30,000</option>
+                <option value="30000-50000">$30,000 - $50,000</option>
+                <option value="50000-100000">$50,000 - $100,000</option>
+                <option value="100000-500000">$100,000 - $500,000</option>
+                <option value="500000-above">$500,000 and above</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="event-type">Type of Event*</label>
+              <select id="event-type" name="eventType" required>
+                <option value="">Select...</option>
+                <option value="birthday">Birthday</option>
+                <option value="meet-and-greet">Meet and Greet</option>
+                <option value="convention">Convention/Trade Show</option>
+                <option value="cooking-demo">Cooking Demo</option>
+                <option value="endorsement">Endorsement/Spokesperson</option>
+                <option value="funeral">Funeral</option>
+                <option value="musical-performance">Musical Performance</option>
+                <option value="personal-appearance">Personal Appearance</option>
+                <option value="satellite-media">Satellite Media Tour</option>
+                <option value="speaking-engagement">Speaking Engagement</option>
+                <option value="virtual-event">Virtual Event</option>
+                <option value="wedding">Wedding</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="event-details"
+              >Tell us about your event! (Event Details)*</label
+            >
+            <textarea
+              id="event-details"
+              name="eventDetails"
+              rows="5"
+              required
+              placeholder="Please provide details about your event, including date, location, duration, and any special requirements..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-button">
+            Submit Booking Request
+          </button>
+        </form>
+      </div>
+    </div>
+
     <script>
-      // Populate celebrity details from URL param and JSON or fallback
-      async function loadCelebrityDetails() {
-        const params = new URLSearchParams(window.location.search);
-        const name = params.get("name");
-        document.getElementById("celebrity-name").textContent =
-          name || "Celebrity";
-        let found = null;
+      async function loadPersonDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const personName = urlParams.get("name");
+
+        if (!personName) {
+          document.getElementById("person-bio").textContent =
+            "No actor specified.";
+          return;
+        }
+
+        document.getElementById("person-name").textContent = personName;
+        document.title = `${personName} - Actor Details - CAA`;
+
+        const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
+        const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(
+          personName
+        )}`;
+
         try {
-          const resp = await fetch("actors-top500.json");
-          const actors = await resp.json();
-          found = actors.find(
-            (a) => a.name.toLowerCase() === (name || "").toLowerCase()
-          );
-        } catch {}
-        let price = found && found.price ? found.price : "$199";
-        let img = found && found.image ? found.image : "";
-        if (!img && name) {
-          // Try TMDb
-          try {
-            const tmdbApiKey =
-              window.TMDB_API_KEY || "cf324c1862aff1f7ccd25c8e397e7ced";
-            const url = `https://api.themoviedb.org/3/search/person?api_key=${tmdbApiKey}&query=${encodeURIComponent(
-              name
-            )}`;
-            const resp = await fetch(url);
-            const data = await resp.json();
-            if (data && data.results && data.results.length > 0) {
-              img = data.results[0].profile_path
-                ? `https://image.tmdb.org/t/p/w500${data.results[0].profile_path}`
-                : "";
+          const response = await fetch(searchUrl);
+          const data = await response.json();
+
+          if (data.results && data.results.length > 0) {
+            const person = data.results[0];
+
+            // Set basic info
+            document.getElementById("person-department").textContent =
+              person.known_for_department || "Actor/Actress";
+            document.getElementById("person-price").textContent =
+              "$" + (Math.floor(Math.random() * 4000) + 500);
+
+            // Set image
+            const imageElement = document.getElementById("person-image");
+            if (person.profile_path) {
+              imageElement.src = `https://image.tmdb.org/t/p/w500${person.profile_path}`;
+              imageElement.alt = person.name;
+            } else {
+              imageElement.src =
+                "https://via.placeholder.com/300x400?text=No+Image";
+              imageElement.alt = "No image available";
             }
-          } catch {}
+
+            // Set bio
+            document.getElementById("person-bio").innerHTML = `
+              <strong>Popularity:</strong> ${person.popularity}<br>
+              <strong>Adult Content:</strong> ${person.adult ? "Yes" : "No"}<br>
+              <strong>Gender:</strong> ${
+                person.gender === 1
+                  ? "Female"
+                  : person.gender === 2
+                  ? "Male"
+                  : "Not specified"
+              }<br><br>
+              This talented actor is known for their exceptional performances and entertainment value.
+            `;
+
+            // Show known for works
+            if (person.known_for && person.known_for.length > 0) {
+              const knownForSection = document.getElementById("known-for");
+              const knownForList = document.getElementById("known-for-list");
+
+              knownForList.innerHTML = "";
+              person.known_for.forEach((work) => {
+                const item = document.createElement("div");
+                item.className = "known-for-item";
+                item.innerHTML = `
+                  <strong>${work.title || work.name}</strong><br>
+                  <small>${
+                    work.release_date || work.first_air_date || "Date unknown"
+                  }</small><br>
+                  <em>${
+                    work.overview
+                      ? work.overview.substring(0, 100) + "..."
+                      : "No description available"
+                  }</em>
+                `;
+                knownForList.appendChild(item);
+              });
+
+              knownForSection.style.display = "block";
+            }
+
+            // Populate the booking form with person name
+            document.getElementById("person-name-field").value = personName;
+          } else {
+            document.getElementById("person-bio").textContent =
+              "Actor details not found in our database.";
+          }
+        } catch (error) {
+          console.error("Error loading actor details:", error);
+          document.getElementById("person-bio").textContent =
+            "Error loading actor details.";
         }
-        document.getElementById("celebrity-img").src = img || "celebrities.jpg";
-        document.getElementById("celebrity-img").alt = name || "Celebrity";
-        document.getElementById("celebrity-price").textContent = price;
       }
-      loadCelebrityDetails();
-      // Optionally, handle form submission
-      document
-        .querySelector(".booking-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Your booking request has been submitted!");
-        });
-    </script>
-    <script>
-      // Autofill actor name from URL parameter
-      (function () {
-        function getQueryParam(param) {
-          const urlParams = new URLSearchParams(window.location.search);
-          return urlParams.get(param) || "";
+
+      // Handle form submission
+      function handleFormSubmission(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const bookingData = {
+          personName: formData.get("personName"),
+          eventName: formData.get("eventName"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          sex: formData.get("sex"),
+          airport: formData.get("airport"),
+          budget: formData.get("budget"),
+          eventType: formData.get("eventType"),
+          eventDetails: formData.get("eventDetails"),
+        };
+
+        // Here you would typically send the data to your server
+        console.log("Booking request submitted:", bookingData);
+
+        // Show success message
+        alert(
+          "Thank you for your booking request! We will respond within 4 hours during normal business hours."
+        );
+
+        // Reset form
+        event.target.reset();
+
+        // Re-populate person name
+        const urlParams = new URLSearchParams(window.location.search);
+        const personName = urlParams.get("name");
+        if (personName) {
+          document.getElementById("person-name-field").value = personName;
         }
-        const actorName = getQueryParam("name");
-        if (actorName) {
-          const actorNameInput = document.getElementById("actor-name");
-          if (actorNameInput)
-            actorNameInput.value = decodeURIComponent(actorName);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadPersonDetails();
+
+        // Add form submission handler
+        const bookingForm = document.getElementById("booking-form");
+        if (bookingForm) {
+          bookingForm.addEventListener("submit", handleFormSubmission);
         }
-      })();
+      });
     </script>
   </body>
 </html>

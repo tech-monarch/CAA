@@ -3,312 +3,364 @@
     "name": "Aliir Aliir",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/bbauaj1644160785.png",
     "sport": "Australian Football",
-    "team": "Port Adelaide Football Club"
+    "team": "Port Adelaide Football Club",
+    "price": 207
   },
   {
     "name": "Alofa Alofa",
     "image": null,
     "sport": "Rugby",
-    "team": "Aviron Bayonnais"
+    "team": "Aviron Bayonnais",
+    "price": 409
   },
   {
     "name": "Ruben Boumtje-Boumtje",
     "image": null,
     "sport": "Basketball",
-    "team": "_Retired Basketball"
+    "team": "_Retired Basketball",
+    "price": 518
   },
   {
     "name": "Bam Bam Bigelow",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/5mh9s31575308482.png",
     "sport": "Fighting",
-    "team": "_Deceased Fighting"
+    "team": "_Deceased Fighting",
+    "price": 468
   },
   {
     "name": "Chen Chen",
     "image": null,
     "sport": "Basketball",
-    "team": "Sichuan Blue Whales"
+    "team": "Sichuan Blue Whales",
+    "price": 530
   },
   {
     "name": "Chi Chi Gonzalez",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/cdbq0l1672836127.png",
     "sport": "Baseball",
-    "team": "_Retired Baseball"
+    "team": "_Retired Baseball",
+    "price": 122
   },
   {
     "name": "Eric Djemba-Djemba",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/912773.png",
     "sport": "Soccer",
-    "team": "_Retired Soccer"
+    "team": "_Retired Soccer",
+    "price": 672
   },
   {
     "name": "Eric Djemba Djemba",
     "image": null,
     "sport": "Soccer",
-    "team": "_Retired Soccer"
+    "team": "_Retired Soccer",
+    "price": 324
   },
   {
     "name": "Patrick Ekeng Ekeng",
     "image": null,
     "sport": "Soccer",
-    "team": "_Deceased Soccer"
+    "team": "_Deceased Soccer",
+    "price": 564
   },
   {
     "name": "Herman Ese'ese",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/uaehxd1712573188.png",
     "sport": "Rugby",
-    "team": "Hull F.C."
+    "team": "Hull F.C.",
+    "price": 569
   },
   {
     "name": "Deybi Flores Flores",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/kcjnjr1709208756.png",
     "sport": "Soccer",
-    "team": "Toronto FC"
+    "team": "Toronto FC",
+    "price": 1167
   },
   {
     "name": "Habib Fardan Al Fardan",
     "image": null,
     "sport": "Soccer",
-    "team": "Ittihad Kalba"
+    "team": "Ittihad Kalba",
+    "price": 592
   },
   {
     "name": "Gol-Gol Mebrahtu",
     "image": null,
     "sport": "Soccer",
-    "team": "_Free Agent Soccer"
+    "team": "_Free Agent Soccer",
+    "price": 480
   },
   {
     "name": "Abdullah Ghanim Juma Ghanim Al Alawi",
     "image": null,
     "sport": "Soccer",
-    "team": "Al Sharjah"
+    "team": "Al Sharjah",
+    "price": 659
   },
   {
     "name": "Hadiman Hadiman",
     "image": null,
     "sport": "Tennis",
-    "team": "_Retired Tennis"
+    "team": "_Retired Tennis",
+    "price": 1063
   },
   {
     "name": "Andrés Hernández Hernández",
     "image": null,
     "sport": "Soccer",
-    "team": "Zamora F.C."
+    "team": "Zamora F.C.",
+    "price": 478
   },
   {
     "name": "Daniel Ivanov Ivanov",
     "image": null,
     "sport": "Soccer",
-    "team": "Spartak Varna"
+    "team": "Spartak Varna",
+    "price": 766
   },
   {
     "name": "Ivan Ivan",
     "image": null,
     "sport": "Ice Hockey",
-    "team": "Colorado Avalanche"
+    "team": "Colorado Avalanche",
+    "price": 597
   },
   {
     "name": "Jay-Jay Okocha",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/npga531590234026.png",
     "sport": "Soccer",
-    "team": "_Retired Soccer"
+    "team": "_Retired Soccer",
+    "price": 445
   },
   {
     "name": "Jay-Jay Wilson",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/aotmgr1619528942.png",
     "sport": "Fighting",
-    "team": "Bellator Mens"
+    "team": "Bellator Mens",
+    "price": 194
   },
   {
     "name": "Kelly Kelly",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/xg23dn1575307996.png",
     "sport": "Fighting",
-    "team": "_Retired WWE"
+    "team": "_Retired WWE",
+    "price": 870
   },
   {
     "name": "Kalo Kalo Gavidi",
     "image": null,
     "sport": "Rugby",
-    "team": "Spain Rugby"
+    "team": "Spain Rugby",
+    "price": 519
   },
   {
     "name": "Kazenga Lua Lua",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/v5jk6i1609011629.png",
     "sport": "Soccer",
-    "team": "Genclerbirligi"
+    "team": "Genclerbirligi",
+    "price": 716
   },
   {
     "name": "Laloifi Junior Laloifi",
     "image": null,
     "sport": "Rugby",
-    "team": "Zebre"
+    "team": "Zebre",
+    "price": 921
   },
   {
     "name": "Majok Majok",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/h7xg1p1640870816.png",
     "sport": "Basketball",
-    "team": "Perth Wildcats"
+    "team": "Perth Wildcats",
+    "price": 1048
   },
   {
     "name": "Ahmed Mohamed Abou El Fotouh Mohamed",
     "image": null,
     "sport": "Soccer",
-    "team": "Zamalek SC"
+    "team": "Zamalek SC",
+    "price": 271
   },
   {
     "name": "Nan Nan Liu",
     "image": null,
     "sport": "Tennis",
-    "team": "_Retired Tennis"
+    "team": "_Retired Tennis",
+    "price": 411
   },
   {
     "name": "Siphosakhe Ntiya-Ntiya",
     "image": null,
     "sport": "Soccer",
-    "team": "Sekhukhune United"
+    "team": "Sekhukhune United",
+    "price": 1087
   },
   {
     "name": "Saeed Obaid Saeed Obaid Al Kaabi",
     "image": null,
     "sport": "Soccer",
-    "team": "Al Sharjah"
+    "team": "Al Sharjah",
+    "price": 420
   },
   {
     "name": "Othman Al Othman",
     "image": null,
     "sport": "Soccer",
-    "team": "Al Fateh FC"
+    "team": "Al Fateh FC",
+    "price": 1059
   },
   {
     "name": "Pauli Pauli",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/z5e83y1591217063.png",
     "sport": "Rugby",
-    "team": "York City Knights"
+    "team": "York City Knights",
+    "price": 682
   },
   {
     "name": "Pari Pari Parkinson",
     "image": null,
     "sport": "Rugby",
-    "team": "Green Rockets Tokatsu"
+    "team": "Green Rockets Tokatsu",
+    "price": 441
   },
   {
     "name": "Stephen Quinn",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/5124877.png",
     "sport": "Soccer",
-    "team": "Mansfield"
+    "team": "Mansfield",
+    "price": 1193
   },
   {
     "name": "Ricardo Quaresma",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/abv62s1518384141.png",
     "sport": "Soccer",
-    "team": "Guimaraes"
+    "team": "Guimaraes",
+    "price": 629
   },
   {
     "name": "Ray-Ray McCloud III",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/2ld6o71732915852.png",
     "sport": "American Football",
-    "team": "Atlanta Falcons"
+    "team": "Atlanta Falcons",
+    "price": 732
   },
   {
     "name": "Aldair Ruiz Ruiz",
     "image": null,
     "sport": "Soccer",
-    "team": "Manchester 62"
+    "team": "Manchester 62",
+    "price": 826
   },
   {
     "name": "Sharon Sharon",
     "image": null,
     "sport": "Soccer",
-    "team": "Bengaluru"
+    "team": "Bengaluru",
+    "price": 483
   },
   {
     "name": "Said Said",
     "image": null,
     "sport": "Soccer",
-    "team": "Rio Ave"
+    "team": "Rio Ave",
+    "price": 756
   },
   {
     "name": "Tian Tian Sun",
     "image": null,
     "sport": "Tennis",
-    "team": "_Retired Tennis"
+    "team": "_Retired Tennis",
+    "price": 845
   },
   {
     "name": "Tchê Tchê",
     "image": null,
     "sport": "Soccer",
-    "team": "Vasco da Gama"
+    "team": "Vasco da Gama",
+    "price": 595
   },
   {
     "name": "Ulises Davila",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/nhu9hn1715889791.png",
     "sport": "Soccer",
-    "team": "Macarthur FC"
+    "team": "Macarthur FC",
+    "price": 209
   },
   {
     "name": "Matthew Upson",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/2005781.png",
     "sport": "Soccer",
-    "team": "_Retired Soccer"
+    "team": "_Retired Soccer",
+    "price": 121
   },
   {
     "name": "Brayan Valdivia Valdivia",
     "image": null,
     "sport": "Soccer",
-    "team": "Deportes Concepción"
+    "team": "Deportes Concepción",
+    "price": 749
   },
   {
     "name": "Samir Villacorta Villacorta",
     "image": null,
     "sport": "Soccer",
-    "team": "Deportivo Garcilaso"
+    "team": "Deportivo Garcilaso",
+    "price": 1184
   },
   {
     "name": "Charles Williams, Baron Williams of Elvel",
     "image": null,
     "sport": "Cricket",
-    "team": "_Retired Cricket"
+    "team": "_Retired Cricket",
+    "price": 145
   },
   {
     "name": "Arthur Wrottesley, 3rd Baron Wrottesley",
     "image": null,
     "sport": "Cricket",
-    "team": "_Retired Cricket"
+    "team": "_Retired Cricket",
+    "price": 533
   },
   {
     "name": "Xavi",
     "image": "https://r2.thesportsdb.com/images/media/player/cutout/18olk11612092725.png",
     "sport": "Soccer",
-    "team": "_Free Agent Soccer"
+    "team": "_Free Agent Soccer",
+    "price": 680
   },
   {
     "name": "Xabi Irureta",
     "image": null,
     "sport": "Soccer",
-    "team": "_Retired Soccer"
+    "team": "_Retired Soccer",
+    "price": 405
   },
   {
     "name": "Ying Ying Duan",
     "image": null,
     "sport": "Tennis",
-    "team": "_Retired Tennis"
+    "team": "_Retired Tennis",
+    "price": 448
   },
   {
     "name": "Andrey Yordanov Yordanov",
     "image": null,
     "sport": "Soccer",
-    "team": "Pirin Blagoevgrad"
+    "team": "Pirin Blagoevgrad",
+    "price": 453
   },
   {
     "name": "Zheng Zheng",
     "image": null,
     "sport": "Soccer",
-    "team": "Shandong Taishan"
+    "team": "Shandong Taishan",
+    "price": 1008
   },
   {
     "name": "Mohamed Zain Mohsen Zain Al Attas",
     "image": null,
     "sport": "Soccer",
-    "team": "Al Jazira"
+    "team": "Al Jazira",
+    "price": 364
   }
 ]

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Musician Details - CAA</title>
+    <title>Popular Person Details - CAA</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,6 +14,7 @@
         background: #292d34;
         color: #fff;
         font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        font-size: 18px;
         min-height: 100vh;
         margin: 0;
         padding: 0;
@@ -55,7 +56,7 @@
       }
 
       .person-name {
-        font-size: 2.5rem;
+        font-size: 3.2rem;
         font-weight: bold;
         color: #b71c2c;
         margin-bottom: 20px;
@@ -63,14 +64,14 @@
       }
 
       .person-department {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
         color: #666;
         margin-bottom: 20px;
         font-style: italic;
       }
 
       .person-price {
-        font-size: 2rem;
+        font-size: 2.5rem;
         color: #b71c2c;
         font-weight: bold;
         background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -82,7 +83,7 @@
       }
 
       .person-bio {
-        font-size: 1.1rem;
+        font-size: 1.4rem;
         line-height: 1.6;
         color: #555;
         margin-bottom: 30px;
@@ -92,9 +93,9 @@
         background: linear-gradient(135deg, #b71c2c, #d32f2f);
         color: #fff;
         border: none;
-        padding: 12px 30px;
+        padding: 15px 35px;
         border-radius: 25px;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -118,6 +119,7 @@
         color: #b71c2c;
         margin-bottom: 20px;
         font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-size: 1.8rem;
       }
 
       .known-for-list {
@@ -128,9 +130,10 @@
 
       .known-for-item {
         background: #f8f9fa;
-        padding: 15px;
+        padding: 18px;
         border-radius: 8px;
         border-left: 4px solid #b71c2c;
+        font-size: 1.1rem;
       }
 
       /* Booking Form Styles */
@@ -145,7 +148,7 @@
 
       .booking-form-section h2 {
         color: #b71c2c;
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-bottom: 10px;
         font-family: "PFDinTextPro-Bold", Arial, sans-serif;
       }
@@ -154,7 +157,7 @@
         color: #666;
         font-style: italic;
         margin-bottom: 30px;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
       }
 
       .booking-form {
@@ -181,16 +184,16 @@
         font-weight: bold;
         margin-bottom: 8px;
         color: #333;
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
 
       .form-group input,
       .form-group select,
       .form-group textarea {
-        padding: 12px 15px;
+        padding: 15px 18px;
         border: 2px solid #e5e5e5;
         border-radius: 8px;
-        font-size: 1rem;
+        font-size: 1.2rem;
         font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         transition: border-color 0.3s ease;
       }
@@ -217,15 +220,15 @@
         background: linear-gradient(135deg, #b71c2c, #d32f2f);
         color: #fff;
         border: none;
-        padding: 15px 40px;
+        padding: 18px 45px;
         border-radius: 25px;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
         margin-top: 20px;
         width: 100%;
-        max-width: 300px;
+        max-width: 350px;
       }
 
       .submit-button:hover {
@@ -247,11 +250,11 @@
         }
 
         .person-name {
-          font-size: 2rem;
+          font-size: 2.5rem;
         }
 
         .person-price {
-          font-size: 1.5rem;
+          font-size: 2rem;
         }
 
         .container {
@@ -269,15 +272,30 @@
         }
 
         .booking-form-section h2 {
-          font-size: 1.5rem;
+          font-size: 2rem;
+        }
+
+        .person-bio {
+          font-size: 1.2rem;
+        }
+
+        .form-group label {
+          font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+          font-size: 1.1rem;
+          padding: 12px 15px;
         }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <a href="musicians-singers.html" class="back-button"
-        >← Back to Musicians & Singers</a
+      <a href="popular people.html" class="back-button"
+        >← Back to Popular People</a
       >
 
       <div class="person-details">
@@ -288,7 +306,7 @@
             <div id="person-department" class="person-department"></div>
             <div id="person-price" class="person-price"></div>
             <div id="person-bio" class="person-bio">
-              Loading musician details...
+              Loading person details...
             </div>
           </div>
         </div>
@@ -301,7 +319,7 @@
 
       <!-- Booking Form Section -->
       <div class="booking-form-section">
-        <h2>Book This Musician</h2>
+        <h2>Book This Person</h2>
         <p class="response-time">
           During normal business hours, we respond to most inquiries within 4
           hours.
@@ -310,7 +328,7 @@
         <form id="booking-form" class="booking-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="person-name-field">Musician Name*</label>
+              <label for="person-name-field">Person Name*</label>
               <input
                 type="text"
                 id="person-name-field"
@@ -417,12 +435,12 @@
 
         if (!personName) {
           document.getElementById("person-bio").textContent =
-            "No musician specified.";
+            "No person specified.";
           return;
         }
 
         document.getElementById("person-name").textContent = personName;
-        document.title = `${personName} - Musician Details - CAA`;
+        document.title = `${personName} - Popular Person Details - CAA`;
 
         const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
         const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(
@@ -438,7 +456,7 @@
 
             // Set basic info
             document.getElementById("person-department").textContent =
-              "Musician/Singer";
+              person.known_for_department || "Acting";
             document.getElementById("person-price").textContent =
               "$" + (Math.floor(Math.random() * 4000) + 500);
 
@@ -464,7 +482,9 @@
                   ? "Male"
                   : "Not specified"
               }<br><br>
-              This talented musician is known for their exceptional musical performances and entertainment value.
+              This popular person is known for their work in ${
+                person.known_for_department || "entertainment"
+              }.
             `;
 
             // Show known for works
@@ -497,12 +517,12 @@
             document.getElementById("person-name-field").value = personName;
           } else {
             document.getElementById("person-bio").textContent =
-              "Musician details not found in our database.";
+              "Person details not found in our database.";
           }
         } catch (error) {
-          console.error("Error loading musician details:", error);
+          console.error("Error loading person details:", error);
           document.getElementById("person-bio").textContent =
-            "Error loading musician details.";
+            "Error loading person details.";
         }
       }
 
