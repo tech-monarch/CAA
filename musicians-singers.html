@@ -104,6 +104,94 @@
         }
       }
 
+      /* Enhanced Celebrity Cards Styling */
+      .celebrity-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px 28px 20px 28px;
+        width: 260px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .celebrity-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+        border-color: #b71c2c;
+      }
+
+      .celebrity-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #b71c2c, #d32f2f);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .celebrity-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .celebrity-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border: 2px solid #ddd;
+        transition: all 0.3s ease;
+      }
+
+      .celebrity-card:hover img {
+        border-color: #b71c2c;
+        transform: scale(1.02);
+      }
+
+      .celebrity-card div {
+        text-align: center;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .celebrity-card div:first-of-type {
+        font-weight: bold;
+        font-size: 1.2em;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        color: #333;
+        margin-bottom: 12px;
+      }
+
+      .celebrity-card div:last-of-type {
+        color: #b71c2c;
+        font-weight: bold;
+        font-size: 1.1em;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+        margin-bottom: 0;
+      }
+
+      .celebrity-card:hover div:last-of-type {
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        border-color: #b71c2c;
+        transform: scale(1.05);
+      }
+
       .menu-icon {
         position: absolute;
         top: 48px;
@@ -372,6 +460,9 @@
         </div>
         <div class="navbar-overlay-content">
           <h1 class="navbar-main-links">
+            <a class="nav-main-link" href="popular people.html.html"
+              >Popular people</a
+            ><br />
             <a class="nav-main-link" href="musicians-singers.html"
               >Musicians & Singers</a
             ><br />
@@ -525,7 +616,7 @@
             card.appendChild(name);
             const price = document.createElement("div");
             price.textContent =
-              "Price: " +
+              "Price: $" +
               (actor.price !== null && actor.price !== undefined
                 ? actor.price
                 : "Not Set");

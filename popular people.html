@@ -28,7 +28,7 @@
       }
 
       .hero-bg {
-        background: url("celebrities.jpg") center center/cover no-repeat;
+        background: url("famous.jpg") center center/cover no-repeat;
         position: absolute;
         top: 0;
         left: 0;
@@ -1010,6 +1010,24 @@
         resultDiv.appendChild(carouselWrapper);
       }
     </script>
+
+    <script>
+      // Navbar open/close logic
+      document.addEventListener("DOMContentLoaded", function () {
+        var menuIcon = document.getElementById("menuIcon");
+        var navbar = document.getElementById("caaNavbar");
+        var navbarClose = document.getElementById("navbarClose");
+        if (menuIcon && navbar && navbarClose) {
+          menuIcon.onclick = function () {
+            navbar.classList.add("active");
+          };
+          navbarClose.onclick = function () {
+            navbar.classList.remove("active");
+          };
+        }
+      });
+    </script>
+
     <footer class="caa-footer">
       <div class="caa-footer-content desktop-footer">
         <div class="footer-main-row">
