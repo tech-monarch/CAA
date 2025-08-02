@@ -216,6 +216,128 @@
         transition: all 0.3s;
       }
 
+      /* Navigation Overlay Styles */
+      .caa-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(41, 45, 52, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .caa-navbar.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .navbar-header {
+        position: absolute;
+        top: 32px;
+        left: 32px;
+        right: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-header .caa-logo {
+        font-size: 3.2rem;
+        font-weight: bold;
+        letter-spacing: -2px;
+        color: #fff;
+        margin: 0;
+      }
+
+      .navbar-close {
+        font-size: 3rem;
+        color: #fff;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.3s;
+      }
+
+      .navbar-close:hover {
+        color: #b71c2c;
+      }
+
+      .navbar-overlay-content {
+        text-align: center;
+        max-width: 800px;
+        padding: 0 32px;
+      }
+
+      .navbar-main-links {
+        margin-bottom: 48px;
+        font-size: 2.5rem;
+        line-height: 1.4;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+
+      .nav-main-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+        display: inline-block;
+        margin-bottom: 16px;
+      }
+
+      .nav-main-link:hover {
+        color: #b71c2c;
+      }
+
+      .navbar-secondary-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 32px;
+        justify-content: center;
+      }
+
+      .nav-secondary-link {
+        color: #bfc3c7;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        transition: color 0.3s;
+      }
+
+      .nav-secondary-link:hover {
+        color: #fff;
+      }
+
+      @media (max-width: 900px) {
+        .navbar-main-links {
+          font-size: 2rem;
+        }
+        .navbar-header .caa-logo {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .navbar-main-links {
+          font-size: 1.5rem;
+        }
+        .navbar-header .caa-logo {
+          font-size: 2rem;
+        }
+        .navbar-secondary-links {
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+
       /* About CAA Section */
       .about-caa-section {
         background: #fff;
