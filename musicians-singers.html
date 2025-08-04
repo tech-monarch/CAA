@@ -863,6 +863,9 @@
               <a href="about-us.html" class="nav-secondary-link">About</a>
             </li>
             <li>
+              <a href="career.html" class="nav-secondary-link">Career</a>
+            </li>
+            <li>
               <a href="contact.html" class="nav-secondary-link">Contact</a>
             </li>
           </ul>
@@ -956,7 +959,6 @@
         async function getPopularActorsWithPricing() {
           const response = await fetch("musicians-top500.json");
           const actors = await response.json();
-
 
           // Render cards
           const container = document.getElementById("celebrity-cards");
@@ -1157,8 +1159,8 @@
                       a.name
                     )}">
                       <img src="${a.image}" alt="${
-                    a.name
-                  }" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
+                      a.name
+                    }" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
                       <div class="actor-info"><b>${a.name}</b></div>
                     </div>`
                 )
@@ -1166,7 +1168,9 @@
             </div>`;
           // Add click handler for navigation
           setTimeout(() => {
-            const container = document.getElementById("vertical-list-container");
+            const container = document.getElementById(
+              "vertical-list-container"
+            );
             if (container) {
               container.querySelectorAll(".actor-card").forEach((card) => {
                 card.addEventListener("click", function () {
