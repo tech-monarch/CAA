@@ -9,184 +9,163 @@
       rel="stylesheet"
     />
     <link href="fonts/style.css" rel="stylesheet" />
+
     <style>
-      body {
-        background: #292d34;
-        color: #fff;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* Hero Container Fix */
-      .hero-container {
-        position: relative;
-        min-height: 100vh; /* Full screen hero section */
-        width: 100%;
-        overflow: hidden;
-      }
-
-      .hero-bg {
-        background: #b71c2c;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
-
-      .caa-logo {
-        font-size: 3.2rem;
-        font-weight: bold;
-        letter-spacing: -2px;
-        margin-top: 32px;
-        margin-left: 32px;
-        margin-bottom: 0;
-        color: #fff;
-        line-height: 1;
-        position: relative;
-        z-index: 2;
-      }
-
-      .about-hero-content {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 2;
-        max-width: 90%;
-        margin: 0;
-      }
-
-      .about-hero-content h1 {
-        font-size: 4rem;
-        font-weight: bold;
-        margin-bottom: 2.5rem;
-        color: #fff;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        line-height: 1.25;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-      }
-
-      @media (max-width: 900px) {
-        .caa-logo {
-          margin-left: 18px;
-          font-size: 2.2rem;
-        }
-        .about-hero-content {
-          margin-left: 18px;
-          margin-bottom: 32px;
-          max-width: 90%;
-        }
-        .about-hero-content h1 {
-          font-size: 1.9rem;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .caa-logo {
-          font-size: 72px;
-          margin-top: 40px;
-          margin-left: 24px;
-        }
-        .about-hero-content {
-          margin-bottom: 24px;
-          margin-left: 16px;
-          padding: 0 10px;
-          max-width: 95%;
-        }
-        .about-hero-content h1 {
-          font-size: 2.2rem;
-          line-height: 1.2;
-          text-align: left;
-        }
-      }
-
+      /* Hamburger Menu Icon Styles */
       .menu-icon {
         position: absolute;
         top: 48px;
         right: 32px;
         width: 36px;
         height: 36px;
-        z-index: 2;
+        z-index: 2001;
         cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background: none;
       }
-
       .menu-icon span {
         display: block;
         width: 100%;
         height: 4px;
-        background: #fff;
+        background: #111;
         margin: 5px 0;
         border-radius: 2px;
         transition: all 0.3s;
       }
-
-      /* About CAA Section */
-      .about-caa-section {
-        background: #fff;
-        color: #292d34;
-        border-radius: 0 0 8px 8px;
-        max-width: 100%; /* Increased width slightly */
-        margin: 0 auto;
-        padding: 40px 40px; /* Increased left/right padding */
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-        position: relative;
-        z-index: 3;
+      @media (max-width: 900px) {
+        .menu-icon {
+          top: 24px;
+          right: 18px;
+          width: 32px;
+          height: 32px;
+        }
       }
-
-      /* Removed extra margin-top that caused blank space */
-      .about-caa-title {
-        font-size: 1.2rem;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        margin-bottom: 0.5rem;
-        letter-spacing: 0.5px;
-        color: #292d34;
-      }
-
-      .about-caa-divider {
-        border: none;
-        border-top: 2px solid #bfc3c7;
-        margin-bottom: 1.5rem;
-        margin-top: 0;
-        width: 100%;
-      }
-
-      .about-caa-headline {
-        font-size: 1.5rem;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        color: #b72c36;
-        margin-bottom: 1.5rem;
-        margin-top: 0;
-      }
-
-      .about-caa-text {
-        font-size: 1rem;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
-        color: #292d34;
-        margin-bottom: 1.2rem;
-        line-height: 1.6;
-      }
-
       @media (max-width: 600px) {
-        .about-caa-section {
-          padding: 20px 16px; /* Mobile padding */
+        .menu-icon {
+          top: 18px;
+          right: 12px;
+          width: 28px;
+          height: 28px;
         }
-        .about-caa-headline {
-          font-size: 1.1rem;
-        }
-        .about-caa-title {
-          font-size: 1rem;
+        .menu-icon span {
+          height: 3px;
+          margin: 4px 0;
         }
       }
-    </style>
-    <style>
+      /* Navbar and Overlay Styles */
+      .caa-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(41, 45, 52, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      .caa-navbar.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .navbar-header {
+        position: absolute;
+        top: 32px;
+        left: 32px;
+        right: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar-header .caa-logo {
+        font-size: 3.2rem;
+        font-weight: bold;
+        letter-spacing: -2px;
+        color: #fff;
+        margin: 0;
+      }
+      .navbar-close {
+        font-size: 3rem;
+        color: #fff;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.3s;
+      }
+      .navbar-close:hover {
+        color: #b71c2c;
+      }
+      .navbar-overlay-content {
+        text-align: center;
+        max-width: 800px;
+        padding: 0 32px;
+      }
+      .navbar-main-links {
+        margin-bottom: 48px;
+        font-size: 2.5rem;
+        line-height: 1.4;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+      .nav-main-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+        display: inline-block;
+        margin-bottom: 16px;
+      }
+      .nav-main-link:hover {
+        color: #b71c2c;
+      }
+      .navbar-secondary-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 32px;
+        justify-content: center;
+      }
+      .nav-secondary-link {
+        color: #bfc3c7;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        transition: color 0.3s;
+      }
+      .nav-secondary-link:hover {
+        color: #fff;
+      }
+      @media (max-width: 900px) {
+        .navbar-main-links {
+          font-size: 2rem;
+        }
+        .navbar-header .caa-logo {
+          font-size: 2.5rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .navbar-main-links {
+          font-size: 1.5rem;
+          line-height: 1.2;
+        }
+        .navbar-header .caa-logo {
+          font-size: 2rem;
+        }
+        .nav-main-link {
+          margin-bottom: 8px;
+        }
+        .navbar-secondary-links {
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
       .caa-footer {
         background: #b71c2c;
         color: #fff;
@@ -353,6 +332,354 @@
           font-size: 14px;
         }
       }
+
+      @media (max-width: 900px) {
+        .caa-logo {
+          margin-left: 18px;
+          font-size: 2.2rem;
+        }
+        .about-hero-content {
+          margin-left: 18px;
+          margin-bottom: 32px;
+          max-width: 90vw;
+        }
+        .about-hero-content h1 {
+          font-size: 1.9rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .caa-logo {
+          font-size: 72px;
+          margin-top: 40px;
+          margin-left: 24px;
+        }
+        .about-hero-content {
+          margin-bottom: 24px;
+          margin-left: 16px;
+          padding: 0 10px;
+          max-width: 95vw;
+        }
+        .about-hero-content h1 {
+          font-size: 1.6rem;
+        }
+        .hero-search-form {
+          max-width: 90%;
+          margin: 0 auto 24px auto;
+        }
+
+        #people-search-input {
+          width: 250px;
+          padding: 14px 18px 14px 45px;
+          font-size: 1rem;
+        }
+
+        .hero-search-form button {
+          padding: 14px 24px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Enhanced Hero Search Form Styling */
+      .hero-search-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 30px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        position: relative;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-search-form:hover {
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
+
+      #people-search-input {
+        padding: 16px 20px 16px 50px;
+        border: none;
+        outline: none;
+        font-size: 1.1rem;
+        width: 320px;
+        background: transparent;
+        color: #333;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        position: relative;
+      }
+
+      #people-search-input::placeholder {
+        color: #666;
+        font-style: italic;
+      }
+
+      .hero-search-form::before {
+        content: "🔍";
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-search-form button {
+        padding: 16px 32px;
+        border: none;
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .hero-search-form button:hover {
+        background: linear-gradient(135deg, #a01828, #b71c2c);
+        transform: scale(1.05);
+      }
+
+      /* Carousel and Card Styling */
+      .carousel-wrapper {
+        position: relative;
+        margin: 40px 0;
+        padding: 0 60px;
+      }
+
+      .carousel-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 24px;
+        padding: 20px 0;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .carousel-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .person-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px 28px 20px 28px;
+        min-width: 260px;
+        max-width: 280px;
+        flex: 0 0 auto;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .person-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+        border-color: #b71c2c;
+      }
+
+      .person-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #b71c2c, #d32f2f);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .person-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .person-img {
+        width: 180px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        border: 2px solid #ddd;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+      }
+
+      .person-card:hover .person-img {
+        border-color: #b71c2c;
+        transform: scale(1.02);
+      }
+
+      .person-info {
+        text-align: center;
+        color: #333;
+        width: 100%;
+      }
+
+      .person-info b {
+        color: #333;
+        font-size: 1.25em;
+        font-weight: bold;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        display: block;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .person-department {
+        color: #666;
+        font-size: 0.95em;
+        margin-bottom: 10px;
+        font-style: italic;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+      }
+
+      .person-price {
+        color: #b71c2c;
+        font-weight: bold;
+        font-size: 1.2em;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+
+      .person-card:hover .person-price {
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        border-color: #b71c2c;
+        transform: scale(1.05);
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(183, 28, 44, 0.9);
+        color: #fff;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(183, 28, 44, 1);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .carousel-arrow.left {
+        left: 10px;
+      }
+
+      .carousel-arrow.right {
+        right: 10px;
+      }
+
+      /* Celebrity Cards in Main Section */
+      .celebrity-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px 28px 20px 28px;
+        width: 260px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .celebrity-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+        border-color: #b71c2c;
+      }
+
+      .celebrity-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #b71c2c, #d32f2f);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .celebrity-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      @media (max-width: 768px) {
+        .carousel-wrapper {
+          padding: 0 20px;
+        }
+
+        .carousel-arrow {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+
+        .carousel-arrow.left {
+          left: 5px;
+        }
+
+        .carousel-arrow.right {
+          right: 5px;
+        }
+
+        .person-card {
+          min-width: 220px;
+          max-width: 240px;
+          padding: 20px 24px 16px 24px;
+        }
+
+        .person-img {
+          width: 160px;
+          height: 200px;
+        }
+
+        #people-search-input {
+          width: 250px;
+          padding: 14px 18px 14px 45px;
+        }
+
+        .hero-search-form button {
+          padding: 14px 24px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -360,18 +687,24 @@
     <div class="hero-container">
       <div class="hero-bg"></div>
       <div class="caa-logo">CAA</div>
-      <div class="menu-icon" id="menuIcon">
+      <div
+        class="menu-icon"
+        id="menuIcon"
+        style="margin-right: 32px; margin-top: 48px; width: 36px; height: 36px"
+      >
         <span></span>
         <span></span>
         <span></span>
       </div>
       <nav class="caa-navbar" id="caaNavbar">
         <div class="navbar-header">
-          <span class="caa-logo">CAA</span>
           <span class="navbar-close" id="navbarClose">&times;</span>
         </div>
         <div class="navbar-overlay-content">
           <h1 class="navbar-main-links">
+            <a class="nav-main-link" href="popular people.html"
+              >Popular People</a
+            ><br />
             <a class="nav-main-link" href="musicians-singers.html"
               >Musicians & Singers</a
             ><br />
@@ -379,22 +712,23 @@
               >Actors and Actresses</a
             ><br />
             <a class="nav-main-link" href="sports-personalities.html"
-              >Sports Personalities (Athlete-Celebrities)</a
+              >Sports Personalities </a
             ><br />
           </h1>
           <ul class="navbar-secondary-links">
             <li>
               <a href="about-us.html" class="nav-secondary-link">About</a>
             </li>
-            <!-- <li><a href="#" class="nav-secondary-link">Careers</a></li> -->
-            <li><a href="#" class="nav-secondary-link">Contact</a></li>
+            <li>
+              <a href="contact.html" class="nav-secondary-link">Contact</a>
+            </li>
           </ul>
         </div>
       </nav>
       <div class="about-hero-content">
-        <h1>Contact</h1>
+        <!-- <h1>Contact</h1> -->
         <form
-          class="contact-form"
+          class="contact-form styled-contact-form"
           action="mailto:your@email.com"
           method="POST"
           enctype="text/plain"
@@ -444,174 +778,127 @@
       </div>
 
       <style>
-        .contact-form {
-          max-width: 90%;
-          margin: 0 auto;
-          padding: 0;
-        }
-
-        .form-group {
-          margin-bottom: 24px;
+        /* Contact Form Wrapper */
+        .styled-contact-form {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(8px);
+          border-radius: 18px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+          padding: 36px 32px;
+          max-width: 420px;
+          margin: 0 auto 32px auto;
+          color: #292d34;
+          font-family: "PFDinTextPro-Regular", Arial, sans-serif;
           position: relative;
+          z-index: 3;
+          animation: fadeIn 0.5s ease-in-out;
         }
 
-        .form-group label {
+        /* Animation */
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Form Groups */
+        .styled-contact-form .form-group {
+          margin-bottom: 22px;
+        }
+
+        /* Labels */
+        .styled-contact-form label {
           display: block;
-          margin-bottom: 8px;
-          color: rgba(255, 255, 255, 0.9);
-          font-size: 0.95rem;
-          font-weight: 500;
+          margin-bottom: 7px;
+          color: #b71c2c;
+          font-size: 1rem;
+          font-weight: bold;
           letter-spacing: 0.5px;
           text-transform: uppercase;
         }
 
-        .form-group input,
-        .form-group textarea {
-          width: 190%;
-          padding: 16px 20px;
-          background: rgba(255, 255, 255, 0.95);
-          border: 2px solid transparent;
-          border-radius: 12px;
-          font-size: 1.1rem;
+        /* Inputs & Textarea */
+        .styled-contact-form input,
+        .styled-contact-form textarea {
+          width: 100%;
+          padding: 14px 18px;
+          background: #f8f9fa;
+          border: 1.5px solid #e5e5e5;
+          border-radius: 10px;
+          font-size: 1rem;
+          color: #292d34;
           font-family: inherit;
-          color: #333;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-          backdrop-filter: blur(10px);
-          margin-left: -60%;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-          outline: none;
+        .styled-contact-form input:focus,
+        .styled-contact-form textarea:focus {
           border-color: #b71c2c;
-          background: rgba(255, 255, 255, 1);
-          box-shadow: 0 8px 30px rgba(183, 28, 44, 0.2);
-          transform: translateY(-2px);
+          outline: none;
+          background: #fff;
+          box-shadow: 0 4px 18px rgba(183, 28, 44, 0.1);
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-          color: rgba(51, 51, 51, 0.6);
-          font-style: italic;
-        }
-
-        .form-group textarea {
-          min-height: 120px;
+        /* Textarea Resize */
+        .styled-contact-form textarea {
+          min-height: 110px;
           resize: vertical;
-          font-family: inherit;
         }
 
-        .submit-btn {
-          width: 110%;
-          padding: 18px 0;
-          background: white;
-          color: #b71c2c;
-          font-weight: 600;
-          font-size: 1.2rem;
-          border: 2px solid #b71c2c;
-          border-radius: 12px;
+        /* Submit Button */
+        .styled-contact-form .submit-btn {
+          width: 100%;
+          padding: 16px 0;
+          background: linear-gradient(90deg, #b71c2c, #d32f2f);
+          color: #fff;
+          font-weight: 700;
+          font-size: 1.1rem;
+          border: none;
+          border-radius: 10px;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
+          transition: all 0.25s ease;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 10px;
           letter-spacing: 0.5px;
           text-transform: uppercase;
-          position: relative;
-          overflow: hidden;
-          margin-left: -5%;
+          margin-top: 8px;
         }
 
-        .submit-btn::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent
-          );
-          transition: left 0.5s;
+        .styled-contact-form .submit-btn:hover {
+          background: linear-gradient(90deg, #a01828, #b71c2c);
+          box-shadow: 0 8px 28px rgba(183, 28, 44, 0.15);
+          transform: translateY(-2px);
         }
 
-        .submit-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 35px rgba(183, 28, 44, 0.4);
-          background: #b71c2c;
-          color: white;
+        .styled-contact-form .submit-btn svg {
+          transition: transform 0.2s;
         }
 
-        .submit-btn:hover::before {
-          left: 100%;
-        }
-
-        .submit-btn:active {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 15px rgba(183, 28, 44, 0.3);
-        }
-
-        .submit-btn svg {
-          transition: transform 0.3s ease;
-        }
-
-        .submit-btn:hover svg {
+        .styled-contact-form .submit-btn:hover svg {
           transform: translateX(3px);
         }
 
-        /* Mobile responsiveness */
+        /* Responsive */
         @media (max-width: 600px) {
-          .contact-form {
-            max-width: 100%;
-            padding: 0 10px;
+          .styled-contact-form {
+            padding: 20px 12px;
+            max-width: 95vw;
           }
-
-          .form-group {
-            margin-bottom: 20px;
-          }
-
-          .form-group input,
-          .form-group textarea {
-            padding: 14px 16px;
+          .styled-contact-form .submit-btn {
             font-size: 1rem;
-          }
-
-          .submit-btn {
-            padding: 16px 0;
-            font-size: 1.1rem;
+            padding: 14px 0;
           }
         }
       </style>
     </div>
-
-    <!-- About CAA Section -->
-    <section class="about-caa-section">
-      <br /><br />
-      <h2 class="about-caa-title staggered">About CAA</h2>
-      <hr class="about-caa-divider staggered" />
-      <h3 class="about-caa-headline staggered">
-        CAA delivers world-class opportunities to world-class clients.
-      </h3>
-      <p class="about-caa-text staggered">
-        Positioned at the nexus of talent, content, brands, technology, sports,
-        and live events, CAA creates limitless opportunities for the
-        storytellers, trendsetters, icons, and thought leaders who shape popular
-        culture.
-      </p>
-      <p class="about-caa-text staggered">
-        Across film, television, music, sports, brands, the creator economy, and
-        beyond, we represent thousands of the world’s leading actors, directors,
-        writers, producers, musical artists, comedians, authors, athletes,
-        coaches, broadcasters, teams, leagues, digital creators, designers,
-        fashion talent, consumer brands, and more.
-      </p>
-    </section>
 
     <!-- Stagger Animation Script -->
     <script>
@@ -632,9 +919,9 @@
     <footer class="caa-footer">
       <div class="caa-footer-content desktop-footer">
         <div class="footer-main-row">
-          <div class="footer-logo-col">
+          <!-- <div class="footer-logo-col">
             <div class="caa-footer-logo">CAA</div>
-          </div>
+          </div> -->
           <div class="footer-links-col">
             <ul class="footer-links-list">
               <li><a href="about-us.html">About Us</a></li>
@@ -699,113 +986,3 @@
     }
   });
 </script>
-
-<style>
-  .caa-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #292d34;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .caa-navbar.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .navbar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 24px 0 24px;
-  }
-  .caa-navbar .caa-logo {
-    font-size: 2.6rem;
-    font-weight: bold;
-    color: #fff;
-    letter-spacing: -2px;
-    margin: 0;
-  }
-  .navbar-close {
-    font-size: 2.6rem;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 300;
-    margin-left: 16px;
-  }
-  .navbar-overlay-content {
-    display: flex;
-    flex-direction: column;
-    margin-top: 60px;
-    margin-left: 32px;
-  }
-  .navbar-main-links {
-    font-size: 1.7rem;
-    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-    font-weight: bold;
-    color: #bfc1c4;
-    margin-bottom: 2.5rem;
-  }
-  .nav-main-link {
-    display: block;
-    font-size: 1.7rem;
-    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-    font-weight: bold;
-    color: #bfc1c4;
-    margin-bottom: 0.7rem;
-  }
-  .navbar-secondary-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .navbar-secondary-links li {
-    margin-bottom: 0.5rem;
-  }
-  .nav-secondary-link {
-    font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-    color: #bfc1c4;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: color 0.2s;
-  }
-  .nav-secondary-link:hover {
-    color: #fff;
-  }
-  @media (min-width: 600px) {
-    .caa-navbar {
-      width: 400px;
-      left: 0;
-    }
-    .navbar-overlay-content {
-      margin-left: 48px;
-    }
-  }
-  @media (max-width: 600px) {
-    .footer-main-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-      margin-bottom: 34px;
-    }
-    .footer-logo-col {
-      flex: none;
-      margin-bottom: 10px;
-    }
-    .caa-footer-logo {
-      font-size: 64px;
-      margin-bottom: 0;
-    }
-    .footer-links-col {
-      margin-top: 0;
-    }
-  }
-</style>

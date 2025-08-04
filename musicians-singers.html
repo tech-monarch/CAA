@@ -22,7 +22,7 @@
       /* Hero Container Fix */
       .hero-container {
         position: relative;
-        min-height: 100vh; /* Full screen hero section */
+        height: 100vh; /* Fixed full screen hero section */
         width: 100%;
         overflow: hidden;
       }
@@ -102,94 +102,6 @@
           line-height: 1.2;
           text-align: left;
         }
-      }
-
-      /* Enhanced Celebrity Cards Styling */
-      .celebrity-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: #fff;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        padding: 24px 28px 20px 28px;
-        width: 260px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border-radius: 12px;
-        border: 1px solid #e5e5e5;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .celebrity-card:hover {
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        transform: translateY(-5px);
-        border-color: #b71c2c;
-      }
-
-      .celebrity-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #b71c2c, #d32f2f);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-      }
-
-      .celebrity-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      .celebrity-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 16px;
-        border: 2px solid #ddd;
-        transition: all 0.3s ease;
-      }
-
-      .celebrity-card:hover img {
-        border-color: #b71c2c;
-        transform: scale(1.02);
-      }
-
-      .celebrity-card div {
-        text-align: center;
-        color: #333;
-        margin-bottom: 8px;
-      }
-
-      .celebrity-card div:first-of-type {
-        font-weight: bold;
-        font-size: 1.2em;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        color: #333;
-        margin-bottom: 12px;
-      }
-
-      .celebrity-card div:last-of-type {
-        color: #b71c2c;
-        font-weight: bold;
-        font-size: 1.1em;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: 2px solid #e9ecef;
-        transition: all 0.3s ease;
-        margin-bottom: 0;
-      }
-
-      .celebrity-card:hover div:last-of-type {
-        background: linear-gradient(135deg, #b71c2c, #d32f2f);
-        color: #fff;
-        border-color: #b71c2c;
-        transform: scale(1.05);
       }
 
       .menu-icon {
@@ -567,6 +479,354 @@
           font-size: 14px;
         }
       }
+
+      @media (max-width: 900px) {
+        .caa-logo {
+          margin-left: 18px;
+          font-size: 2.2rem;
+        }
+        .about-hero-content {
+          margin-left: 18px;
+          margin-bottom: 32px;
+          max-width: 90vw;
+        }
+        .about-hero-content h1 {
+          font-size: 1.9rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .caa-logo {
+          font-size: 72px;
+          margin-top: 40px;
+          margin-left: 24px;
+        }
+        .about-hero-content {
+          margin-bottom: 24px;
+          margin-left: 16px;
+          padding: 0 10px;
+          max-width: 95vw;
+        }
+        .about-hero-content h1 {
+          font-size: 1.6rem;
+        }
+        .hero-search-form {
+          max-width: 90%;
+          margin: 0 auto 24px auto;
+        }
+
+        #people-search-input {
+          width: 250px;
+          padding: 14px 18px 14px 45px;
+          font-size: 1rem;
+        }
+
+        .hero-search-form button {
+          padding: 14px 24px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Enhanced Hero Search Form Styling */
+      .hero-search-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 30px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        position: relative;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-search-form:hover {
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
+
+      #people-search-input {
+        padding: 16px 20px 16px 50px;
+        border: none;
+        outline: none;
+        font-size: 1.1rem;
+        width: 320px;
+        background: transparent;
+        color: #333;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        position: relative;
+      }
+
+      #people-search-input::placeholder {
+        color: #666;
+        font-style: italic;
+      }
+
+      .hero-search-form::before {
+        content: "🔍";
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-search-form button {
+        padding: 16px 32px;
+        border: none;
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .hero-search-form button:hover {
+        background: linear-gradient(135deg, #a01828, #b71c2c);
+        transform: scale(1.05);
+      }
+
+      /* Carousel and Card Styling */
+      .carousel-wrapper {
+        position: relative;
+        margin: 40px 0;
+        padding: 0 60px;
+      }
+
+      .carousel-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 24px;
+        padding: 20px 0;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .carousel-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .person-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px 28px 20px 28px;
+        min-width: 260px;
+        max-width: 280px;
+        flex: 0 0 auto;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .person-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+        border-color: #b71c2c;
+      }
+
+      .person-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #b71c2c, #d32f2f);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .person-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .person-img {
+        width: 180px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        border: 2px solid #ddd;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+      }
+
+      .person-card:hover .person-img {
+        border-color: #b71c2c;
+        transform: scale(1.02);
+      }
+
+      .person-info {
+        text-align: center;
+        color: #333;
+        width: 100%;
+      }
+
+      .person-info b {
+        color: #333;
+        font-size: 1.25em;
+        font-weight: bold;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        display: block;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .person-department {
+        color: #666;
+        font-size: 0.95em;
+        margin-bottom: 10px;
+        font-style: italic;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+      }
+
+      .person-price {
+        color: #b71c2c;
+        font-weight: bold;
+        font-size: 1.2em;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+
+      .person-card:hover .person-price {
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        border-color: #b71c2c;
+        transform: scale(1.05);
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(183, 28, 44, 0.9);
+        color: #fff;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(183, 28, 44, 1);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .carousel-arrow.left {
+        left: 10px;
+      }
+
+      .carousel-arrow.right {
+        right: 10px;
+      }
+
+      /* Celebrity Cards in Main Section */
+      .celebrity-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px 28px 20px 28px;
+        width: 260px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .celebrity-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+        border-color: #b71c2c;
+      }
+
+      .celebrity-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #b71c2c, #d32f2f);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .celebrity-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      @media (max-width: 768px) {
+        .carousel-wrapper {
+          padding: 0 20px;
+        }
+
+        .carousel-arrow {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+
+        .carousel-arrow.left {
+          left: 5px;
+        }
+
+        .carousel-arrow.right {
+          right: 5px;
+        }
+
+        .person-card {
+          min-width: 220px;
+          max-width: 240px;
+          padding: 20px 24px 16px 24px;
+        }
+
+        .person-img {
+          width: 160px;
+          height: 200px;
+        }
+
+        #people-search-input {
+          width: 250px;
+          padding: 14px 18px 14px 45px;
+        }
+
+        .hero-search-form button {
+          padding: 14px 24px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -581,13 +841,12 @@
       </div>
       <nav class="caa-navbar" id="caaNavbar">
         <div class="navbar-header">
-          <span class="caa-logo">CAA</span>
           <span class="navbar-close" id="navbarClose">&times;</span>
         </div>
         <div class="navbar-overlay-content">
           <h1 class="navbar-main-links">
             <a class="nav-main-link" href="popular people.html"
-              >Popular people</a
+              >Popular People</a
             ><br />
             <a class="nav-main-link" href="musicians-singers.html"
               >Musicians & Singers</a
@@ -596,20 +855,13 @@
               >Actors and Actresses</a
             ><br />
             <a class="nav-main-link" href="sports-personalities.html"
-              >Sports Personalities (Athlete-Celebrities)</a
+              >Sports Personalities </a
             ><br />
-            <!-- <a class="nav-main-link" href="social-media-influencers.html"
-              >Social Media Influencers</a
-            ><br /> -->
-            <!-- <a class="nav-main-link" href="models-fashion-icons.html"
-              >Models & Fashion Icons</a
-            ><br /> -->
           </h1>
           <ul class="navbar-secondary-links">
             <li>
               <a href="about-us.html" class="nav-secondary-link">About</a>
             </li>
-            <!-- <li><a href="#" class="nav-secondary-link">Careers</a></li> -->
             <li>
               <a href="contact.html" class="nav-secondary-link">Contact</a>
             </li>
@@ -705,15 +957,6 @@
           const response = await fetch("musicians-top500.json");
           const actors = await response.json();
 
-          // Sort actors with images first, then by price descending (if set)
-          actors.sort((a, b) => {
-            if (a.image && !b.image) return -1;
-            if (!a.image && b.image) return 1;
-            if (a.price && b.price) return b.price - a.price;
-            if (a.price) return -1;
-            if (b.price) return 1;
-            return 0;
-          });
 
           // Render cards
           const container = document.getElementById("celebrity-cards");
@@ -740,13 +983,6 @@
             name.textContent = actor.name;
             name.style.fontWeight = "bold";
             card.appendChild(name);
-            const price = document.createElement("div");
-            price.textContent =
-              "Price: $" +
-              (actor.price !== null && actor.price !== undefined
-                ? actor.price
-                : "Not Set");
-            card.appendChild(price);
             container.appendChild(card);
           });
         }
@@ -841,116 +1077,6 @@
       });
     </script>
 
-    <style>
-      .caa-navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: #292d34;
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s;
-      }
-      .caa-navbar.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .navbar-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 24px 24px 0 24px;
-      }
-      .caa-navbar .caa-logo {
-        font-size: 2.6rem;
-        font-weight: bold;
-        color: #fff;
-        letter-spacing: -2px;
-        margin: 0;
-      }
-      .navbar-close {
-        font-size: 2.6rem;
-        color: #fff;
-        cursor: pointer;
-        font-weight: 300;
-        margin-left: 16px;
-      }
-      .navbar-overlay-content {
-        display: flex;
-        flex-direction: column;
-        margin-top: 60px;
-        margin-left: 32px;
-      }
-      .navbar-main-links {
-        font-size: 1.7rem;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        font-weight: bold;
-        color: #bfc1c4;
-        margin-bottom: 2.5rem;
-      }
-      .nav-main-link {
-        display: block;
-        font-size: 1.7rem;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        font-weight: bold;
-        color: #bfc1c4;
-        margin-bottom: 0.7rem;
-      }
-      .navbar-secondary-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .navbar-secondary-links li {
-        margin-bottom: 0.5rem;
-      }
-      .nav-secondary-link {
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        color: #bfc1c4;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-decoration: none;
-        letter-spacing: 1px;
-        transition: color 0.2s;
-      }
-      .nav-secondary-link:hover {
-        color: #fff;
-      }
-      @media (min-width: 600px) {
-        .caa-navbar {
-          width: 400px;
-          left: 0;
-        }
-        .navbar-overlay-content {
-          margin-left: 48px;
-        }
-      }
-      @media (max-width: 600px) {
-        .footer-main-row {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 24px;
-          margin-bottom: 34px;
-        }
-        .footer-logo-col {
-          flex: none;
-          margin-bottom: 10px;
-        }
-        .caa-footer-logo {
-          font-size: 64px;
-          margin-bottom: 0;
-        }
-        .footer-links-col {
-          margin-top: 0;
-        }
-      }
-    </style>
-
     <script>
       // Card rendering logic
       function renderCelebrityCards(musicians) {
@@ -960,10 +1086,9 @@
           const card = document.createElement("div");
           card.className = "celebrity-card";
           card.innerHTML = `
-      <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-      <h3>${musician.name}</h3>
-      
-    `;
+            <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
+            <h3>${musician.name}</h3>
+          `;
           celebrityCards.appendChild(card);
         });
       }
@@ -989,7 +1114,6 @@
           let allMatches = filtered.map((m) => ({
             name: m.name,
             image: m.image,
-            price: m.price ? m.price : "$199",
             link: m.link,
           }));
           if (allMatches.length === 0) {
@@ -1007,7 +1131,6 @@
                   name: artist.name,
                   image:
                     artist.picture_xl || artist.picture_big || artist.picture,
-                  price: "$199",
                   link: artist.link,
                 }));
                 resultDiv.innerHTML = `<b>Showing results from Deezer API</b>`;
@@ -1022,47 +1145,60 @@
           } else {
             resultDiv.innerHTML = `<b>Showing results from local database</b>`;
           }
-          // Render as carousel
-          const limitedMatches = allMatches.slice(0, 4);
-          resultDiv.innerHTML += `\n<div class=\"carousel-wrapper\">\n  <button class=\"carousel-arrow left\" aria-label=\"Scroll left\">&#8592;</button>\n  <div class=\"carousel-container\" id=\"carousel-container\">${limitedMatches
-            .filter((a) => a.name && a.name.trim() !== "")
-            .map(
-              (a, idx) =>
-                `<div class=\"actor-card\" data-name=\"${encodeURIComponent(
-                  a.name
-                )}\"><img src=\"${a.image}\" alt=\"${
-                  a.name
-                }\" class=\"actor-img\"><div class=\"actor-info\"><b>${
-                  a.name
-                }</b><div class=\"actor-price\">${a.price}</div></div></div>`
-            )
-            .join(
-              ""
-            )}</div>\n  <button class=\"carousel-arrow right\" aria-label=\"Scroll right\">&#8594;</button>\n</div>`;
-          // Carousel scroll logic
-          const carousel = document.getElementById("carousel-container");
-          const leftBtn = document.querySelector(".carousel-arrow.left");
-          const rightBtn = document.querySelector(".carousel-arrow.right");
-          if (carousel && leftBtn && rightBtn) {
-            leftBtn.onclick = () => {
-              carousel.scrollBy({ left: -260, behavior: "smooth" });
-            };
-            rightBtn.onclick = () => {
-              carousel.scrollBy({ left: 260, behavior: "smooth" });
-            };
-          }
+          // Render as vertical scrollable list
+          const limitedMatches = allMatches; // show all matches, not just 8
+          resultDiv.innerHTML += `
+            <div class="vertical-list-container" id="vertical-list-container">
+              ${limitedMatches
+                .filter((a) => a.name && a.name.trim() !== "")
+                .map(
+                  (a) =>
+                    `<div class="actor-card" data-name="${encodeURIComponent(
+                      a.name
+                    )}">
+                      <img src="${a.image}" alt="${
+                    a.name
+                  }" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
+                      <div class="actor-info"><b>${a.name}</b></div>
+                    </div>`
+                )
+                .join("")}
+            </div>`;
           // Add click handler for navigation
-          if (carousel) {
-            carousel.querySelectorAll(".actor-card").forEach((card) => {
-              card.addEventListener("click", function () {
-                const name = card.getAttribute("data-name");
-                window.location.href = `musician-details.html?name=${name}`;
+          setTimeout(() => {
+            const container = document.getElementById("vertical-list-container");
+            if (container) {
+              container.querySelectorAll(".actor-card").forEach((card) => {
+                card.addEventListener("click", function () {
+                  const name = card.getAttribute("data-name");
+                  window.location.href = `musician-details.html?name=${name}`;
+                });
               });
-            });
-          }
+            }
+          }, 0);
         });
     </script>
     <style>
+      .vertical-list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        margin: 32px 0;
+        max-height: 420px;
+        overflow-y: auto;
+        width: 100%;
+        padding-right: 8px;
+        scrollbar-width: thin;
+      }
+      .vertical-list-container::-webkit-scrollbar {
+        width: 8px;
+        background: #eee;
+      }
+      .vertical-list-container::-webkit-scrollbar-thumb {
+        background: #b71c2c;
+        border-radius: 4px;
+      }
       .actor-card {
         display: flex;
         flex-direction: column;
@@ -1070,7 +1206,6 @@
         background: #fff;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
         padding: 24px 28px 20px 28px;
-        margin: 24px auto;
         width: 240px;
         cursor: pointer;
         transition: box-shadow 0.2s, transform 0.2s;
@@ -1102,6 +1237,7 @@
         margin-top: 10px;
       }
     </style>
+    <!-- Removed redundant script that interfered with carousel functionality -->
     <style>
       @media (min-width: 768px) {
         .carousel-container {
@@ -1121,45 +1257,8 @@
           flex: 0 0 auto;
           margin-bottom: 0;
         }
-      }
-    </style>
-    <script>
-      // Carousel scroll logic
-      const carousel = document.getElementById("carousel-container");
-      const leftBtn = document.querySelector(".carousel-arrow.left");
-      // Card rendering logic
-      // Render musician cards
-      function renderCelebrityCards(musicians) {
-        celebrityCards.innerHTML = "";
-        musicians.forEach((musician) => {
-          const card = document.createElement("div");
-          card.className = "celebrity-card";
-          card.innerHTML = `
-      <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-      <h3>${musician.name}</h3>
-    `;
-          celebrityCards.appendChild(card);
-        });
-      }
-    </script>
-    <style>
-      @media (min-width: 768px) {
-        .carousel-container {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          gap: 24px;
-          justify-content: flex-start;
-          align-items: stretch;
-          margin-left: 50%;
-          width: 1000px;
-        }
-        .actor-card {
-          min-width: 260px;
-          max-width: 300px;
-          flex: 0 0 auto;
-          margin-bottom: 0;
+        .vertical-list-container {
+          max-height: 600px;
         }
       }
     </style>

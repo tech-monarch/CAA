@@ -304,7 +304,7 @@
           <div class="person-info">
             <h1 id="person-name" class="person-name"></h1>
             <div id="person-department" class="person-department"></div>
-            <div id="person-price" class="person-price"></div>
+
             <div id="person-bio" class="person-bio">
               Loading person details...
             </div>
@@ -457,8 +457,6 @@
             // Set basic info
             document.getElementById("person-department").textContent =
               person.known_for_department || "Acting";
-            document.getElementById("person-price").textContent =
-              "$" + (Math.floor(Math.random() * 4000) + 500);
 
             // Set image
             const imageElement = document.getElementById("person-image");
