@@ -320,6 +320,9 @@
         font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         margin-top: 0;
         border: none;
+        max-height: 70vh;
+        min-height: 200px;
+        overflow-y: auto;
       }
       .caa-footer-content.desktop-footer {
         max-width: 100vw;
@@ -333,9 +336,9 @@
         display: flex;
         width: 85vw;
         max-width: 1600px;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 120px;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
         margin-bottom: 32px;
       }
       .footer-logo-col {
@@ -354,8 +357,9 @@
       .footer-links-col {
         flex: 1 1 0;
         display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       .footer-links-list {
         list-style: none;
@@ -1223,14 +1227,14 @@
     <footer class="caa-footer">
       <div class="caa-footer-content desktop-footer">
         <div class="footer-main-row">
-          <div class="footer-logo-col">
-            <div class="caa-footer-logo">CAA</div>
-          </div>
+          <!-- <div class="footer-logo-col">
+          </div> -->
+          <div class="caa-footer-logo" style="margin-bottom: 1rem">CAA</div>
           <div class="footer-links-col">
             <ul class="footer-links-list">
               <li><a href="#">About Us</a></li>
               <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="careers.html">Careers</a></li>
+              <li><a href="career.html">Careers</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
