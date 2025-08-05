@@ -4,357 +4,106 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CAA</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
     <link href="fonts/style.css" rel="stylesheet" />
     <style>
       body {
-        background: #292d34;
+        background: #2c2f34;
         color: #fff;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
-        font-size: 30px;
-        min-height: 100vh;
+        font-family: "PFDinTextPro-Bold", "PFDinTextPro-Regular", Arial,
+          sans-serif;
         margin: 0;
-        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .main-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 420px;
+        margin: 0 auto;
+        height: 100vh;
+        padding-left: 40px;
       }
       .caa-logo {
-        font-size: 4rem;
+        font-size: 5.5rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
         font-weight: bold;
         letter-spacing: -2px;
-        margin-top: 32px;
-        margin-left: 32px;
+        color: #cd2a2a;
+        margin-top: 36px;
         margin-bottom: 0;
-        color: #fff;
-        line-height: 1;
+        margin-left: 0;
       }
-      .main-content {
+      .main-links {
         margin-top: 120px;
-        margin-left: 40px;
-        max-width: 340px;
+        margin-bottom: 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
       }
-      .main-content h1 {
-        font-size: 3.2rem;
-        font-weight: bold;
-        margin-bottom: 2.5rem;
-        color: #bfc1c4;
+      .main-link {
+        color: #e0e0e0;
+        font-size: 2rem;
         font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        line-height: 1.25;
-        transition: color 0.3s ease, transform 0.3s ease;
-      }
-      .main-content .links {
-        margin-top: 2.5rem;
-      }
-      .main-content .links a {
-        display: block;
-        color: #bfc1c4;
-        font-size: 1.6rem;
         font-weight: bold;
         text-decoration: none;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0;
         transition: color 0.2s;
-        letter-spacing: 0.5px;
       }
-      .main-content .links a:hover {
+      .main-link:hover {
         color: #fff;
       }
-
-      /* Section fade/slide animations */
-      .fade-section {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        display: none;
+      .secondary-links {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
-      .fade-section.active {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* List item animation */
-      .animated-item {
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-      }
-      .animated-item.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Slightly bigger font for lists */
-      .section-list div {
+      .secondary-link {
         color: #bfc3c7;
-        font-size: 28px;
-        font-family: PFDinTextPro-Bold, sans-serif;
-        margin-bottom: 18px;
+        font-size: 1.08rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        text-decoration: none;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
       }
-
-      /* Responsive adjustments */
-      @media (max-width: 1200px) {
-        .caa-logo {
-          font-size: 3.5rem;
-          margin-left: 28px;
-        }
-        .main-content {
-          margin-left: 28px;
-          margin-top: 100px;
-          max-width: 400px;
-        }
-        .main-content h1 {
-          font-size: 2.8rem;
-        }
+      .secondary-link:hover {
+        color: #fff;
       }
-
-      @media (max-width: 900px) {
+      @media (max-width: 600px) {
+        .main-container {
+          padding-left: 16px;
+          max-width: 98vw;
+        }
         .caa-logo {
-          margin-left: 20px;
-          font-size: 3rem;
-          margin-top: 28px;
-        }
-        .main-content {
-          margin-left: 20px;
-          margin-top: 80px;
-          max-width: calc(100vw - 40px);
-        }
-        .main-content h1 {
-          font-size: 2.5rem;
-          line-height: 1.3;
-        }
-        .main-content .links a {
-          font-size: 1.4rem;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .caa-logo {
-          font-size: 2.7rem;
-          margin-left: 18px;
+          font-size: 2.2rem;
           margin-top: 24px;
         }
-        .main-content {
-          margin-left: 18px;
+        .main-links {
           margin-top: 60px;
-          max-width: calc(100vw - 36px);
         }
-        .main-content h1 {
-          font-size: 2.2rem;
-          line-height: 1.3;
-          margin-bottom: 2rem;
-        }
-        .main-content .links {
-          margin-top: 2rem;
-        }
-        .main-content .links a {
-          font-size: 1.3rem;
-          margin-bottom: 0.4rem;
-        }
-        .section-list div {
-          font-size: 24px;
-          margin-bottom: 14px;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .caa-logo {
-          font-size: 2.4rem;
-          margin-top: 20px;
-          margin-left: 16px;
-        }
-        .main-content {
-          margin-top: 50px;
-          margin-left: 16px;
-          padding: 0;
-          max-width: calc(100vw - 32px);
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: flex-start;
-        }
-        .main-content h1 {
-          font-size: 1.9rem;
-          line-height: 1.25;
-          margin-bottom: 1.5rem;
-          text-align: left;
-        }
-        .main-content .links {
-          margin-top: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          width: 100%;
-        }
-        .main-content .links a {
-          font-size: 1.2rem;
-          text-align: left;
-          margin-bottom: 0.3rem;
-        }
-        .section-list div {
-          font-size: 22px;
-          margin-bottom: 12px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .caa-logo {
-          font-size: 5rem;
-          margin-top: 16px;
-          margin-left: 12px;
-        }
-        .main-content {
-          margin-top: 40px;
-          margin-left: 12px;
-          max-width: calc(100vw - 24px);
-        }
-        .main-content h1 {
-          font-size: 2rem;
-          line-height: 1.2;
-          margin-bottom: 1.2rem;
-        }
-        .main-content .links {
-          margin-top: 1.7rem;
-        }
-        .main-content .links a {
-          font-size: 1.1rem;
-        }
-        .section-list div {
-          font-size: 20px;
-          margin-bottom: 10px;
-        }
-      }
-
-      @media (max-width: 360px) {
-        .caa-logo {
-          font-size: 1.8rem;
-          margin-top: 12px;
-          margin-left: 10px;
-        }
-        .main-content {
-          margin-top: 35px;
-          margin-left: 10px;
-          max-width: calc(100vw - 20px);
-        }
-        .main-content h1 {
-          font-size: 1.4rem;
-          line-height: 1.15;
-          margin-bottom: 1rem;
-        }
-        .main-content .links {
-          margin-top: 1rem;
-        }
-        .main-content .links a {
-          font-size: 1rem;
-        }
-        .section-list div {
-          font-size: 18px;
-          margin-bottom: 8px;
-        }
-      }
-    </style>
-    <style>
-      .animated-lines a {
-        white-space: nowrap;
-        overflow: visible;
-        text-overflow: clip;
-        display: inline-block;
-        color: white;
-        text-decoration: none;
-        cursor: default;
       }
     </style>
   </head>
   <body>
-    <div class="caa-logo">CAA</div>
-    <div class="main-content">
-      <!-- Original Section -->
-      <div
-        id="original-section"
-        class="fade-section active"
-        style="margin-top: 3rem"
-      >
-        <h1 class="animated-lines">
-          <a
-            href="popular people.html"
-            class="line"
-            style="display: block; opacity: 0"
-            >Popular People</a
-          >
-          <a
-            href="musicians-singers.html"
-            class="line"
-            style="display: block; opacity: 0"
-            >Musicians & Singers</a
-          >
-          <a
-            href="actors-actresses.html"
-            class="line"
-            style="display: block; opacity: 0"
-            >Actors and Actresses</a
-          >
-          <a
-            href="sports-personalities.html"
-            class="line"
-            style="display: block; opacity: 0"
-            >Sports Personalities</a
-          >
-        </h1>
-        <div class="links animated-links">
-          <a
-            class="link-item"
-            href="about-us.html"
-            style="opacity: 0; display: block; font-size: 20px"
-            >About</a
-          >
-          <!-- <a
-            class="link-item"
-            href="#"
-            style="opacity: 0; display: block; font-size: 20px"
-            >Careers</a
-          > -->
-          <a
-            class="link-item"
-            href="#"
-            style="opacity: 0; display: block; font-size: 20px"
-            >Contact</a
-          >
-        </div>
+    <div class="main-container">
+      <div class="caa-logo">CAA</div>
+      <div class="main-links">
+        <a href="popular people.html" class="main-link">Popular People</a>
+        <a href="musicians-singers.html" class="main-link">Musicians & Singers</a>
+        <a href="actors-actresses.html" class="main-link">Actors and Actresses</a>
+        <a href="sports-personalities.html" class="main-link">Sports Personalities</a>
+      </div>
+      <div class="secondary-links">
+        <a href="about-us.html" class="secondary-link">About</a>
+        <a href="career.html" class="secondary-link">Careers</a>
+        <a href="contact.html" class="secondary-link">Contact</a>
       </div>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const lines = document.querySelectorAll(".animated-lines .line");
-        const links = document.querySelectorAll(".animated-links .link-item");
-        const fadeDuration = 400;
-        const fadeDelay = 200;
-
-        // Animate lines on page load
-        lines.forEach((line, idx) => {
-          setTimeout(() => {
-            line.style.transition = `opacity ${fadeDuration}ms`;
-            line.style.opacity = 1;
-          }, idx * fadeDelay);
-        });
-
-        // Animate links after last line animation
-        lines[lines.length - 1].addEventListener(
-          "transitionend",
-          function handler() {
-            lines[lines.length - 1].removeEventListener(
-              "transitionend",
-              handler
-            );
-            links.forEach((link, idx) => {
-              setTimeout(() => {
-                link.style.transition = `opacity ${fadeDuration}ms`;
-                link.style.opacity = 1;
-              }, idx * fadeDelay);
-            });
-          }
-        );
-      });
-    </script>
   </body>
 </html>
