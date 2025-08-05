@@ -1108,13 +1108,16 @@
       const card = document.createElement("div");
       card.className = "actor-card";
       card.innerHTML = `
-        <img src="${athlete.image || 'sports-mock.webp'}" alt="${athlete.name}" class="actor-img" onerror="this.onerror=null;this.src='sports-mock.webp';">
-        <div class="actor-info">
-          <b>${athlete.name}</b>
-          ${athlete.sport ? `<p>${athlete.sport}</p>` : ""}
-          ${athlete.team ? `<p>${athlete.team}</p>` : ""}
-        </div>
-      `;
+  <div onclick="window.location.href='sports-personalities-details.html?name=${encodeURIComponent(athlete.name)}'">
+    <img src="${athlete.image || 'sports-mock.webp'}" alt="${athlete.name}" class="actor-img" onerror="this.onerror=null;this.src='sports-mock.webp';">
+    <div class="actor-info">
+      <b>${athlete.name}</b>
+      ${athlete.sport ? `<p>${athlete.sport}</p>` : ""}
+      ${athlete.team ? `<p>${athlete.team}</p>` : ""}
+    </div>
+  </div>
+`;
+
       container.appendChild(card);
     });
   }
