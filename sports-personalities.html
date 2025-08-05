@@ -993,52 +993,64 @@
         "
       ></div>
       <script>
-        async function getPopularAthletes() {
-          const response = await fetch("sports-top500.json");
-          const athletes = await response.json();
-          athletes.sort((a, b) => {
-            if (a.image && !b.image) return -1;
-            if (!a.image && b.image) return 1;
-            if (a.name && b.name) return a.name.localeCompare(b.name);
-            return 0;
-          });
-          const container = document.getElementById("celebrity-cards");
-          container.innerHTML = "";
-          athletes.forEach((athlete) => {
-            const card = document.createElement("div");
-            card.className = "celebrity-card";
-            card.style.cursor = "pointer";
-            card.addEventListener("click", function () {
-              window.location.href = `sports-personalities-details.html?name=${encodeURIComponent(athlete.name)}`;
-            });
-            if (athlete.image) {
-              const img = document.createElement("img");
-              img.src = athlete.image;
-              img.alt = athlete.name;
-              img.style.width = "100%";
-              img.style.height = "200px";
-              img.style.objectFit = "cover";
-              card.appendChild(img);
-            }
-            const name = document.createElement("div");
-            name.textContent = athlete.name;
-            name.style.fontWeight = "bold";
-            card.appendChild(name);
-            if (athlete.sport) {
-              const sport = document.createElement("div");
-              sport.textContent = `Sport: ${athlete.sport}`;
-              card.appendChild(sport);
-            }
-            if (athlete.team) {
-              const team = document.createElement("div");
-              team.textContent = `Team: ${athlete.team}`;
-              card.appendChild(team);
-            }
-            container.appendChild(card);
-          });
-        }
-        document.addEventListener("DOMContentLoaded", getPopularAthletes);
-      </script>
+document.querySelector(".hero-search-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const input = document.getElementById("musician-search-input");
+  const query = input.value.trim();
+  if (!query) return;
+
+  const resultDiv = document.getElementById("search-result");
+  resultDiv.innerHTML = "Searching...";
+
+  try {
+    // --- 1. Fetch from TheSportsDB ---
+    const apiRes = await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(query)}`);
+    const apiData = await apiRes.json();
+    let players = apiData.player || [];
+
+    // --- 2. If API returns nothing, fallback to local JSON ---
+    if (players.length === 0) {
+      const localRes = await fetch("sports-top500.json");
+      const localData = await localRes.json();
+      players = localData.filter(a => a.name && a.name.toLowerCase().includes(query.toLowerCase()));
+    }
+
+    // --- 3. Show message if still no results ---
+    if (players.length === 0) {
+      resultDiv.innerHTML = "No athlete found matching your search.";
+      return;
+    }
+
+    // --- 4. Render top 2 results ---
+    resultDiv.innerHTML = `<b>Showing results</b>`;
+    const topMatches = players.slice(0, 2);
+    resultDiv.innerHTML += topMatches.map(player => {
+      const name = player.strPlayer || player.name || "Unknown";
+      const sport = player.strSport || player.sport || "";
+      const team = player.strTeam || player.team || "";
+      const nationality = player.strNationality || "";
+      const img = player.strThumb || player.image || "celebrities.jpg";
+
+      return `
+        <div class="actor-card" onclick="window.location.href='sports-personalities-details.html?name=${encodeURIComponent(name)}'">
+          <img src="${img}" alt="${name}" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
+          <div class="actor-info">
+            <b>${name}</b>
+            ${sport ? `<p>${sport}</p>` : ""}
+            ${team ? `<p>${team}</p>` : ""}
+            ${nationality ? `<p>${nationality}</p>` : ""}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+  } catch (error) {
+    console.error(error);
+    resultDiv.innerHTML = "Error loading data. Please check your connection.";
+  }
+});
+</script>
+
     </section>
 
     <!-- Stagger Animation Script -->

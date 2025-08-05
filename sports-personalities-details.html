@@ -314,11 +314,11 @@
   </script>
     </div>  
     <div class="container">
-      <div class="person-details">
         <a href="sports-personalities.html" class="back-button">
           ← Back to Sports Personalities
         </a>
 
+      <div class="person-details">
         <div class="person-header">
           <img
             id="person-image"
@@ -326,12 +326,11 @@
             alt="Sports Personality"
             class="person-image"
           />
-          <div class="person-info">
+          <div class="person-info" style="margin-left: 5rem;">
             <h1 id="person-name" class="person-name">Loading...</h1>
             <p id="person-department" class="person-department">
               Sports Professional
             </p>
-            <div id="person-price" class="person-price">$0</div>
             <div id="person-bio" class="person-bio">
               Loading sports personality details...
             </div>
@@ -470,194 +469,103 @@
     </div>
 
     <script>
-      async function loadPersonDetails() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
+  async function loadPersonDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const personName = urlParams.get("name");
 
-        if (!personName) {
-          document.getElementById("person-bio").textContent =
-            "No sports personality specified.";
-          return;
-        }
+    if (!personName) {
+      document.getElementById("person-bio").textContent =
+        "No sports personality specified.";
+      return;
+    }
 
-        document.getElementById("person-name").textContent = personName;
-        document.title = `${personName} - Sports Personality Details - CAA`;
+    document.getElementById("person-name").textContent = personName;
+    document.title = `${personName} - Sports Personality Details - CAA`;
 
-        // Since we don't have a specific sports API, we'll create mock data
-        // In a real application, you would use a sports API like ESPN or similar
-        try {
-          // Generate mock sports personality data
-          const mockSportsData = generateMockSportsData(personName);
+    try {
+      // Fetch from TheSportsDB API
+      const response = await fetch(
+        `https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(
+          personName
+        )}`
+      );
 
-          // Set basic info
-          document.getElementById("person-department").textContent =
-            mockSportsData.sport || "Sports Professional";
-          document.getElementById("person-price").textContent =
-            "$" + (Math.floor(Math.random() * 8000) + 1000);
+      if (!response.ok) throw new Error("Failed to fetch player data");
 
-          // Set image (using a placeholder for sports personalities)
-          const imageElement = document.getElementById("person-image");
-          imageElement.src = `https://via.placeholder.com/300x400/b71c2c/ffffff?text=${encodeURIComponent(
-            personName.split(" ")[0]
-          )}`;
-          imageElement.alt = personName;
+      const data = await response.json();
 
-          // Set bio
-          document.getElementById("person-bio").innerHTML = `
-            <strong>Sport:</strong> ${mockSportsData.sport}<br>
-            <strong>Position:</strong> ${mockSportsData.position}<br>
-            <strong>Years Active:</strong> ${mockSportsData.yearsActive}<br>
-            <strong>Achievements:</strong> ${mockSportsData.achievements}<br><br>
-            ${mockSportsData.description}
-          `;
-
-          // Show career highlights
-          if (
-            mockSportsData.highlights &&
-            mockSportsData.highlights.length > 0
-          ) {
-            const knownForSection = document.getElementById("known-for");
-            const knownForList = document.getElementById("known-for-list");
-
-            knownForList.innerHTML = "";
-            mockSportsData.highlights.forEach((highlight) => {
-              const item = document.createElement("div");
-              item.className = "known-for-item";
-              item.innerHTML = `
-                <strong>${highlight.title}</strong><br>
-                <small>${highlight.year}</small><br>
-                <em>${highlight.description}</em>
-              `;
-              knownForList.appendChild(item);
-            });
-
-            knownForSection.style.display = "block";
-          }
-
-          // Populate the booking form with person name
-          document.getElementById("person-name-field").value = personName;
-        } catch (error) {
-          console.error("Error loading sports personality details:", error);
-          document.getElementById("person-bio").textContent =
-            "Error loading sports personality details.";
-        }
+      if (!data.player || data.player.length === 0) {
+        document.getElementById("person-bio").textContent =
+          "No details found for this sports personality.";
+        return;
       }
 
-      function generateMockSportsData(name) {
-        const sports = [
-          "Football",
-          "Basketball",
-          "Baseball",
-          "Tennis",
-          "Golf",
-          "Soccer",
-          "Hockey",
-          "Track & Field",
-          "Swimming",
-          "Boxing",
-        ];
-        const positions = [
-          "Forward",
-          "Guard",
-          "Center",
-          "Quarterback",
-          "Pitcher",
-          "Striker",
-          "Defender",
-          "Midfielder",
-          "Goalie",
-          "Point Guard",
-        ];
-        const achievements = [
-          "Olympic Gold Medalist",
-          "World Champion",
-          "MVP Award Winner",
-          "Hall of Fame Inductee",
-          "Record Holder",
-          "Championship Winner",
-        ];
+      const player = data.player[0];
 
-        const sport = sports[Math.floor(Math.random() * sports.length)];
-        const position =
-          positions[Math.floor(Math.random() * positions.length)];
-        const achievement =
-          achievements[Math.floor(Math.random() * achievements.length)];
-        const startYear = 2000 + Math.floor(Math.random() * 15);
-        const endYear = startYear + Math.floor(Math.random() * 15) + 5;
+      // Populate details
+      document.getElementById("person-department").textContent =
+        player.strSport || "Sports Professional";
 
-        return {
-          sport: sport,
-          position: position,
-          yearsActive: `${startYear} - ${endYear > 2024 ? "Present" : endYear}`,
-          achievements: achievement,
-          description: `${name} is a renowned ${sport.toLowerCase()} professional known for their exceptional skills and dedication to the sport. With years of experience and numerous accolades, they continue to inspire fans and fellow athletes worldwide.`,
-          highlights: [
-            {
-              title: `${sport} Championship`,
-              year: startYear + 2,
-              description: `Won the prestigious ${sport.toLowerCase()} championship, showcasing exceptional talent and teamwork.`,
-            },
-            {
-              title: "MVP Season",
-              year: startYear + 5,
-              description:
-                "Awarded Most Valuable Player for outstanding performance throughout the season.",
-            },
-            {
-              title: "Record Breaking Performance",
-              year: startYear + 8,
-              description:
-                "Set a new record in their sport category, demonstrating unmatched skill and determination.",
-            },
-          ],
-        };
-      }
+      // Player image (fallback if none)
+      const imageElement = document.getElementById("person-image");
+      imageElement.src =
+        player.strThumb ||
+        player.strCutout ||
+        `https://via.placeholder.com/300x400/b71c2c/ffffff?text=${encodeURIComponent(
+          personName
+        )}`;
+      imageElement.alt = personName;
 
-      // Handle form submission
-      function handleFormSubmission(event) {
-        event.preventDefault();
+      // Player bio
+      document.getElementById("person-bio").innerHTML = `
+        <strong>Sport:</strong> ${player.strSport || "N/A"}<br>
+        <strong>Team:</strong> ${player.strTeam || "N/A"}<br>
+        <strong>Position:</strong> ${player.strPosition || "N/A"}<br>
+        <strong>Born:</strong> ${player.dateBorn || "N/A"} in ${
+        player.strBirthLocation || "N/A"
+      }<br>
+      `;
 
-        const formData = new FormData(event.target);
-        const bookingData = {
-          personName: formData.get("personName"),
-          eventName: formData.get("eventName"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          sex: formData.get("sex"),
-          airport: formData.get("airport"),
-          budget: formData.get("budget"),
-          eventType: formData.get("eventType"),
-          eventDetails: formData.get("eventDetails"),
-        };
+      // Hide career highlights (not available in API)
+      document.getElementById("known-for").style.display = "none";
 
-        // Here you would typically send the data to your server
-        console.log("Booking request submitted:", bookingData);
+      // Fill booking form with player name
+      document.getElementById("person-name-field").value = personName;
+    } catch (error) {
+      console.error("Error loading sports personality details:", error);
+      document.getElementById("person-bio").textContent =
+        "Error loading sports personality details. Please try again later.";
+    }
+  }
 
-        // Show success message
-        alert(
-          "Thank you for your booking request! We will respond within 4 hours during normal business hours."
-        );
+  function handleFormSubmission(event) {
+    event.preventDefault();
 
-        // Reset form
-        event.target.reset();
+    const formData = new FormData(event.target);
+    const bookingData = Object.fromEntries(formData.entries());
 
-        // Re-populate person name
-        const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
-        if (personName) {
-          document.getElementById("person-name-field").value = personName;
-        }
-      }
+    console.log("Booking request submitted:", bookingData);
 
-      document.addEventListener("DOMContentLoaded", function () {
-        loadPersonDetails();
+    alert(
+      "Thank you for your booking request! We will respond within 4 hours during normal business hours."
+    );
 
-        // Add form submission handler
-        const bookingForm = document.getElementById("booking-form");
-        if (bookingForm) {
-          bookingForm.addEventListener("submit", handleFormSubmission);
-        }
-      });
-    </script>
+    event.target.reset();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const personName = urlParams.get("name");
+    if (personName) {
+      document.getElementById("person-name-field").value = personName;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadPersonDetails();
+    document
+      .getElementById("booking-form")
+      .addEventListener("submit", handleFormSubmission);
+  });
+</script>
+
   </body>
 </html>
