@@ -1104,7 +1104,7 @@
             <ul class="footer-links-list">
               <li><a href="#">About Us</a></li>
               <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="careers.html">Careers</a></li>
+              <li><a href="career.html">Careers</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
@@ -1144,7 +1144,96 @@
           </div>
         </div>
       </div>
+      <!-- Animated SVG background pattern -->
+      <svg
+        class="footer-bg-pattern"
+        width="100%"
+        height="120"
+        viewBox="0 0 1440 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style="
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          z-index: 0;
+          pointer-events: none;
+        "
+      >
+        <defs>
+          <linearGradient
+            id="footerGrad1"
+            x1="0"
+            y1="0"
+            x2="1440"
+            y2="120"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#fff" stop-opacity="0.08" />
+            <stop offset="1" stop-color="#b71c2c" stop-opacity="0.12" />
+          </linearGradient>
+          <linearGradient
+            id="footerGrad2"
+            x1="0"
+            y1="0"
+            x2="1440"
+            y2="120"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#fff" stop-opacity="0.12" />
+            <stop offset="1" stop-color="#b71c2c" stop-opacity="0.08" />
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="60" r="38" fill="url(#footerGrad1)">
+          <animate
+            attributeName="cy"
+            values="60;90;60"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="600" cy="80" r="22" fill="url(#footerGrad2)">
+          <animate
+            attributeName="cy"
+            values="80;110;80"
+            dur="7s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="1100" cy="50" r="30" fill="url(#footerGrad1)">
+          <animate
+            attributeName="cy"
+            values="50;70;50"
+            dur="5.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="1350" cy="100" r="16" fill="url(#footerGrad2)">
+          <animate
+            attributeName="cy"
+            values="100;120;100"
+            dur="8s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </svg>
     </footer>
+    <style>
+      .footer-bg-pattern {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 120px;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+      .caa-footer {
+        position: relative;
+        overflow: hidden;
+      }
+    </style>
     <script>
       // Navbar open/close logic
       document.addEventListener("DOMContentLoaded", function () {
