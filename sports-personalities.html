@@ -828,33 +828,142 @@
         }
       }
     </style>
+
+     <style>
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(44,47,52,0.92);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s;
+    }
+    .preloader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .preloader-logo {
+      font-size: 2.8rem;
+      font-family: 'PFDinTextPro-Bold', Arial, sans-serif;
+      color: #fff;
+      margin-bottom: 36px;
+      letter-spacing: -2px;
+      font-weight: bold;
+    }
+    .preloader-circles {
+      display: flex;
+      gap: 18px;
+    }
+    .preloader-circles span {
+      display: block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: red;
+      opacity: 0.7;
+      animation: preloader-bounce 1.2s infinite cubic-bezier(.4,0,.2,1);
+    }
+    .preloader-circles span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .preloader-circles span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    .preloader-circles span:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+    @keyframes preloader-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(-22px); opacity: 1; }
+    }
+
+    /* Actor Cards */
+    .actor-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 24px 28px 20px 28px;
+      margin: 24px auto;
+      width: 240px;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      border: 1px solid #e5e5e5;
+      border-radius: 0;
+    }
+    .actor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .actor-img {
+      width: 180px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 0;
+      margin-bottom: 18px;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
+    .actor-info {
+      text-align: center;
+      color: #111;
+    }
+    .actor-info b {
+      color: #111;
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+
+    /* Responsive Cards Layout */
+    #celebrity-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .carousel-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 24px;
+        justify-content: flex-start;
+        align-items: stretch;
+        margin-left: 50%;
+        width: 1000px;
+      }
+      .actor-card {
+        min-width: 260px;
+        max-width: 300px;
+        flex: 0 0 auto;
+        margin-bottom: 0;
+      }
+    }
+  </style>
   </head>
   <body>
-    <div id="preloader">
-      <div class="preloader-content">
-        <div class="preloader-logo">CAA</div>
-        <div class="preloader-circles">
-          <span></span><span></span><span></span><span></span>
-        </div>
+    <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">CAA</div>
+      <div class="preloader-circles">
+        <span></span><span></span><span></span><span></span>
       </div>
-      <style>
-    /* Preloader Styles */ #preloader { position: fixed; top: 0; left: 0; width:
-    100vw; height: 100vh; background: rgba(44,47,52,0.92); z-index: 9999;
-    display: flex; align-items: center; justify-content: center; transition:
-    opacity 0.4s; } .preloader-content { display: flex; flex-direction: column;
-    align-items: center; justify-content: center; } .preloader-logo { font-size:
-    2.8rem; font-family: 'PFDinTextPro-Bold', Arial, sans-serif; color: #fff;
-    margin-bottom: 36px; letter-spacing: -2px; font-weight: bold; }
-    .preloader-circles { display: flex; gap: 18px; } .preloader-circles span {
-    display: block; width: 18px; height: 18px; border-radius: 50%; background:
-    red; opacity: 0.7; animation: preloader-bounce 1.2s infinite
-    cubic-bezier(.4,0,.2,1); } .preloader-circles span:nth-child(2) {
-    animation-delay: 0.2s; } .preloader-circles span:nth-child(3) {
-    animation-delay: 0.4s; } .preloader-circles span:nth-child(4) {
-    animation-delay: 0.6s; } @keyframes preloader-bounce { 0%, 100% { transform:
-    translateY(0); opacity: 0.7; } 50% { transform: translateY(-22px); opacity:
-    1; } }</style>
-    
+    </div>
+  </div>
   <script>
     window.addEventListener("DOMContentLoaded", function () {
       setTimeout(function () {
@@ -866,296 +975,208 @@
       }, 1200);
     });
   </script>
+
+  <!-- Hero Section -->
+  <div class="hero-container">
+    <div class="hero-bg"></div>
+    <div class="caa-logo">CAA</div>
+    <div class="menu-icon" id="menuIcon">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <!-- Hero Section -->
-    <div class="hero-container">
-      <div class="hero-bg"></div>
-      <div class="caa-logo">CAA</div>
-      <div class="menu-icon" id="menuIcon">
-        <span></span>
-        <span></span>
-        <span></span>
+    <nav class="caa-navbar" id="caaNavbar">
+      <div class="navbar-header">
+        <span class="navbar-close" id="navbarClose">&times;</span>
       </div>
-      <nav class="caa-navbar" id="caaNavbar">
-        <div class="navbar-header">
-          <span class="navbar-close" id="navbarClose">&times;</span>
+      <div class="navbar-overlay-content">
+        <h1 class="navbar-main-links">
+          <a class="nav-main-link" href="popular people.html">Popular People</a><br />
+          <a class="nav-main-link" href="musicians-singers.html">Musicians & Singers</a><br />
+          <a class="nav-main-link" href="actors-actresses.html">Actors and Actresses</a><br />
+          <a class="nav-main-link" href="sports-personalities.html">Sports Personalities </a><br />
+        </h1>
+        <ul class="navbar-secondary-links">
+          <li><a href="about-us.html" class="nav-secondary-link">About</a></li>
+          <li><a href="career.html" class="nav-secondary-link">Career</a></li>
+          <li><a href="contact.html" class="nav-secondary-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="about-hero-content" style="min-height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative;">
+      <h1 style="color: #b71c2c">Sports Personalities</h1>
+      <form class="hero-search-form" style="display:flex; justify-content:center; align-items:center; margin-bottom:24px;">
+        <input
+          type="text"
+          placeholder="Search Athlete..."
+          style="padding:10px 16px 10px 40px; border-radius:24px 0 0 24px; border:1px solid #ccc; outline:none; font-size:1rem; width:260px;"
+          id="musician-search-input"
+        />
+        <button
+          type="submit"
+          style="padding:10px 24px; border-radius:0 24px 24px 0; border:none; background:#b71c2c; color:#fff; font-size:1rem; cursor:pointer; transition:background 0.2s;">
+          Search
+        </button>
+      </form>
+      <div id="search-result"></div>
+      <p style="color:#bfc1c4; position:absolute; bottom:24px; left:50%; transform:translateX(-50%); margin:0;">
+        <b>Scroll Down</b>
+      </p>
+    </div>
+  </div>
+
+  <!-- About CAA Section -->
+  <section class="about-caa-section">
+    <br /><br />
+    <h2 class="about-caa-title staggered">Sports Personalities</h2>
+    <hr class="about-caa-divider staggered" />
+    <h3 class="about-caa-headline staggered">
+      CAA delivers world-class services to world-class clients.
+    </h3>
+    <div id="celebrity-cards"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="caa-footer">
+    <div class="caa-footer-content desktop-footer">
+      <div class="footer-main-row">
+        <div class="footer-logo-col">
+          <div class="caa-footer-logo">CAA</div>
         </div>
-        <div class="navbar-overlay-content">
-          <h1 class="navbar-main-links">
-            <a class="nav-main-link" href="popular people.html"
-              >Popular People</a
-            ><br />
-            <a class="nav-main-link" href="musicians-singers.html"
-              >Musicians & Singers</a
-            ><br />
-            <a class="nav-main-link" href="actors-actresses.html"
-              >Actors and Actresses</a
-            ><br />
-            <a class="nav-main-link" href="sports-personalities.html"
-              >Sports Personalities </a
-            ><br />
-          </h1>
-          <ul class="navbar-secondary-links">
-            <li>
-              <a href="about-us.html" class="nav-secondary-link">About</a>
-            </li>
-            <li>
-              <a href="career.html" class="nav-secondary-link">Career</a>
-            </li>
-            <li>
-              <a href="contact.html" class="nav-secondary-link">Contact</a>
-            </li>
+        <div class="footer-links-col">
+          <ul class="footer-links-list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Client Privacy Notice</a></li>
           </ul>
         </div>
-      </nav>
-      <div
-        class="about-hero-content"
-        style="
-          min-height: 80vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          position: relative;
-        "
-      >
-        <h1 style="color: #b71c2c">Sports Personalities</h1>
-        <form
-          class="hero-search-form"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 24px;
-          "
-        >
-          <input
-            type="text"
-            placeholder="Search Athlete..."
-            style="
-              padding: 10px 16px 10px 40px;
-              border-radius: 24px 0 0 24px;
-              border: 1px solid #ccc;
-              outline: none;
-              font-size: 1rem;
-              width: 260px;
-            "
-            id="musician-search-input"
-          />
-          <button
-            type="submit"
-            style="
-              padding: 10px 24px;
-              border-radius: 0 24px 24px 0;
-              border: none;
-              background: #b71c2c;
-              color: #fff;
-              font-size: 1rem;
-              cursor: pointer;
-              transition: background 0.2s;
-            "
-          >
-            Search
-          </button>
-        </form>
-        <div id="search-result"></div>
-        <p
-          style="
-            color: #bfc1c4;
-            position: absolute;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            margin: 0;
-          "
-        >
-          <b>Scroll Down</b>
-        </p>
+        <div class="footer-links-col">
+          <ul class="footer-links-list">
+            <li><a href="#">Social Responsibility</a></li>
+            <li><a href="#">Foundation</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="caa-footer-divider" />
+      <div class="footer-bottom-row">
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <span class="footer-divider">|</span>
+          <a href="#">Terms of Use</a>
+          <span class="footer-divider">|</span>
+          <a href="#">Accessibility</a>
+        </div>
+        <div class="footer-bottom-social">
+          <span class="caa-footer-follow-label">Follow us:</span>
+          <a href="#" class="caa-footer-instagram" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="6" fill="#fff" />
+              <path
+                d="M12 8.4A3.6 3.6 0 1 0 12 15.6 3.6 3.6 0 0 0 12 8.4Zm0 5.9A2.3 2.3 0 1 1 12 9.7a2.3 2.3 0 0 1 0 4.6Zm4.5-6.1a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0ZM17.7 7.1a3.6 3.6 0 0 0-3.6-3.6H9.9a3.6 3.6 0 0 0-3.6 3.6v4.2a3.6 3.6 0 0 0 3.6 3.6h4.2a3.6 3.6 0 0 0 3.6-3.6V7.1Zm-1.2 4.2a2.4 2.4 0 0 1-2.4 2.4H9.9a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h4.2a2.4 2.4 0 0 1 2.4 2.4v4.2Z"
+                fill="#B71C2C"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
+  </footer>
 
-    <!-- About CAA Section -->
-    <section class="about-caa-section">
-      <br /><br />
-      <h2 class="about-caa-title staggered">Sports Personalities</h2>
-      <hr class="about-caa-divider staggered" />
-      <h3 class="about-caa-headline staggered">
-        CAA delivers world-class services to world-class clients.
-      </h3>
-      <div
-        id="celebrity-cards"
-        style="
-          display: flex;
-          flex-wrap: wrap;
-          gap: 24px;
-          justify-content: center;
-          margin-top: 32px;
-        "
-      ></div>
-      <script>
-document.querySelector(".hero-search-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const input = document.getElementById("musician-search-input");
-  const query = input.value.trim();
-  if (!query) return;
-
-  const resultDiv = document.getElementById("search-result");
-  resultDiv.innerHTML = "Searching...";
-
-  try {
-    // --- 1. Fetch from TheSportsDB ---
-    const apiRes = await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(query)}`);
-    const apiData = await apiRes.json();
-    let players = apiData.player || [];
-
-    // --- 2. If API returns nothing, fallback to local JSON ---
-    if (players.length === 0) {
-      const localRes = await fetch("sports-top500.json");
-      const localData = await localRes.json();
-      players = localData.filter(a => a.name && a.name.toLowerCase().includes(query.toLowerCase()));
-    }
-
-    // --- 3. Show message if still no results ---
-    if (players.length === 0) {
-      resultDiv.innerHTML = "No athlete found matching your search.";
-      return;
-    }
-
-    // --- 4. Render top 2 results ---
-    resultDiv.innerHTML = `<b>Showing results</b>`;
-    const topMatches = players.slice(0, 2);
-    resultDiv.innerHTML += topMatches.map(player => {
-      const name = player.strPlayer || player.name || "Unknown";
-      const sport = player.strSport || player.sport || "";
-      const team = player.strTeam || player.team || "";
-      const nationality = player.strNationality || "";
-      const img = player.strThumb || player.image || "celebrities.jpg";
-
-      return `
-        <div class="actor-card" onclick="window.location.href='sports-personalities-details.html?name=${encodeURIComponent(name)}'">
-          <img src="${img}" alt="${name}" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
-          <div class="actor-info">
-            <b>${name}</b>
-            ${sport ? `<p>${sport}</p>` : ""}
-            ${team ? `<p>${team}</p>` : ""}
-            ${nationality ? `<p>${nationality}</p>` : ""}
-          </div>
-        </div>
-      `;
-    }).join("");
-
-  } catch (error) {
-    console.error(error);
-    resultDiv.innerHTML = "Error loading data. Please check your connection.";
-  }
-});
-</script>
-
-    </section>
-
-    <!-- Stagger Animation Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var staggeredEls = document.querySelectorAll(".staggered");
-        staggeredEls.forEach(function (el, i) {
-          el.style.opacity = 0;
-          el.style.transform = "translateY(24px)";
-          setTimeout(function () {
-            el.style.transition =
-              "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
-            el.style.opacity = 1;
-            el.style.transform = "translateY(0)";
-          }, 400 + i * 200);
-        });
-      });
-    </script>
-    <footer class="caa-footer">
-      <div class="caa-footer-content desktop-footer">
-        <div class="footer-main-row">
-          <div class="footer-logo-col">
-            <div class="caa-footer-logo">CAA</div>
-          </div>
-          <div class="footer-links-col">
-            <ul class="footer-links-list">
-              <li><a href="#">About Us</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="#">Client Privacy Notice</a></li>
-            </ul>
-          </div>
-          <div class="footer-links-col">
-            <ul class="footer-links-list">
-              <li><a href="#">Social Responsibility</a></li>
-              <li><a href="#">Foundation</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-        <hr class="caa-footer-divider" />
-        <div class="footer-bottom-row">
-          <div class="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Terms of Use</a>
-            <span class="footer-divider">|</span>
-            <a href="#">Accessibility</a>
-          </div>
-          <div class="footer-bottom-social">
-            <span class="caa-footer-follow-label">Follow us:</span>
-            <a href="#" class="caa-footer-instagram" aria-label="Instagram">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="24" height="24" rx="6" fill="#fff" />
-                <path
-                  d="M12 8.4A3.6 3.6 0 1 0 12 15.6 3.6 3.6 0 0 0 12 8.4Zm0 5.9A2.3 2.3 0 1 1 12 9.7a2.3 2.3 0 0 1 0 4.6Zm4.5-6.1a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0ZM17.7 7.1a3.6 3.6 0 0 0-3.6-3.6H9.9a3.6 3.6 0 0 0-3.6 3.6v4.2a3.6 3.6 0 0 0 3.6 3.6h4.2a3.6 3.6 0 0 0 3.6-3.6V7.1Zm-1.2 4.2a2.4 2.4 0 0 1-2.4 2.4H9.9a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h4.2a2.4 2.4 0 0 1 2.4 2.4v4.2Z"
-                  fill="#B71C2C"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <script>
-      // Navbar open/close logic
-      document.addEventListener("DOMContentLoaded", function () {
-        var menuIcon = document.getElementById("menuIcon");
-        var navbar = document.getElementById("caaNavbar");
-        var navbarClose = document.getElementById("navbarClose");
-        if (menuIcon && navbar && navbarClose) {
-          menuIcon.onclick = function () {
-            navbar.classList.add("active");
-          };
-          navbarClose.onclick = function () {
-            navbar.classList.remove("active");
-          };
-        }
-      });
-    </script>
-
-    <script>
-      // Carousel scroll logic
-     // const carousel = document.getElementById("carousel-container");
-      //const leftBtn = document.querySelector(".carousel-arrow.left");
-      // Card rendering logic
-      // Render musician cards
-      function renderCelebrityCards(musicians) {
-        celebrityCards.innerHTML = "";
-        musicians.forEach((musician) => {
-          const card = document.createElement("div");
-          card.className = "celebrity-card";
-          card.innerHTML = `
-  <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-  <h3>${musician.name}</h3>
-`;
-          celebrityCards.appendChild(card);
-        });
+  <script>
+    // Navbar toggle
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuIcon = document.getElementById("menuIcon");
+      const navbar = document.getElementById("caaNavbar");
+      const navbarClose = document.getElementById("navbarClose");
+      if (menuIcon && navbar && navbarClose) {
+        menuIcon.onclick = function () {
+          navbar.classList.add("active");
+        };
+        navbarClose.onclick = function () {
+          navbar.classList.remove("active");
+        };
       }
-    </script>
+    });
+
+    // Render cards
+    function renderCelebrityCards(athletes) {
+      const celebrityCards = document.getElementById("celebrity-cards");
+      celebrityCards.innerHTML = "";
+      athletes.forEach((athlete) => {
+        const card = document.createElement("div");
+        card.className = "actor-card";
+        card.innerHTML = `
+          <img src="${athlete.image || 'celebrities.jpg'}" alt="${athlete.name}" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
+          <div class="actor-info">
+            <b>${athlete.name}</b>
+            ${athlete.sport ? `<p>${athlete.sport}</p>` : ""}
+            ${athlete.team ? `<p>${athlete.team}</p>` : ""}
+          </div>
+        `;
+        celebrityCards.appendChild(card);
+      });
+    }
+
+    // Load default data from local JSON
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch("sports-top500.json");
+        const athletes = await res.json();
+        renderCelebrityCards(athletes.slice(0, 20));
+      } catch (err) {
+        console.error("Error loading initial athletes:", err);
+        document.getElementById("celebrity-cards").innerHTML =
+          "<p style='color:#b71c2c'>Failed to load athletes.</p>";
+      }
+    });
+
+    // Search functionality
+    document.querySelector(".hero-search-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const query = document.getElementById("musician-search-input").value.trim();
+      if (!query) return;
+      const resultDiv = document.getElementById("search-result");
+      resultDiv.innerHTML = "Searching...";
+
+      try {
+        // API search
+        const apiRes = await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(query)}`);
+        const apiData = await apiRes.json();
+        let players = apiData.player || [];
+
+        // Fallback local JSON
+        if (players.length === 0) {
+          const localRes = await fetch("sports-top500.json");
+          const localData = await localRes.json();
+          players = localData.filter(a =>
+            a.name && a.name.toLowerCase().includes(query.toLowerCase())
+          );
+        }
+
+        if (players.length === 0) {
+          resultDiv.innerHTML = "No athlete found matching your search.";
+          return;
+        }
+
+        resultDiv.innerHTML = `<b>Showing results</b>`;
+
+        // Map and render
+        renderCelebrityCards(
+          players.slice(0, 10).map(p => ({
+            name: p.strPlayer || p.name,
+            sport: p.strSport || p.sport,
+            team: p.strTeam || p.team,
+            image: p.strThumb || p.image
+          }))
+        );
+      } catch (err) {
+        console.error(err);
+        resultDiv.innerHTML = "Error loading data. Please check your connection.";
+      }
+    });
+  </script>
     <style>
       @media (min-width: 768px) {
         .carousel-container {
@@ -1178,148 +1199,4 @@ document.querySelector(".hero-search-form").addEventListener("submit", async fun
       }
     </style>
   </body>
-</html>
-
-<script>
-  // Card rendering logic
-  function renderCelebrityCards(athletes) {
-    const celebrityCards = document.getElementById("celebrity-cards");
-    celebrityCards.innerHTML = "";
-    athletes.forEach((athlete) => {
-      const card = document.createElement("div");
-      card.className = "celebrity-card";
-      card.innerHTML = `
-  <img src="${athlete.image}" alt="${athlete.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-  <h3>${athlete.name}</h3>
-  <p>${athlete.sport || ""}</p>
-  <p>${athlete.team || ""}</p>
-`;
-      celebrityCards.appendChild(card);
-    });
-  }
-
-  // --- Search Form Logic ---
-  document
-    .querySelector(".hero-search-form")
-    .addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const input = document.getElementById("musician-search-input");
-      const query = input.value.trim();
-      if (!query) return;
-      const resultDiv = document.getElementById("search-result");
-      resultDiv.innerHTML = "Searching...";
-      let athletes = [];
-      try {
-        const res = await fetch("sports-top500.json");
-        if (!res.ok) throw new Error("Network response was not ok");
-        athletes = await res.json();
-      } catch (err) {
-        resultDiv.innerHTML = "Error loading athlete data. Make sure you are running a local server (not opening the file directly).";
-        return;
-      }
-      let filtered = athletes.filter((a) =>
-        a.name && a.name.toLowerCase().includes(query.toLowerCase())
-      );
-      if (filtered.length === 0) {
-        resultDiv.innerHTML = "No athlete found matching your search.";
-        return;
-      }
-      resultDiv.innerHTML = `<b>Showing results from sports database</b>`;
-      // Render top 2 results vertically
-      const topMatches = filtered.slice(0, 2);
-      resultDiv.innerHTML += topMatches
-        .filter((a) => a.name && a.name.trim() !== "")
-        .map(
-          (a) =>
-            `<div class="actor-card" onclick="window.location.href='sports-personalities-details.html?name=${encodeURIComponent(a.name)}'">
-              <img src="${a.image}" alt="${a.name}" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
-              <div class="actor-info"><b>${a.name}</b></div>
-            </div>`
-        )
-        .join("");
-    });
-</script>
-<style>
-  .actor-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #fff;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    padding: 24px 28px 20px 28px;
-    margin: 24px auto;
-    width: 240px;
-    cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s;
-    border: 1px solid #e5e5e5;
-    border-radius: 0;
-  }
-  .actor-img {
-    width: 180px;
-    height: 240px;
-    object-fit: cover;
-    border-radius: 0;
-    margin-bottom: 18px;
-    border: 1px solid #ddd;
-    background: #fff;
-  }
-  .actor-info {
-    text-align: center;
-    color: #111;
-  }
-  .actor-info b {
-    color: #111;
-    font-size: 1.25em;
-    font-weight: bold;
-  }
-  .actor-price {
-    color: #111;
-    font-weight: bold;
-    font-size: 1.15em;
-    margin-top: 10px;
-  }
-</style>
-<style>
-  @media (min-width: 768px) {
-    .carousel-container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 24px;
-      justify-content: flex-start;
-      align-items: stretch;
-      margin-left: 50%;
-      width: 1000px;
-    }
-    .actor-card {
-      min-width: 260px;
-      max-width: 300px;
-      flex: 0 0 auto;
-      margin-bottom: 0;
-    }
-  }
-</style>
-<style>
-  @media (min-width: 768px) {
-    .carousel-container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 24px;
-      justify-content: flex-start;
-      align-items: stretch;
-      margin-left: 50%;
-      width: 1000px;
-    }
-    .actor-card {
-      min-width: 260px;
-      max-width: 300px;
-      flex: 0 0 auto;
-      margin-bottom: 0;
-    }
-  }
-</style>
-</body>
 </html>

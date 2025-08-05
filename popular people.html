@@ -838,34 +838,80 @@
         </div>
       </div>
       <style>
-    /* Preloader Styles */ #preloader { position: fixed; top: 0; left: 0; width:
-    100vw; height: 100vh; background: rgba(44,47,52,0.92); z-index: 9999;
-    display: flex; align-items: center; justify-content: center; transition:
-    opacity 0.4s; } .preloader-content { display: flex; flex-direction: column;
-    align-items: center; justify-content: center; } .preloader-logo { font-size:
-    2.8rem; font-family: 'PFDinTextPro-Bold', Arial, sans-serif; color: #fff;
-    margin-bottom: 36px; letter-spacing: -2px; font-weight: bold; }
-    .preloader-circles { display: flex; gap: 18px; } .preloader-circles span {
-    display: block; width: 18px; height: 18px; border-radius: 50%; background:
-    red; opacity: 0.7; animation: preloader-bounce 1.2s infinite
-    cubic-bezier(.4,0,.2,1); } .preloader-circles span:nth-child(2) {
-    animation-delay: 0.2s; } .preloader-circles span:nth-child(3) {
-    animation-delay: 0.4s; } .preloader-circles span:nth-child(4) {
-    animation-delay: 0.6s; } @keyframes preloader-bounce { 0%, 100% { transform:
-    translateY(0); opacity: 0.7; } 50% { transform: translateY(-22px); opacity:
-    1; } }</style>
-    
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      setTimeout(function () {
-        document.getElementById("preloader").style.opacity = 0;
-        setTimeout(function () {
-          document.getElementById("preloader").style.display = "none";
-          document.querySelector(".main-container").style.opacity = 1;
-        }, 400);
-      }, 1200);
-    });
-  </script>
+        /* Preloader Styles */
+        #preloader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(44, 47, 52, 0.92);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: opacity 0.4s;
+        }
+        .preloader-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .preloader-logo {
+          font-size: 2.8rem;
+          font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+          color: #fff;
+          margin-bottom: 36px;
+          letter-spacing: -2px;
+          font-weight: bold;
+        }
+        .preloader-circles {
+          display: flex;
+          gap: 18px;
+        }
+        .preloader-circles span {
+          display: block;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: red;
+          opacity: 0.7;
+          animation: preloader-bounce 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .preloader-circles span:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .preloader-circles span:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+        .preloader-circles span:nth-child(4) {
+          animation-delay: 0.6s;
+        }
+        @keyframes preloader-bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translateY(-22px);
+            opacity: 1;
+          }
+        }
+      </style>
+
+      <script>
+        window.addEventListener("DOMContentLoaded", function () {
+          setTimeout(function () {
+            document.getElementById("preloader").style.opacity = 0;
+            setTimeout(function () {
+              document.getElementById("preloader").style.display = "none";
+              document.querySelector(".main-container").style.opacity = 1;
+            }, 400);
+          }, 1200);
+        });
+      </script>
     </div>
     <!-- Hero Section -->
     <div class="hero-container">
@@ -1017,7 +1063,6 @@
                 department.style.fontSize = "0.9em";
                 card.appendChild(department);
 
-
                 container.appendChild(card);
               });
             }
@@ -1127,7 +1172,6 @@
           department.className = "person-department";
           department.textContent = person.known_for_department || "Acting";
 
-
           personInfo.appendChild(name);
           personInfo.appendChild(department);
           personCard.appendChild(img);
@@ -1186,7 +1230,7 @@
             <ul class="footer-links-list">
               <li><a href="#">About Us</a></li>
               <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="#">Client Privacy Notice</a></li>
+              <li><a href="careers.html">Careers</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
