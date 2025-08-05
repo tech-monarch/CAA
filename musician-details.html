@@ -69,18 +69,6 @@
         font-style: italic;
       }
 
-      .person-price {
-        font-size: 2rem;
-        color: #b71c2c;
-        font-weight: bold;
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        padding: 15px 25px;
-        border-radius: 25px;
-        border: 2px solid #e9ecef;
-        display: inline-block;
-        margin-bottom: 30px;
-      }
-
       .person-bio {
         font-size: 1.1rem;
         line-height: 1.6;
@@ -250,10 +238,6 @@
           font-size: 2rem;
         }
 
-        .person-price {
-          font-size: 1.5rem;
-        }
-
         .container {
           padding: 20px 15px;
         }
@@ -275,47 +259,8 @@
     </style>
   </head>
   <body>
-    <div id="preloader">
-      <div class="preloader-content">
-        <div class="preloader-logo">CAA</div>
-        <div class="preloader-circles">
-          <span></span><span></span><span></span><span></span>
-        </div>
-      </div>
-      <style>
-    /* Preloader Styles */ #preloader { position: fixed; top: 0; left: 0; width:
-    100vw; height: 100vh; background: rgba(44,47,52,0.92); z-index: 9999;
-    display: flex; align-items: center; justify-content: center; transition:
-    opacity 0.4s; } .preloader-content { display: flex; flex-direction: column;
-    align-items: center; justify-content: center; } .preloader-logo { font-size:
-    2.8rem; font-family: 'PFDinTextPro-Bold', Arial, sans-serif; color: #fff;
-    margin-bottom: 36px; letter-spacing: -2px; font-weight: bold; }
-    .preloader-circles { display: flex; gap: 18px; } .preloader-circles span {
-    display: block; width: 18px; height: 18px; border-radius: 50%; background:
-    red; opacity: 0.7; animation: preloader-bounce 1.2s infinite
-    cubic-bezier(.4,0,.2,1); } .preloader-circles span:nth-child(2) {
-    animation-delay: 0.2s; } .preloader-circles span:nth-child(3) {
-    animation-delay: 0.4s; } .preloader-circles span:nth-child(4) {
-    animation-delay: 0.6s; } @keyframes preloader-bounce { 0%, 100% { transform:
-    translateY(0); opacity: 0.7; } 50% { transform: translateY(-22px); opacity:
-    1; } }</style>
-    
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      setTimeout(function () {
-        document.getElementById("preloader").style.opacity = 0;
-        setTimeout(function () {
-          document.getElementById("preloader").style.display = "none";
-          document.querySelector(".main-container").style.opacity = 1;
-        }, 400);
-      }, 1200);
-    });
-  </script>
-    </div>
     <div class="container">
-      <a href="musicians-singers.html" class="back-button"
-        >← Back to Musicians & Singers</a
-      >
+      <a href="musicians-singers.html" class="back-button">← Back to Musicians & Singers</a>
 
       <div class="person-details">
         <div class="person-header">
@@ -323,10 +268,7 @@
           <div class="person-info">
             <h1 id="person-name" class="person-name"></h1>
             <div id="person-department" class="person-department"></div>
-
-            <div id="person-bio" class="person-bio">
-              Loading musician details...
-            </div>
+            <div id="person-bio" class="person-bio">Loading musician details...</div>
           </div>
         </div>
 
@@ -336,25 +278,18 @@
         </div>
       </div>
 
-      <!-- Booking Form Section -->
+      <!-- Booking Form -->
       <div class="booking-form-section">
         <h2>Book This Musician</h2>
         <p class="response-time">
-          During normal business hours, we respond to most inquiries within 4
-          hours.
+          During normal business hours, we respond to most inquiries within 4 hours.
         </p>
 
         <form id="booking-form" class="booking-form">
           <div class="form-row">
             <div class="form-group">
               <label for="person-name-field">Musician Name*</label>
-              <input
-                type="text"
-                id="person-name-field"
-                name="personName"
-                required
-                readonly
-              />
+              <input type="text" id="person-name-field" name="artistName" required readonly />
             </div>
             <div class="form-group">
               <label for="event-name">Event Name*</label>
@@ -392,9 +327,7 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="budget"
-                >Please select your approximate talent budget*</label
-              >
+              <label for="budget">Talent Budget*</label>
               <select id="budget" name="budget" required>
                 <option value="">Select...</option>
                 <option value="5000-or-less">$5,000 or less</option>
@@ -428,16 +361,8 @@
           </div>
 
           <div class="form-group full-width">
-            <label for="event-details"
-              >Tell us about your event! (Event Details)*</label
-            >
-            <textarea
-              id="event-details"
-              name="eventDetails"
-              rows="5"
-              required
-              placeholder="Please provide details about your event, including date, location, duration, and any special requirements..."
-            ></textarea>
+            <label for="event-details">Event Details*</label>
+            <textarea id="event-details" name="eventDetails" rows="5" required></textarea>
           </div>
 
           <button type="submit" class="submit-button">
@@ -450,88 +375,60 @@
     <script>
       async function loadPersonDetails() {
         const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
+        const artistName = urlParams.get("name");
 
-        if (!personName) {
-          document.getElementById("person-bio").textContent =
-            "No musician specified.";
+        if (!artistName) {
+          document.getElementById("person-bio").textContent = "No musician specified.";
           return;
         }
 
-        document.getElementById("person-name").textContent = personName;
-        document.title = `${personName} - Musician Details - CAA`;
+        document.getElementById("person-name").textContent = artistName;
+        document.title = `${artistName} - Musician Details - CAA`;
 
-        const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
-        const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(
-          personName
+        // Use CORS proxy
+        const proxy = "https://corsproxy.io/?";
+        const searchUrl = `${proxy}https://api.deezer.com/search/artist?q=${encodeURIComponent(
+          artistName
         )}`;
 
         try {
           const response = await fetch(searchUrl);
+          if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+          }
+
           const data = await response.json();
 
-          if (data.results && data.results.length > 0) {
-            const person = data.results[0];
+          if (data.data && data.data.length > 0) {
+            const person = data.data[0];
 
-            // Set basic info
-            document.getElementById("person-department").textContent =
-              "Musician/Singer";
-            document.getElementById("person-price").textContent =
-              "$" + (Math.floor(Math.random() * 4000) + 500);
+            document.getElementById("person-department").textContent = "Musician/Singer";
 
             // Set image
             const imageElement = document.getElementById("person-image");
-            if (person.profile_path) {
-              imageElement.src = `https://image.tmdb.org/t/p/w500${person.profile_path}`;
+            if (person.picture_xl || person.picture_big || person.picture) {
+              imageElement.src =
+                person.picture_xl || person.picture_big || person.picture;
               imageElement.alt = person.name;
             } else {
-              imageElement.src =
-                "https://via.placeholder.com/300x400?text=No+Image";
+              imageElement.src = "https://via.placeholder.com/300x400?text=No+Image";
               imageElement.alt = "No image available";
             }
 
             // Set bio
             document.getElementById("person-bio").innerHTML = `
-              <strong>Popularity:</strong> ${person.popularity}<br>
-              <strong>Adult Content:</strong> ${person.adult ? "Yes" : "No"}<br>
-              <strong>Gender:</strong> ${
-                person.gender === 1
-                  ? "Female"
-                  : person.gender === 2
-                  ? "Male"
-                  : "Not specified"
-              }<br><br>
+              <strong>Name:</strong> ${person.name}<br>
+              <strong>Number of Fans:</strong> ${person.nb_fan}<br>
+              <strong>Number of Albums:</strong> ${person.nb_album}<br>
+              <a href="${person.link}" target="_blank">View on Deezer</a><br><br>
               This talented musician is known for their exceptional musical performances and entertainment value.
             `;
 
-            // Show known for works
-            if (person.known_for && person.known_for.length > 0) {
-              const knownForSection = document.getElementById("known-for");
-              const knownForList = document.getElementById("known-for-list");
+            // Hide known for
+            document.getElementById("known-for").style.display = "none";
 
-              knownForList.innerHTML = "";
-              person.known_for.forEach((work) => {
-                const item = document.createElement("div");
-                item.className = "known-for-item";
-                item.innerHTML = `
-                  <strong>${work.title || work.name}</strong><br>
-                  <small>${
-                    work.release_date || work.first_air_date || "Date unknown"
-                  }</small><br>
-                  <em>${
-                    work.overview
-                      ? work.overview.substring(0, 100) + "..."
-                      : "No description available"
-                  }</em>
-                `;
-                knownForList.appendChild(item);
-              });
-
-              knownForSection.style.display = "block";
-            }
-
-            // Populate the booking form with person name
-            document.getElementById("person-name-field").value = personName;
+            // Populate booking form name
+            document.getElementById("person-name-field").value = artistName;
           } else {
             document.getElementById("person-bio").textContent =
               "Musician details not found in our database.";
@@ -543,13 +440,12 @@
         }
       }
 
-      // Handle form submission
       function handleFormSubmission(event) {
         event.preventDefault();
 
         const formData = new FormData(event.target);
         const bookingData = {
-          personName: formData.get("personName"),
+          artistName: formData.get("artistName"),
           eventName: formData.get("eventName"),
           email: formData.get("email"),
           phone: formData.get("phone"),
@@ -560,29 +456,23 @@
           eventDetails: formData.get("eventDetails"),
         };
 
-        // Here you would typically send the data to your server
         console.log("Booking request submitted:", bookingData);
-
-        // Show success message
         alert(
           "Thank you for your booking request! We will respond within 4 hours during normal business hours."
         );
 
-        // Reset form
         event.target.reset();
 
-        // Re-populate person name
         const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
-        if (personName) {
-          document.getElementById("person-name-field").value = personName;
+        const artistName = urlParams.get("name");
+        if (artistName) {
+          document.getElementById("person-name-field").value = artistName;
         }
       }
 
       document.addEventListener("DOMContentLoaded", function () {
         loadPersonDetails();
 
-        // Add form submission handler
         const bookingForm = document.getElementById("booking-form");
         if (bookingForm) {
           bookingForm.addEventListener("submit", handleFormSubmission);
