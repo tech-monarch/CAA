@@ -977,17 +977,8 @@
                 image: person.profile_path
                   ? `https://image.tmdb.org/t/p/w500${person.profile_path}`
                   : null,
-                price: Math.floor(Math.random() * 4000) + 500, // Random price $500-$4500
                 department: person.known_for_department || "Acting",
               }));
-
-              // Sort people with images first, then by price descending
-              people.sort((a, b) => {
-                if (a.image && !b.image) return -1;
-                if (!a.image && b.image) return 1;
-                if (a.price && b.price) return b.price - a.price;
-                return 0;
-              });
 
               // Render cards
               const container = document.getElementById("celebrity-cards");
@@ -1026,9 +1017,6 @@
                 department.style.fontSize = "0.9em";
                 card.appendChild(department);
 
-                const price = document.createElement("div");
-                price.textContent = "Price: $" + person.price;
-                card.appendChild(price);
 
                 container.appendChild(card);
               });
@@ -1139,14 +1127,9 @@
           department.className = "person-department";
           department.textContent = person.known_for_department || "Acting";
 
-          const price = document.createElement("div");
-          price.className = "person-price";
-          price.textContent = "$" + (Math.floor(Math.random() * 4000) + 500);
 
           personInfo.appendChild(name);
           personInfo.appendChild(department);
-          personInfo.appendChild(price);
-
           personCard.appendChild(img);
           personCard.appendChild(personInfo);
 
