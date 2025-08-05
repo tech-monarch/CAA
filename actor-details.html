@@ -448,146 +448,130 @@
     </div>
 
     <script>
-      async function loadPersonDetails() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
+  const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
 
-        if (!personName) {
-          document.getElementById("person-bio").textContent =
-            "No actor specified.";
-          return;
-        }
+  async function loadPersonDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const personName = urlParams.get("name");
 
-        document.getElementById("person-name").textContent = personName;
-        document.title = `${personName} - Actor Details - CAA`;
+    if (!personName) {
+      document.getElementById("person-bio").textContent = "No actor specified.";
+      return;
+    }
 
-        const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
-        const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(
-          personName
-        )}`;
+    document.getElementById("person-name").textContent = personName;
+    document.title = `${personName} - Actor Details - CAA`;
 
-        try {
-          const response = await fetch(searchUrl);
-          const data = await response.json();
+    try {
+      // 1. Search for the person to get their ID
+      const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(personName)}`;
+      const searchResponse = await fetch(searchUrl);
+      const searchData = await searchResponse.json();
 
-          if (data.results && data.results.length > 0) {
-            const person = data.results[0];
+      if (!searchData.results || searchData.results.length === 0) {
+        document.getElementById("person-bio").textContent = "Actor not found in TMDB.";
+        return;
+      }
 
-            // Set basic info
-            document.getElementById("person-department").textContent =
-              person.known_for_department || "Actor/Actress";
-            document.getElementById("person-price").textContent =
-              "$" + (Math.floor(Math.random() * 4000) + 500);
+      const person = searchData.results[0];
+      const personId = person.id;
 
-            // Set image
-            const imageElement = document.getElementById("person-image");
-            if (person.profile_path) {
-              imageElement.src = `https://image.tmdb.org/t/p/w500${person.profile_path}`;
-              imageElement.alt = person.name;
-            } else {
-              imageElement.src =
-                "https://via.placeholder.com/300x400?text=No+Image";
-              imageElement.alt = "No image available";
-            }
+      // 2. Get full person details
+      const detailsUrl = `https://api.themoviedb.org/3/person/${personId}?api_key=${apiKey}&language=en-US`;
+      const detailsResponse = await fetch(detailsUrl);
+      const detailsData = await detailsResponse.json();
 
-            // Set bio
-            document.getElementById("person-bio").innerHTML = `
-              <strong>Popularity:</strong> ${person.popularity}<br>
-              <strong>Adult Content:</strong> ${person.adult ? "Yes" : "No"}<br>
-              <strong>Gender:</strong> ${
-                person.gender === 1
-                  ? "Female"
-                  : person.gender === 2
-                  ? "Male"
-                  : "Not specified"
-              }<br><br>
-              This talented actor is known for their exceptional performances and entertainment value.
+      // 3. Get known-for credits
+      const creditsUrl = `https://api.themoviedb.org/3/person/${personId}/combined_credits?api_key=${apiKey}&language=en-US`;
+      const creditsResponse = await fetch(creditsUrl);
+      const creditsData = await creditsResponse.json();
+
+      // Set department
+      document.getElementById("person-department").textContent =
+        detailsData.known_for_department || "Actor/Actress";
+
+      // Set image
+      const imageElement = document.getElementById("person-image");
+      imageElement.src = detailsData.profile_path
+        ? `https://image.tmdb.org/t/p/w500${detailsData.profile_path}`
+        : "https://via.placeholder.com/300x400?text=No+Image";
+      imageElement.alt = detailsData.name;
+
+      // Set bio (show birthday, place of birth, and biography)
+      document.getElementById("person-bio").innerHTML = `
+        ${detailsData.birthday ? `<strong>Born:</strong> ${detailsData.birthday}<br>` : ""}
+        ${detailsData.place_of_birth ? `<strong>Place of Birth:</strong> ${detailsData.place_of_birth}<br><br>` : ""}
+
+      `;
+
+      // Populate known-for
+      const knownForSection = document.getElementById("known-for");
+      const knownForList = document.getElementById("known-for-list");
+      knownForList.innerHTML = "";
+
+      if (creditsData.cast && creditsData.cast.length > 0) {
+        // Show top 5 most popular known-for works
+        creditsData.cast
+          .slice(0, 5)
+          .forEach((work) => {
+            const item = document.createElement("div");
+            item.className = "known-for-item";
+            item.innerHTML = `
+              <strong>${work.title || work.name}</strong><br>
+              <small>${work.release_date || work.first_air_date || "Date unknown"}</small><br>
+              <em>${work.overview ? work.overview.substring(0, 100) + "..." : "No description available"}</em>
             `;
+            knownForList.appendChild(item);
+          });
 
-            // Show known for works
-            if (person.known_for && person.known_for.length > 0) {
-              const knownForSection = document.getElementById("known-for");
-              const knownForList = document.getElementById("known-for-list");
-
-              knownForList.innerHTML = "";
-              person.known_for.forEach((work) => {
-                const item = document.createElement("div");
-                item.className = "known-for-item";
-                item.innerHTML = `
-                  <strong>${work.title || work.name}</strong><br>
-                  <small>${
-                    work.release_date || work.first_air_date || "Date unknown"
-                  }</small><br>
-                  <em>${
-                    work.overview
-                      ? work.overview.substring(0, 100) + "..."
-                      : "No description available"
-                  }</em>
-                `;
-                knownForList.appendChild(item);
-              });
-
-              knownForSection.style.display = "block";
-            }
-
-            // Populate the booking form with person name
-            document.getElementById("person-name-field").value = personName;
-          } else {
-            document.getElementById("person-bio").textContent =
-              "Actor details not found in our database.";
-          }
-        } catch (error) {
-          console.error("Error loading actor details:", error);
-          document.getElementById("person-bio").textContent =
-            "Error loading actor details.";
-        }
+        knownForSection.style.display = "block";
       }
 
-      // Handle form submission
-      function handleFormSubmission(event) {
-        event.preventDefault();
+      // Pre-fill booking form actor name
+      document.getElementById("person-name-field").value = personName;
 
-        const formData = new FormData(event.target);
-        const bookingData = {
-          personName: formData.get("personName"),
-          eventName: formData.get("eventName"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          sex: formData.get("sex"),
-          airport: formData.get("airport"),
-          budget: formData.get("budget"),
-          eventType: formData.get("eventType"),
-          eventDetails: formData.get("eventDetails"),
-        };
+    } catch (error) {
+      console.error("Error loading actor details:", error);
+      document.getElementById("person-bio").textContent = "Error loading actor details.";
+    }
+  }
 
-        // Here you would typically send the data to your server
-        console.log("Booking request submitted:", bookingData);
+  // Handle form submission
+  function handleFormSubmission(event) {
+    event.preventDefault();
 
-        // Show success message
-        alert(
-          "Thank you for your booking request! We will respond within 4 hours during normal business hours."
-        );
+    const formData = new FormData(event.target);
+    const bookingData = {
+      personName: formData.get("personName"),
+      eventName: formData.get("eventName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      sex: formData.get("sex"),
+      airport: formData.get("airport"),
+      budget: formData.get("budget"),
+      eventType: formData.get("eventType"),
+      eventDetails: formData.get("eventDetails"),
+    };
 
-        // Reset form
-        event.target.reset();
+    console.log("Booking request submitted:", bookingData);
+    alert("Thank you for your booking request! We will respond within 4 hours during normal business hours.");
 
-        // Re-populate person name
-        const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
-        if (personName) {
-          document.getElementById("person-name-field").value = personName;
-        }
-      }
+    event.target.reset();
+    const urlParams = new URLSearchParams(window.location.search);
+    const personName = urlParams.get("name");
+    if (personName) {
+      document.getElementById("person-name-field").value = personName;
+    }
+  }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        loadPersonDetails();
+  document.addEventListener("DOMContentLoaded", function () {
+    loadPersonDetails();
+    const bookingForm = document.getElementById("booking-form");
+    if (bookingForm) {
+      bookingForm.addEventListener("submit", handleFormSubmission);
+    }
+  });
+</script>
 
-        // Add form submission handler
-        const bookingForm = document.getElementById("booking-form");
-        if (bookingForm) {
-          bookingForm.addEventListener("submit", handleFormSubmission);
-        }
-      });
-    </script>
   </body>
 </html>
