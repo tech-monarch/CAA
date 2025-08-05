@@ -1085,98 +1085,105 @@
   </footer>
 
   <script>
-    // Navbar toggle
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuIcon = document.getElementById("menuIcon");
-      const navbar = document.getElementById("caaNavbar");
-      const navbarClose = document.getElementById("navbarClose");
-      if (menuIcon && navbar && navbarClose) {
-        menuIcon.onclick = function () {
-          navbar.classList.add("active");
-        };
-        navbarClose.onclick = function () {
-          navbar.classList.remove("active");
-        };
-      }
-    });
-
-    // Render cards
-    function renderCelebrityCards(athletes) {
-      const celebrityCards = document.getElementById("celebrity-cards");
-      celebrityCards.innerHTML = "";
-      athletes.forEach((athlete) => {
-        const card = document.createElement("div");
-        card.className = "actor-card";
-        card.innerHTML = `
-          <img src="${athlete.image || 'celebrities.jpg'}" alt="${athlete.name}" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
-          <div class="actor-info">
-            <b>${athlete.name}</b>
-            ${athlete.sport ? `<p>${athlete.sport}</p>` : ""}
-            ${athlete.team ? `<p>${athlete.team}</p>` : ""}
-          </div>
-        `;
-        celebrityCards.appendChild(card);
-      });
+  // Navbar toggle
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuIcon = document.getElementById("menuIcon");
+    const navbar = document.getElementById("caaNavbar");
+    const navbarClose = document.getElementById("navbarClose");
+    if (menuIcon && navbar && navbarClose) {
+      menuIcon.onclick = function () {
+        navbar.classList.add("active");
+      };
+      navbarClose.onclick = function () {
+        navbar.classList.remove("active");
+      };
     }
+  });
 
-    // Load default data from local JSON
-    document.addEventListener("DOMContentLoaded", async () => {
-      try {
-        const res = await fetch("sports-top500.json");
-        const athletes = await res.json();
-        renderCelebrityCards(athletes.slice(0, 20));
-      } catch (err) {
-        console.error("Error loading initial athletes:", err);
-        document.getElementById("celebrity-cards").innerHTML =
-          "<p style='color:#b71c2c'>Failed to load athletes.</p>";
-      }
+  // Render cards into ANY container
+  function renderCelebrityCards(athletes, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = ""; // Clear container
+    athletes.forEach((athlete) => {
+      const card = document.createElement("div");
+      card.className = "actor-card";
+      card.innerHTML = `
+        <img src="${athlete.image || 'sports-mock.webp'}" alt="${athlete.name}" class="actor-img" onerror="this.onerror=null;this.src='sports-mock.webp';">
+        <div class="actor-info">
+          <b>${athlete.name}</b>
+          ${athlete.sport ? `<p>${athlete.sport}</p>` : ""}
+          ${athlete.team ? `<p>${athlete.team}</p>` : ""}
+        </div>
+      `;
+      container.appendChild(card);
     });
+  }
 
-    // Search functionality
-    document.querySelector(".hero-search-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const query = document.getElementById("musician-search-input").value.trim();
-      if (!query) return;
-      const resultDiv = document.getElementById("search-result");
-      resultDiv.innerHTML = "Searching...";
+  // Load default data into celebrity-cards
+  document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      const res = await fetch("sports-top500.json");
+      const athletes = await res.json();
+      renderCelebrityCards(athletes.slice(0, 20), "celebrity-cards");
+    } catch (err) {
+      console.error("Error loading initial athletes:", err);
+      document.getElementById("celebrity-cards").innerHTML =
+        "<p style='color:#b71c2c'>Failed to load athletes.</p>";
+    }
+  });
 
-      try {
-        // API search
-        const apiRes = await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(query)}`);
-        const apiData = await apiRes.json();
-        let players = apiData.player || [];
+  // Search functionality -> render in search-result
+  document.querySelector(".hero-search-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const query = document.getElementById("musician-search-input").value.trim();
+    if (!query) return;
+    const resultDiv = document.getElementById("search-result");
+    resultDiv.innerHTML = "Searching...";
 
-        // Fallback local JSON
-        if (players.length === 0) {
-          const localRes = await fetch("sports-top500.json");
-          const localData = await localRes.json();
-          players = localData.filter(a =>
-            a.name && a.name.toLowerCase().includes(query.toLowerCase())
-          );
-        }
+    try {
+      // API search
+      const apiRes = await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(query)}`);
+      const apiData = await apiRes.json();
+      let players = apiData.player || [];
 
-        if (players.length === 0) {
-          resultDiv.innerHTML = "No athlete found matching your search.";
-          return;
-        }
-
-        resultDiv.innerHTML = `<b>Showing results</b>`;
-
-        // Map and render
-        renderCelebrityCards(
-          players.slice(0, 10).map(p => ({
-            name: p.strPlayer || p.name,
-            sport: p.strSport || p.sport,
-            team: p.strTeam || p.team,
-            image: p.strThumb || p.image
-          }))
+      // Fallback local JSON
+      if (players.length === 0) {
+        const localRes = await fetch("sports-top500.json");
+        const localData = await localRes.json();
+        players = localData.filter(a =>
+          a.name && a.name.toLowerCase().includes(query.toLowerCase())
         );
-      } catch (err) {
-        console.error(err);
-        resultDiv.innerHTML = "Error loading data. Please check your connection.";
       }
-    });
-  </script>
+
+      if (players.length === 0) {
+        resultDiv.innerHTML = "No athlete found matching your search.";
+        return;
+      }
+
+      // Show "results" label
+      resultDiv.innerHTML = `<b>Showing results</b>`;
+
+      // Add results below label
+      const resultsWrapper = document.createElement("div");
+      resultsWrapper.id = "search-results-wrapper";
+      resultDiv.appendChild(resultsWrapper);
+
+      renderCelebrityCards(
+        players.slice(0, 10).map(p => ({
+          name: p.strPlayer || p.name,
+          sport: p.strSport || p.sport,
+          team: p.strTeam || p.team,
+          image: p.strThumb || p.image
+        })),
+        "search-results-wrapper"
+      );
+    } catch (err) {
+      console.error(err);
+      resultDiv.innerHTML = "Error loading data. Please check your connection.";
+    }
+  });
+</script>
+
     <style>
       @media (min-width: 768px) {
         .carousel-container {
