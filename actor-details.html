@@ -390,106 +390,97 @@
           hours.
         </p>
 
-        <form id="booking-form" class="booking-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="person-name-field">Actor Name*</label>
-              <input
-                type="text"
-                id="person-name-field"
-                name="personName"
-                required
-                readonly
-              />
-            </div>
-            <div class="form-group">
-              <label for="event-name">Event Name*</label>
-              <input type="text" id="event-name" name="eventName" required />
-            </div>
-          </div>
+        
+     <form id="booking-form" class="booking-form" method="POST" action="https://formspree.io/f/mblkqlnr">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="person-name-field">Musician Name*</label>
+      <input type="text" id="person-name-field" name="artistName" required readonly />
+    </div>
+    <div class="form-group">
+      <label for="event-name">Event Name*</label>
+      <input type="text" id="event-name" name="eventName" required />
+    </div>
+  </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Your Email*</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number*</label>
-              <input type="tel" id="phone" name="phone" required />
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="email">Your Email*</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number*</label>
+      <input type="tel" id="phone" name="phone" required />
+    </div>
+  </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="sex">Sex*</label>
-              <select id="sex" name="sex" required>
-                <option value="">Select...</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-                <option value="prefer-not-to-say">Prefer not to say</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="airport">Nearest Airport*</label>
-              <input type="text" id="airport" name="airport" required />
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="sex">Sex*</label>
+      <select id="sex" name="sex" required>
+        <option value="">Select...</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+        <option value="prefer-not-to-say">Prefer not to say</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="airport">Nearest Airport*</label>
+      <input type="text" id="airport" name="airport" required />
+    </div>
+  </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="budget"
-                >Please select your approximate talent budget*</label
-              >
-              <select id="budget" name="budget" required>
-                <option value="">Select...</option>
-                <option value="5000-or-less">$5,000 or less</option>
-                <option value="5000-10000">$5,000 - $10,000</option>
-                <option value="10000-20000">$10,000 - $20,000</option>
-                <option value="20000-30000">$20,000 - $30,000</option>
-                <option value="30000-50000">$30,000 - $50,000</option>
-                <option value="50000-100000">$50,000 - $100,000</option>
-                <option value="100000-500000">$100,000 - $500,000</option>
-                <option value="500000-above">$500,000 and above</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="event-type">Type of Event*</label>
-              <select id="event-type" name="eventType" required>
-                <option value="">Select...</option>
-                <option value="birthday">Birthday</option>
-                <option value="meet-and-greet">Meet and Greet</option>
-                <option value="convention">Convention/Trade Show</option>
-                <option value="cooking-demo">Cooking Demo</option>
-                <option value="endorsement">Endorsement/Spokesperson</option>
-                <option value="funeral">Funeral</option>
-                <option value="musical-performance">Musical Performance</option>
-                <option value="personal-appearance">Personal Appearance</option>
-                <option value="satellite-media">Satellite Media Tour</option>
-                <option value="speaking-engagement">Speaking Engagement</option>
-                <option value="virtual-event">Virtual Event</option>
-                <option value="wedding">Wedding</option>
-              </select>
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="budget">Talent Budget*</label>
+      <select id="budget" name="budget" required>
+        <option value="">Select...</option>
+        <option value="5000-or-less">$5,000 or less</option>
+        <option value="5000-10000">$5,000 - $10,000</option>
+        <option value="10000-20000">$10,000 - $20,000</option>
+        <option value="20000-30000">$20,000 - $30,000</option>
+        <option value="30000-50000">$30,000 - $50,000</option>
+        <option value="50000-100000">$50,000 - $100,000</option>
+        <option value="100000-500000">$100,000 - $500,000</option>
+        <option value="500000-above">$500,000 and above</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="event-type">Type of Event*</label>
+      <select id="event-type" name="eventType" required>
+        <option value="">Select...</option>
+        <option value="birthday">Birthday</option>
+        <option value="meet-and-greet">Meet and Greet</option>
+        <option value="convention">Convention/Trade Show</option>
+        <option value="cooking-demo">Cooking Demo</option>
+        <option value="endorsement">Endorsement/Spokesperson</option>
+        <option value="funeral">Funeral</option>
+        <option value="musical-performance">Musical Performance</option>
+        <option value="personal-appearance">Personal Appearance</option>
+        <option value="satellite-media">Satellite Media Tour</option>
+        <option value="speaking-engagement">Speaking Engagement</option>
+        <option value="virtual-event">Virtual Event</option>
+        <option value="wedding">Wedding</option>
+      </select>
+    </div>
+  </div>
 
-          <div class="form-group full-width">
-            <label for="event-details"
-              >Tell us about your event! (Event Details)*</label
-            >
-            <textarea
-              id="event-details"
-              name="eventDetails"
-              rows="5"
-              required
-              placeholder="Please provide details about your event, including date, location, duration, and any special requirements..."
-            ></textarea>
-          </div>
+  <div class="form-group full-width">
+    <label for="event-details">Event Details*</label>
+    <textarea id="event-details" name="eventDetails" rows="5" required></textarea>
+  </div>
 
-          <button type="submit" class="submit-button">
-            Submit Booking Request
-          </button>
-        </form>
+  <!-- Hidden field to set Reply-To -->
+  <input type="hidden" name="_replyto" id="reply-to-field" value="">
+
+  <!-- Optional redirect after submit -->
+  <input type="hidden" name="_next" value="thank-you.html">
+
+  <button type="submit" class="submit-button">Submit Booking Request</button>
+</form>
+
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       </div>
     </div>
 
@@ -599,34 +590,56 @@
       }
 
       // Handle form submission
-      function handleFormSubmission(event) {
-        event.preventDefault();
+      
+document.addEventListener("DOMContentLoaded", function () {
+  // Auto-fill actor name from query param
+  const urlParams = new URLSearchParams(window.location.search);
+  const personName = urlParams.get("name");
+  if (personName) {
+    document.getElementById("person-name-field").value = personName;
+  }
 
-        const formData = new FormData(event.target);
-        const bookingData = {
-          personName: formData.get("personName"),
-          eventName: formData.get("eventName"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          sex: formData.get("sex"),
-          airport: formData.get("airport"),
-          budget: formData.get("budget"),
-          eventType: formData.get("eventType"),
-          eventDetails: formData.get("eventDetails"),
-        };
+  const bookingForm = document.getElementById("booking-form");
 
-        console.log("Booking request submitted:", bookingData);
-        alert(
-          "Thank you for your booking request! We will respond within 4 hours during normal business hours."
-        );
+  bookingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-        event.target.reset();
-        const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
-        if (personName) {
-          document.getElementById("person-name-field").value = personName;
-        }
+    // Send via AJAX to Formspree
+    const formData = new FormData(bookingForm);
+
+    fetch(bookingForm.action, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Booking Request Sent!',
+          text: 'Thank you! We will respond within 4 hours during business hours.',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          window.location.href = "index.html"; // Redirect after OK
+        });
+        bookingForm.reset();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops!',
+          text: 'Something went wrong. Please try again.',
+        });
       }
+    })
+    .catch(() => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error sending message. Please try again later.',
+      });
+    });
+  });
+});
 
       document.addEventListener("DOMContentLoaded", function () {
         loadPersonDetails();

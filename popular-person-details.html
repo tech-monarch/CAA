@@ -508,6 +508,8 @@
             Submit Booking Request
           </button>
         </form>
+        
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       </div>
     </div>
 
@@ -608,40 +610,56 @@
       }
 
       // Handle form submission
-      function handleFormSubmission(event) {
-        event.preventDefault();
 
-        const formData = new FormData(event.target);
-        const bookingData = {
-          personName: formData.get("personName"),
-          eventName: formData.get("eventName"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          sex: formData.get("sex"),
-          airport: formData.get("airport"),
-          budget: formData.get("budget"),
-          eventType: formData.get("eventType"),
-          eventDetails: formData.get("eventDetails"),
-        };
+document.addEventListener("DOMContentLoaded", function () {
+  // Auto-fill actor name from query param
+  const urlParams = new URLSearchParams(window.location.search);
+  const personName = urlParams.get("name");
+  if (personName) {
+    document.getElementById("person-name-field").value = personName;
+  }
 
-        // Here you would typically send the data to your server
-        console.log("Booking request submitted:", bookingData);
+  const bookingForm = document.getElementById("booking-form");
 
-        // Show success message
-        alert(
-          "Thank you for your booking request! We will respond within 4 hours during normal business hours."
-        );
+  bookingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-        // Reset form
-        event.target.reset();
+    // Send via AJAX to Formspree
+    const formData = new FormData(bookingForm);
 
-        // Re-populate person name
-        const urlParams = new URLSearchParams(window.location.search);
-        const personName = urlParams.get("name");
-        if (personName) {
-          document.getElementById("person-name-field").value = personName;
-        }
+    fetch(bookingForm.action, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Booking Request Sent!',
+          text: 'Thank you! We will respond within 4 hours during business hours.',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          window.location.href = "index.html"; // Redirect after OK
+        });
+        bookingForm.reset();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops!',
+          text: 'Something went wrong. Please try again.',
+        });
       }
+    })
+    .catch(() => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error sending message. Please try again later.',
+      });
+    });
+  });
+});
 
       document.addEventListener("DOMContentLoaded", function () {
         loadPersonDetails();
