@@ -1,65 +1,128 @@
 [
   {
-    "name": "Wizkid",
-    "id": 3933641,
-    "image": "https://cdn-images.dzcdn.net/images/artist/171332ffcaa66c2b5583d7630297be88/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/3933641",
-    "price": 155
-  },
-  {
     "name": "Kanye West",
     "id": 230,
     "image": "https://cdn-images.dzcdn.net/images/artist/bb76c2ee3b068726ab4c37b0aabdb57a/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/230",
-    "price": 517
-  },
-  {
-    "name": "Burna Boy",
-    "id": 4338602,
-    "image": "https://cdn-images.dzcdn.net/images/artist/ad15b7f03325752d60db9e4d39c079ae/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/4338602",
-    "price": 547
-  },
-  {
-    "name": "Ayra Starr",
-    "id": 110616822,
-    "image": "https://cdn-images.dzcdn.net/images/artist/dbbf92fde4a28452a455f885b065008e/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/110616822",
-    "price": 837
+    "link": "https://www.deezer.com/artist/230"
   },
   {
     "name": "Justin Bieber",
     "id": 288166,
     "image": "https://cdn-images.dzcdn.net/images/artist/d1883834aa398626a4d081faec05387f/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/288166",
-    "price": 606
-  },
-  {
-    "name": "Fireboy Dml",
-    "id": 15190997,
-    "image": "https://cdn-images.dzcdn.net/images/artist/816e7dc6e0a1520f537256ccad521921/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/15190997",
-    "price": 1500
+    "link": "https://www.deezer.com/artist/288166"
   },
   {
     "name": "Dave",
     "id": 11256100,
     "image": "https://cdn-images.dzcdn.net/images/artist/eb2c8952b7328fdf32b3546d5ffab8c2/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/11256100",
-    "price": 156
+    "link": "https://www.deezer.com/artist/11256100"
   },
   {
-    "name": "Tems",
-    "id": 13905711,
-    "image": "https://cdn-images.dzcdn.net/images/artist/6afe2edff567600abf781c3d8a29344b/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/13905711",
-    "price": 480
+    "name": "Rihanna",
+    "id": 564,
+    "image": "https://cdn-images.dzcdn.net/images/artist/a0a911c1aec32ae2f9226491b0d52fe2/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/564"
   },
   {
-    "name": "Bella Shmurda",
-    "id": 61061602,
-    "image": "https://cdn-images.dzcdn.net/images/artist/7280c1996fd9ddb8a8aafe829706ff72/1000x1000-000000-80-0-0.jpg",
-    "link": "https://www.deezer.com/artist/61061602",
-    "price": 720
+    "name": "Marshmello",
+    "id": 7890702,
+    "image": "https://cdn-images.dzcdn.net/images/artist/7990773a89df9f06fc2b871ad1de00bf/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/7890702"
+  },
+  {
+    "name": "Lil Tecca",
+    "id": 14492701,
+    "image": "https://cdn-images.dzcdn.net/images/artist/9f9692bbbbbce78c031416ad11a0d1f0/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/14492701"
+  },
+  {
+    "name": "Joyner Lucas",
+    "id": 5942214,
+    "image": "https://cdn-images.dzcdn.net/images/artist/37591b67239c574e773570ab5dd4287b/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/5942214"
+  },
+  {
+    "name": "BTS",
+    "id": 6982223,
+    "image": "https://cdn-images.dzcdn.net/images/artist/ee31411771c1e1d80718f0bb7768db91/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/6982223"
+  },
+  {
+    "name": "Tory Lanez",
+    "id": 5575105,
+    "image": "https://cdn-images.dzcdn.net/images/artist/6d5ed6cb0455abb0353661627dd8b40a/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/5575105"
+  },
+  {
+    "name": "Baby Keem",
+    "id": 48947681,
+    "image": "https://cdn-images.dzcdn.net/images/artist/f0878b2f934ebb428bbc48be5d866129/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/48947681"
+  },
+  {
+    "name": "Boj",
+    "id": 5177720,
+    "image": "https://cdn-images.dzcdn.net/images/artist/199a9a9ea42deabbc6d6d5217394e83e/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/5177720"
+  },
+  {
+    "name": "The Spirituals",
+    "id": 1268031,
+    "image": "https://cdn-images.dzcdn.net/images/artist/93fcfb9cf0d1c027a1ba74ad96cfba1b/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/1268031"
+  },
+  {
+    "name": "Yung Bleu",
+    "id": 3561671,
+    "image": "https://cdn-images.dzcdn.net/images/artist/ce6f47da1b152e0fb5580d765457b838/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/3561671"
+  },
+  {
+    "name": "Selena Gomez",
+    "id": 292185,
+    "image": "https://cdn-images.dzcdn.net/images/artist/26b3660183a4a626bb185a7089f090b4/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/292185"
+  },
+  {
+    "name": "Playboi Carti",
+    "id": 10002824,
+    "image": "https://cdn-images.dzcdn.net/images/artist/b90097972a60d9d8598a79a786be1a3a/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/10002824"
+  },
+  {
+    "name": "Frank Ocean",
+    "id": 1350335,
+    "image": "https://cdn-images.dzcdn.net/images/artist/882155c08dc31d6464d6d580083c968c/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/1350335"
+  },
+  {
+    "name": "A Boogie Wit da Hoodie",
+    "id": 9539088,
+    "image": "https://cdn-images.dzcdn.net/images/artist/65bccca3a5db7a4497124fa14f0fee0a/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/9539088"
+  },
+  {
+    "name": "King Promise",
+    "id": 9958178,
+    "image": "https://cdn-images.dzcdn.net/images/artist/a45f5f56471e66c77a447f21f25f13e5/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/9958178"
+  },
+  {
+    "name": "Starboy",
+    "id": 4084318,
+    "image": "https://cdn-images.dzcdn.net/images/artist/ad1eae92bd7727d01b8f93f139665dad/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/4084318"
+  },
+  {
+    "name": "KCee",
+    "id": 1136083,
+    "image": "https://cdn-images.dzcdn.net/images/artist/c3440bac882c52ce37301dcc09b2e760/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/1136083"
+  },
+  {
+    "name": "The Chainsmokers",
+    "id": 4104927,
+    "image": "https://cdn-images.dzcdn.net/images/artist/461231bf0a032d7b8b315e05d1b4bbd7/1000x1000-000000-80-0-0.jpg",
+    "link": "https://www.deezer.com/artist/4104927"
   }
 ]
