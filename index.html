@@ -3,89 +3,836 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CAA</title>
+    <title>About Us - CAA</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link href="fonts/style.css" rel="stylesheet" />
     <style>
       body {
-        background: #2c2f34;
+        background: #292d34;
         color: #fff;
-        font-family: "PFDinTextPro-Bold", "PFDinTextPro-Regular", Arial,
-          sans-serif;
-        margin: 0;
+        font-family: "Segoe UI", sans-serif;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
+        margin: 0;
+        padding: 0;
       }
-      .main-container {
-        flex: 1;
+
+      /* Hero Container Fix */
+      .hero-container {
+        position: relative;
+        height: 100vh; /* Fixed full screen hero section */
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        background: url("john.jpeg") center center/cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      /* Desktop view background */
+      @media screen and (min-width: 1024px) {
+        .hero-bg {
+          background: url("sza.jpg") center center/cover no-repeat;
+        }
+      }
+
+      .caa-logo {
+        font-size: 3.2rem;
+        font-weight: bold;
+        letter-spacing: -2px;
+        margin-top: 32px;
+        margin-left: 32px;
+        margin-bottom: 0;
+        color: #fff;
+        line-height: 1;
+        position: relative;
+        z-index: 2;
+      }
+
+      .about-hero-content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
+        margin-left: 36px;
+        margin-bottom: 48px;
+        max-width: 340px;
+      }
+
+      .about-hero-content h1 {
+        font-size: 2.6rem;
+        font-weight: bold;
+        margin-bottom: 2.5rem;
+        color: #fff;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        line-height: 1.25;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      @media (max-width: 900px) {
+        .caa-logo {
+          margin-left: 18px;
+          font-size: 2.2rem;
+        }
+        .about-hero-content {
+          margin-left: 18px;
+          margin-bottom: 32px;
+          max-width: 90vw;
+        }
+        .about-hero-content h1 {
+          font-size: 1.9rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .caa-logo {
+          font-size: 72px;
+          margin-top: 40px;
+          margin-left: 24px;
+        }
+        .about-hero-content {
+          margin-bottom: 24px;
+          margin-left: 16px;
+          padding: 0 10px;
+          max-width: 95vw;
+        }
+        .about-hero-content h1 {
+          font-size: 2.2rem;
+          line-height: 1.2;
+          text-align: left;
+        }
+      }
+
+      .menu-icon {
+        position: absolute;
+        top: 48px;
+        right: 32px;
+        width: 36px;
+        height: 36px;
+        z-index: 2;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        max-width: 420px;
-        margin: 0 auto;
-        height: 100vh;
-        padding-left: 40px;
+        align-items: center;
       }
-      .caa-logo {
-        font-size: 5.5rem;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+
+      .menu-icon span {
+        display: block;
+        width: 100%;
+        height: 4px;
+        background: #fff;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      /* Navigation Overlay Styles */
+      .caa-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(41, 45, 52, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .caa-navbar.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .navbar-header {
+        position: absolute;
+        top: 32px;
+        left: 32px;
+        right: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-header .caa-logo {
+        font-size: 3.2rem;
         font-weight: bold;
         letter-spacing: -2px;
-        color: #cd2a2a;
-        margin-top: 36px;
-        margin-bottom: 0;
-        margin-left: 0;
+        color: #fff;
+        margin: 0;
       }
-      .main-links {
-        margin-top: 120px;
+
+      .navbar-close {
+        font-size: 3rem;
+        color: #fff;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.3s;
+      }
+
+      .navbar-close:hover {
+        color: #b71c2c;
+      }
+
+      .navbar-overlay-content {
+        text-align: center;
+        max-width: 800px;
+        padding: 0 32px;
+      }
+
+      .navbar-main-links {
         margin-bottom: 48px;
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-      }
-      .main-link {
-        color: #e0e0e0;
-        font-size: 2rem;
+        font-size: 2.5rem;
+        line-height: 1.4;
         font-family: "PFDinTextPro-Bold", Arial, sans-serif;
-        font-weight: bold;
-        text-decoration: none;
-        margin-bottom: 0;
-        transition: color 0.2s;
       }
-      .main-link:hover {
+
+      .nav-main-link {
         color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+        display: inline-block;
+        margin-bottom: 16px;
       }
-      .secondary-links {
-        margin-top: 32px;
+
+      .nav-main-link:hover {
+        color: #b71c2c;
+      }
+
+      .navbar-secondary-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
-        flex-direction: column;
-        gap: 8px;
+        gap: 32px;
+        justify-content: center;
       }
-      .secondary-link {
+
+      .nav-secondary-link {
         color: #bfc3c7;
-        font-size: 1.08rem;
-        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
         text-decoration: none;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        transition: color 0.2s;
+        font-size: 1.2rem;
+        font-family: "Segoe UI", sans-serif;
+        transition: color 0.3s;
       }
-      .secondary-link:hover {
+
+      .nav-secondary-link:hover {
         color: #fff;
+      }
+
+      @media (max-width: 900px) {
+        .navbar-main-links {
+          font-size: 2rem;
+        }
+        .navbar-header .caa-logo {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .navbar-main-links {
+          font-size: 1.5rem;
+          line-height: 1.2;
+        }
+        .navbar-header .caa-logo {
+          font-size: 2rem;
+        }
+        .nav-main-link {
+          margin-bottom: 8px;
+        }
+        .navbar-secondary-links {
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+
+      /* About CAA Section */
+      .about-caa-section {
+        background: #fff;
+        color: #292d34;
+        border-radius: 0 0 8px 8px;
+        max-width: 100%; /* Increased width slightly */
+        margin: 0 auto;
+        padding: 40px 40px; /* Increased left/right padding */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 3;
+      }
+
+      /* Removed extra margin-top that caused blank space */
+      .about-caa-title {
+        font-size: 1.2rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.5px;
+        color: #292d34;
+      }
+
+      .about-caa-divider {
+        border: none;
+        border-top: 2px solid #bfc3c7;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+        width: 100%;
+      }
+
+      .about-caa-headline {
+        font-size: 1.5rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        color: #b72c36;
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+      }
+
+      .about-caa-text {
+        font-size: 1rem;
+        font-family: "Segoe UI", sans-serif;
+        color: #292d34;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 600px) {
+        .about-caa-section {
+          padding: 20px 16px; /* Mobile padding */
+        }
+        .about-caa-headline {
+          font-size: 1.1rem;
+        }
+        .about-caa-title {
+          font-size: 1rem;
+        }
+      }
+    </style>
+    <style>
+      .caa-footer {
+        background: #b71c2c;
+        color: #fff;
+        padding: 0 0 32px 0;
+        font-family: "Segoe UI", sans-serif;
+        margin-top: 0;
+        border: none;
+      }
+      .caa-footer-content.desktop-footer {
+        max-width: 100vw;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 64px 0 0 0;
+      }
+      .footer-main-row {
+        display: flex;
+        width: 85vw;
+        max-width: 1600px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 120px;
+        margin-bottom: 32px;
+      }
+      .footer-logo-col {
+        flex: 0 0 320px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .caa-footer-logo {
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-size: 100px;
+        letter-spacing: -2px;
+        margin: 0 0 0 0;
+        line-height: 1;
+      }
+      .footer-links-col {
+        flex: 1 1 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .footer-links-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 0;
+      }
+      .footer-links-list li {
+        margin-bottom: 18px;
+      }
+      .footer-links-list a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        transition: text-decoration 0.2s;
+      }
+      .footer-links-list a:hover {
+        text-decoration: underline;
+      }
+      .caa-footer-divider {
+        width: 90%;
+        margin: 32px 0 16px 0;
+        border: none;
+        border-top: 2px solid #fff2;
+      }
+      .footer-bottom-row {
+        width: 85vw;
+        max-width: 1600px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0;
+      }
+      .footer-bottom-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 18px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+      .footer-bottom-links a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .footer-divider {
+        color: #fff;
+        opacity: 0.7;
+        font-size: 18px;
+        margin: 0 8px;
+      }
+      .footer-bottom-social {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 16px;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+      }
+      .caa-footer-instagram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #fff;
+        margin-left: 4px;
+        transition: box-shadow 0.2s;
+      }
+      .caa-footer-instagram:hover {
+        box-shadow: 0 0 0 2px #b71c2c;
+      }
+      .caa-footer-follow-label {
+        font-size: 16px;
+        margin-right: 8px;
+        color: #fff;
+      }
+      @media (max-width: 1200px) {
+        .footer-main-row,
+        .footer-bottom-row {
+          width: 98vw;
+          gap: 48px;
+        }
+        .caa-footer-logo {
+          font-size: 80px;
+        }
+      }
+      @media (max-width: 900px) {
+        .footer-main-row,
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          width: 98vw;
+          gap: 0;
+        }
+        .footer-logo-col {
+          margin-bottom: 24px;
+        }
+        .footer-links-col {
+          margin-bottom: 24px;
+        }
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
       }
       @media (max-width: 600px) {
-        .main-container {
-          padding-left: 16px;
-          max-width: 98vw;
+        .caa-footer-content.desktop-footer {
+          padding: 32px 0 0 0;
         }
+        .caa-footer-logo {
+          font-size: 48px;
+        }
+        .footer-links-list a {
+          font-size: 18px;
+        }
+        .footer-bottom-links {
+          font-size: 14px;
+        }
+        .footer-bottom-social {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 900px) {
         .caa-logo {
+          margin-left: 18px;
           font-size: 2.2rem;
-          margin-top: 24px;
         }
-        .main-links {
-          margin-top: 60px;
+        .about-hero-content {
+          margin-left: 18px;
+          margin-bottom: 32px;
+          max-width: 90vw;
+        }
+        .about-hero-content h1 {
+          font-size: 1.9rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .caa-logo {
+          font-size: 72px;
+          margin-top: 40px;
+          margin-left: 24px;
+        }
+        .about-hero-content {
+          margin-bottom: 24px;
+          margin-left: 16px;
+          padding: 0 10px;
+          max-width: 95vw;
+        }
+        .about-hero-content h1 {
+          font-size: 3.6rem;
+          text-align: center;
+        }
+        .hero-search-form {
+          max-width: 90%;
+          margin: 0 auto 24px auto;
+        }
+
+        #people-search-input {
+          width: 250px;
+          padding: 14px 18px 14px 45px;
+          font-size: 1rem;
+        }
+
+        .hero-search-form button {
+          padding: 14px 24px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Enhanced Hero Search Form Styling */
+      .hero-search-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 30px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        position: relative;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-search-form:hover {
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
+
+      #people-search-input {
+        padding: 16px 20px 16px 50px;
+        border: none;
+        outline: none;
+        font-size: 1.1rem;
+        width: 320px;
+        background: transparent;
+        color: #333;
+        font-family: "Segoe UI", sans-serif;
+        position: relative;
+      }
+
+      #people-search-input::placeholder {
+        color: #666;
+        font-style: italic;
+      }
+
+      .hero-search-form::before {
+        content: "🔍";
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-search-form button {
+        padding: 16px 32px;
+        border: none;
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .hero-search-form button:hover {
+        background: linear-gradient(135deg, #a01828, #b71c2c);
+        transform: scale(1.05);
+      }
+
+      /* Carousel and Card Styling */
+      .carousel-wrapper {
+        position: relative;
+        margin: 40px 0;
+        padding: 0 60px;
+      }
+
+      .carousel-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 24px;
+        padding: 20px 0;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .carousel-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .person-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px 28px 20px 28px;
+        min-width: 260px;
+        max-width: 280px;
+        flex: 0 0 auto;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .person-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+        border-color: #b71c2c;
+      }
+
+      .person-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #b71c2c, #d32f2f);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .person-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .person-img {
+        width: 180px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        border: 2px solid #ddd;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+      }
+
+      .person-card:hover .person-img {
+        border-color: #b71c2c;
+        transform: scale(1.02);
+      }
+
+      .person-info {
+        text-align: center;
+        color: #333;
+        width: 100%;
+      }
+
+      .person-info b {
+        color: #333;
+        font-size: 1.25em;
+        font-weight: bold;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        display: block;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .person-department {
+        color: #666;
+        font-size: 0.95em;
+        margin-bottom: 10px;
+        font-style: italic;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .person-price {
+        color: #b71c2c;
+        font-weight: bold;
+        font-size: 1.2em;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+
+      .person-card:hover .person-price {
+        background: linear-gradient(135deg, #b71c2c, #d32f2f);
+        color: #fff;
+        border-color: #b71c2c;
+        transform: scale(1.05);
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(183, 28, 44, 0.9);
+        color: #fff;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(183, 28, 44, 1);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .carousel-arrow.left {
+        left: 10px;
+      }
+
+      .carousel-arrow.right {
+        right: 10px;
+      }
+
+      /* Celebrity Cards in Main Section */
+      .celebrity-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px 28px 20px 28px;
+        width: 260px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .celebrity-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+        border-color: #b71c2c;
+      }
+
+      .celebrity-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #b71c2c, #d32f2f);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .celebrity-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      @media (max-width: 768px) {
+        .carousel-wrapper {
+          padding: 0 20px;
+        }
+
+        .carousel-arrow {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+
+        .carousel-arrow.left {
+          left: 5px;
+        }
+
+        .carousel-arrow.right {
+          right: 5px;
+        }
+
+        .person-card {
+          min-width: 220px;
+          max-width: 240px;
+          padding: 20px 24px 16px 24px;
+        }
+
+        .person-img {
+          width: 160px;
+          height: 200px;
+        }
+
+        #people-search-input {
+          width: 250px;
+          padding: 14px 18px 14px 45px;
+        }
+
+        .hero-search-form button {
+          padding: 14px 24px;
         }
       }
     </style>
@@ -99,54 +846,765 @@
         </div>
       </div>
       <style>
-    /* Preloader Styles */ #preloader { position: fixed; top: 0; left: 0; width:
-    100vw; height: 100vh; background: rgba(44,47,52,0.92); z-index: 9999;
-    display: flex; align-items: center; justify-content: center; transition:
-    opacity 0.4s; } .preloader-content { display: flex; flex-direction: column;
-    align-items: center; justify-content: center; } .preloader-logo { font-size:
-    2.8rem; font-family: 'PFDinTextPro-Bold', Arial, sans-serif; color: #fff;
-    margin-bottom: 36px; letter-spacing: -2px; font-weight: bold; }
-    .preloader-circles { display: flex; gap: 18px; } .preloader-circles span {
-    display: block; width: 18px; height: 18px; border-radius: 50%; background:
-    red; opacity: 0.7; animation: preloader-bounce 1.2s infinite
-    cubic-bezier(.4,0,.2,1); } .preloader-circles span:nth-child(2) {
-    animation-delay: 0.2s; } .preloader-circles span:nth-child(3) {
-    animation-delay: 0.4s; } .preloader-circles span:nth-child(4) {
-    animation-delay: 0.6s; } @keyframes preloader-bounce { 0%, 100% { transform:
-    translateY(0); opacity: 0.7; } 50% { transform: translateY(-22px); opacity:
-    1; } }</style>
-    
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      setTimeout(function () {
-        document.getElementById("preloader").style.opacity = 0;
-        setTimeout(function () {
-          document.getElementById("preloader").style.display = "none";
-          document.querySelector(".main-container").style.opacity = 1;
-        }, 400);
-      }, 1200);
-    });
-  </script>
+        /* Preloader Styles */
+        #preloader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(44, 47, 52, 0.92);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: opacity 0.4s;
+        }
+        .preloader-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .preloader-logo {
+          font-size: 2.8rem;
+          font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+          color: #fff;
+          margin-bottom: 36px;
+          letter-spacing: -2px;
+          font-weight: bold;
+        }
+        .preloader-circles {
+          display: flex;
+          gap: 18px;
+        }
+        .preloader-circles span {
+          display: block;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: red;
+          opacity: 0.7;
+          animation: preloader-bounce 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .preloader-circles span:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .preloader-circles span:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+        .preloader-circles span:nth-child(4) {
+          animation-delay: 0.6s;
+        }
+        @keyframes preloader-bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translateY(-22px);
+            opacity: 1;
+          }
+        }
+      </style>
+
+      <script>
+        window.addEventListener("DOMContentLoaded", function () {
+          setTimeout(function () {
+            document.getElementById("preloader").style.opacity = 0;
+            setTimeout(function () {
+              document.getElementById("preloader").style.display = "none";
+              document.querySelector(".main-container").style.opacity = 1;
+            }, 400);
+          }, 1200);
+        });
+      </script>
     </div>
-    <div class="main-container" style="opacity: 0">
+    <!-- Hero Section -->
+    <div class="hero-container">
+      <div class="hero-bg"></div>
       <div class="caa-logo">CAA</div>
-      <div class="main-links">
-        <a href="popular people.html" class="main-link">Popular People</a>
-        <a href="musicians-singers.html" class="main-link"
-          >Musicians & Singers</a
-        >
-        <a href="actors-actresses.html" class="main-link"
-          >Actors and Actresses</a
-        >
-        <a href="sports-personalities.html" class="main-link"
-          >Sports Personalities</a
-        >
+      <div class="menu-icon" id="menuIcon">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="secondary-links">
-        <a href="about-us.html" class="secondary-link">About</a>
-        <a href="career.html" class="secondary-link">Careers</a>
-        <a href="contact.html" class="secondary-link">Contact</a>
+      <nav class="caa-navbar" id="caaNavbar">
+        <div class="navbar-header">
+          <span class="navbar-close" id="navbarClose">&times;</span>
+        </div>
+        <div class="navbar-overlay-content">
+          <h1 class="navbar-main-links">
+            <a class="nav-main-link" href="popular people.html"
+              >Popular People</a
+            ><br />
+            <a class="nav-main-link" href="musicians-singers.html"
+              >Musicians & Singers</a
+            ><br />
+            <a class="nav-main-link" href="actors-actresses.html"
+              >Actors and Actresses</a
+            ><br />
+            <a class="nav-main-link" href="sports-personalities.html"
+              >Sports Personalities </a
+            ><br />
+          </h1>
+          <ul class="navbar-secondary-links">
+            <li>
+              <a href="index.html" class="nav-secondary-link">Home</a>
+            </li>
+            <li>
+              <a href="about-us.html" class="nav-secondary-link">About</a>
+            </li>
+            <li>
+              <a href="career.html" class="nav-secondary-link">Career</a>
+            </li>
+            <li>
+              <a href="contact.html" class="nav-secondary-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div
+        class="about-hero-content"
+        style="
+          min-height: 80vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        "
+      >
+        <style>
+          .red-underline {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px; /* Space for lines */
+          }
+
+          .red-underline::after,
+          .red-underline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 3px;
+            background-color: red;
+          }
+
+          /* First line (longest) */
+          .red-underline::after {
+            bottom: 0;
+            width: 100%;
+          }
+
+          /* Second line */
+          .red-underline::before {
+            bottom: -6px; /* Gap between lines */
+            width: 70%; /* Shorter than first */
+          }
+
+          /* Third line */
+          .red-underline span {
+            position: absolute;
+            bottom: -12px; /* Gap below second line */
+            left: 0;
+            width: 40%; /* Shortest */
+            height: 3px;
+            background-color: red;
+          }
+        </style>
+        <h1 class="red-underline">
+          Creative <br />Artists <br />Agency
+          <span></span>
+        </h1>
+
+        <p
+          style="
+            color: #bfc1c4;
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+          "
+        >
+          <b>Scroll Down</b>
+        </p>
       </div>
     </div>
+
+    <!-- About CAA Section -->
+    <section class="about-caa-section">
+      <br /><br />
+      <h2 class="about-caa-title staggered">Creative Artists Agency</h2>
+      <hr class="about-caa-divider staggered" />
+      <h3 class="about-caa-headline staggered">
+        CAA delivers world-class celebrities to our world-class clients.
+      </h3>
+      <div
+        id="celebrity-cards"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: 24px;
+          justify-content: center;
+          margin-top: 32px;
+        "
+      ></div>
+      <section
+        style="
+          max-width: 1900px;
+          margin: 0 auto;
+          padding: 20px;
+          color: black;
+          font-family: 'Segoe UI', sans-serif;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          align-items: center;
+        "
+      >
+        <!-- Image on Left -->
+        <div style="flex: 1 1 400px">
+          <img
+            src="celeb-landing.jpeg"
+            alt="Celebrity Image"
+            style="
+              width: 100%;
+              height: auto;
+              border-radius: 12px;
+              object-fit: cover;
+            "
+          />
+        </div>
+
+        <!-- Text on Right -->
+        <div style="flex: 1 1 500px">
+          <h2
+            style="
+              font-size: 2rem;
+              margin-bottom: 10px;
+              border-left: 5px solid red;
+              padding-left: 10px;
+            "
+          >
+            About Us
+          </h2>
+
+          <p
+            style="
+              line-height: 1.7;
+              font-size: 1rem;
+              margin-bottom: 15px;
+              color: #333;
+            "
+          >
+            At Celebrity Artists Agency (CAA), we connect top-tier talent with
+            the world’s most exciting events, brands, and productions. From
+            international superstars to rising icons, we represent a diverse
+            portfolio of artists, musicians, actors, influencers, and
+            performers, ensuring unforgettable experiences for audiences
+            everywhere.
+          </p>
+
+          <p
+            style="
+              line-height: 1.7;
+              font-size: 1rem;
+              margin-bottom: 20px;
+              color: #333;
+            "
+          >
+            Our mission is to bridge the gap between talent and opportunity,
+            providing seamless booking, professional representation, and
+            exceptional service for both artists and clients. Whether it’s live
+            performances, brand endorsements, media appearances, or private
+            events, CAA delivers excellence at every step.
+          </p>
+
+          <a
+            href="index-2.html"
+            style="
+              display: inline-block;
+              padding: 12px 25px;
+              color: white;
+              background: crimson;
+              border: 2px solid crimson;
+              text-decoration: none;
+              font-size: 0.9rem;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              transition: all 0.3s ease;
+            "
+          >
+            Book Now!!
+          </a>
+        </div>
+      </section>
+
+      <script>
+        // Add hover effect for the button
+        document.querySelector("a").addEventListener("mouseover", function () {
+          this.style.background = "red";
+          this.style.color = "white";
+        });
+        document.querySelector("a").addEventListener("mouseout", function () {
+          this.style.background = "transparent";
+          this.style.color = "white";
+        });
+      </script>
+
+      <section style="padding: 40px; background: #fff">
+        <h2
+          style="
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #111;
+            letter-spacing: 1px;
+          "
+        >
+          Celebrity Categories
+        </h2>
+
+        <!-- Music -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+          "
+        >
+          <img
+            src="sza.jpg"
+            alt="Music"
+            style="
+              flex: 1 1 300px;
+              max-width: 400px;
+              width: 100%;
+              border-radius: 10px;
+              object-fit: cover;
+            "
+          />
+          <div style="flex: 1 1 300px">
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: #d32f2f">
+              Music
+            </h3>
+            <p style="color: #444; font-size: 0.95rem; line-height: 1.6">
+              Top singers, bands, and music icons for concerts, endorsements,
+              and events. From international chart-toppers to local sensations,
+              we connect you with the perfect artist for your audience.
+            </p>
+            <a
+              href="index-2.html"
+              style="
+                display: inline-block;
+                margin-top: 10px;
+                padding: 10px 20px;
+                background: #d32f2f;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 0.9rem;
+                transition: background 0.3s ease;
+              "
+              onmouseover="this.style.background='#b02053';"
+              onmouseout="this.style.background='#d32f2f';"
+            >
+              Book Now!!
+            </a>
+          </div>
+        </div>
+
+        <!-- Acting -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            flex-direction: row-reverse;
+          "
+        >
+          <img
+            src="celed.webp"
+            alt="Acting"
+            style="
+              flex: 1 1 300px;
+              max-width: 400px;
+              width: 100%;
+              border-radius: 10px;
+              object-fit: cover;
+            "
+          />
+          <div style="flex: 1 1 300px">
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: #d32f2f">
+              Acting
+            </h3>
+            <p style="color: #444; font-size: 0.95rem; line-height: 1.6">
+              Renowned actors and actresses for film, TV, and live appearances.
+              Whether you need an A-list star or a rising talent, we make it
+              happen with seamless bookings.
+            </p>
+            <a
+              href="index-2.html"
+              style="
+                display: inline-block;
+                margin-top: 10px;
+                padding: 10px 20px;
+                background: #d32f2f;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 0.9rem;
+                transition: background 0.3s ease;
+              "
+              onmouseover="this.style.background='#b02053';"
+              onmouseout="this.style.background='#d32f2f';"
+            >
+              Book Now!!
+            </a>
+          </div>
+        </div>
+
+        <!-- Sports -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+          "
+        >
+          <img
+            src="sports.jpg"
+            alt="Sports"
+            style="
+              flex: 1 1 300px;
+              max-width: 400px;
+              width: 100%;
+              border-radius: 10px;
+              object-fit: cover;
+            "
+          />
+          <div style="flex: 1 1 300px">
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: #d32f2f">
+              Sports
+            </h3>
+            <p style="color: #444; font-size: 0.95rem; line-height: 1.6">
+              Elite athletes and sports personalities for events, campaigns, and
+              partnerships. Bring the energy of champions to your brand or
+              occasion.
+            </p>
+            <a
+              href="index-2.html"
+              style="
+                display: inline-block;
+                margin-top: 10px;
+                padding: 10px 20px;
+                background: #d32f2f;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 0.9rem;
+                transition: background 0.3s ease;
+              "
+              onmouseover="this.style.background='#b02053';"
+              onmouseout="this.style.background='#d32f2f';"
+            >
+              Book Now!!
+            </a>
+          </div>
+        </div>
+
+        <!-- Popular Overall -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            flex-direction: row-reverse;
+          "
+        >
+          <img
+            src="elon.jpeg"
+            alt="Popular Overall"
+            style="
+              flex: 1 1 300px;
+              max-width: 400px;
+              width: 100%;
+              border-radius: 10px;
+              object-fit: cover;
+            "
+          />
+          <div style="flex: 1 1 300px">
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px; color: #d32f2f">
+              Popular Overall
+            </h3>
+            <p style="color: #444; font-size: 0.95rem; line-height: 1.6">
+              Trending celebrities across all industries, loved worldwide. From
+              music to acting, sports, and more, these are the names everyone is
+              talking about.
+            </p>
+            <a
+              href="index-2.html"
+              style="
+                display: inline-block;
+                margin-top: 10px;
+                padding: 10px 20px;
+                background: #d32f2f;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 0.9rem;
+                transition: background 0.3s ease;
+              "
+              onmouseover="this.style.background='#b02053';"
+              onmouseout="this.style.background='#d32f2f';"
+            >
+              Book Now!!
+            </a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Stagger Animation Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var staggeredEls = document.querySelectorAll(".staggered");
+        staggeredEls.forEach(function (el, i) {
+          el.style.opacity = 0;
+          el.style.transform = "translateY(24px)";
+          setTimeout(function () {
+            el.style.transition =
+              "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
+            el.style.opacity = 1;
+            el.style.transform = "translateY(0)";
+          }, 400 + i * 200);
+        });
+      });
+    </script>
+
+    <!-- Newsletter Section -->
+    <section
+      class="newsletter-section"
+      style="padding: 50px 20px; text-align: center"
+    >
+      <div class="newsletter-container" style="max-width: 800px; margin: auto">
+        <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 10px">
+          Stay in the Spotlight
+        </h2>
+        <p style="color: #fff; font-size: 1rem; margin-bottom: 25px">
+          Subscribe to our newsletter and never miss an update on your favorite
+          celebrities.
+        </p>
+        <form
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+          "
+        >
+          <input
+            type="email"
+            placeholder="Enter your email"
+            required
+            style="
+              padding: 12px 15px;
+              font-size: 1rem;
+              border: 1px solid #ccc;
+              border-radius: 30px;
+              flex: 1;
+              min-width: 250px;
+              outline: none;
+            "
+          />
+          <button
+            type="submit"
+            style="
+              padding: 12px 25px;
+              font-size: 1rem;
+              border: none;
+              background: #e63946;
+              color: white;
+              border-radius: 30px;
+              cursor: pointer;
+              transition: 0.3s;
+            "
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="caa-footer">
+      <div class="caa-footer-content desktop-footer">
+        <div class="footer-main-row">
+          <!-- <div class="footer-logo-col">
+          </div> -->
+          <div class="caa-footer-logo" style="margin-bottom: 1rem">CAA</div>
+          <div class="footer-links-col">
+            <ul class="footer-links-list">
+              <li><a href="index-2.html">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="career.html">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <ul class="footer-links-list">
+              <li><a href="index-2.html">Social Responsibility</a></li>
+              <li><a href="index-2.html">Foundation</a></li>
+              <li><a href="index-2.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="caa-footer-divider" />
+        <div class="footer-bottom-row">
+          <div class="footer-bottom-links">
+            <a href="index-2.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="index-2.html">Terms of Use</a>
+            <span class="footer-divider">|</span>
+            <a href="index-2.html">Accessibility</a>
+          </div>
+          <div class="footer-bottom-social">
+            <span class="caa-footer-follow-label">Follow us:</span>
+            <a
+              href="index-2.html"
+              class="caa-footer-instagram"
+              aria-label="Instagram"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="24" height="24" rx="6" fill="#fff" />
+                <path
+                  d="M12 8.4A3.6 3.6 0 1 0 12 15.6 3.6 3.6 0 0 0 12 8.4Zm0 5.9A2.3 2.3 0 1 1 12 9.7a2.3 2.3 0 0 1 0 4.6Zm4.5-6.1a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0ZM17.7 7.1a3.6 3.6 0 0 0-3.6-3.6H9.9a3.6 3.6 0 0 0-3.6 3.6v4.2a3.6 3.6 0 0 0 3.6 3.6h4.2a3.6 3.6 0 0 0 3.6-3.6V7.1Zm-1.2 4.2a2.4 2.4 0 0 1-2.4 2.4H9.9a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h4.2a2.4 2.4 0 0 1 2.4 2.4v4.2Z"
+                  fill="#B71C2C"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Animated SVG background pattern -->
+      <svg
+        class="footer-bg-pattern"
+        width="100%"
+        height="120"
+        viewBox="0 0 1440 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style="
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          z-index: 0;
+          pointer-events: none;
+        "
+      >
+        <defs>
+          <linearGradient
+            id="footerGrad1"
+            x1="0"
+            y1="0"
+            x2="1440"
+            y2="120"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#fff" stop-opacity="0.08" />
+            <stop offset="1" stop-color="#b71c2c" stop-opacity="0.12" />
+          </linearGradient>
+          <linearGradient
+            id="footerGrad2"
+            x1="0"
+            y1="0"
+            x2="1440"
+            y2="120"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#fff" stop-opacity="0.12" />
+            <stop offset="1" stop-color="#b71c2c" stop-opacity="0.08" />
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="60" r="38" fill="url(#footerGrad1)">
+          <animate
+            attributeName="cy"
+            values="60;90;60"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="600" cy="80" r="22" fill="url(#footerGrad2)">
+          <animate
+            attributeName="cy"
+            values="80;110;80"
+            dur="7s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="1100" cy="50" r="30" fill="url(#footerGrad1)">
+          <animate
+            attributeName="cy"
+            values="50;70;50"
+            dur="5.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="1350" cy="100" r="16" fill="url(#footerGrad2)">
+          <animate
+            attributeName="cy"
+            values="100;120;100"
+            dur="8s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </svg>
+    </footer>
+    <style>
+      .footer-bg-pattern {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 120px;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.7;
+      }
+      .caa-footer {
+        position: relative;
+        overflow: hidden;
+      }
+    </style>
+    <script>
+      // Navbar open/close logic
+      document.addEventListener("DOMContentLoaded", function () {
+        var menuIcon = document.getElementById("menuIcon");
+        var navbar = document.getElementById("caaNavbar");
+        var navbarClose = document.getElementById("navbarClose");
+        if (menuIcon && navbar && navbarClose) {
+          menuIcon.onclick = function () {
+            navbar.classList.add("active");
+          };
+          navbarClose.onclick = function () {
+            navbar.classList.remove("active");
+          };
+        }
+      });
+    </script>
   </body>
 </html>

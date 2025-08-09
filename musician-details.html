@@ -13,7 +13,7 @@
       body {
         background: #292d34;
         color: #fff;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        font-family: "Segoe UI", sans-serif;
         min-height: 100vh;
         margin: 0;
         padding: 0;
@@ -179,7 +179,7 @@
         border: 2px solid #e5e5e5;
         border-radius: 8px;
         font-size: 1rem;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        font-family: "Segoe UI", sans-serif;
         transition: border-color 0.3s ease;
       }
 
@@ -260,7 +260,9 @@
   </head>
   <body>
     <div class="container">
-      <a href="musicians-singers.html" class="back-button">← Back to Musicians & Singers</a>
+      <a href="musicians-singers.html" class="back-button"
+        >← Back to Musicians & Singers</a
+      >
 
       <div class="person-details">
         <div class="person-header">
@@ -268,7 +270,9 @@
           <div class="person-info">
             <h1 id="person-name" class="person-name"></h1>
             <div id="person-department" class="person-department"></div>
-            <div id="person-bio" class="person-bio">Loading musician details...</div>
+            <div id="person-bio" class="person-bio">
+              Loading musician details...
+            </div>
           </div>
         </div>
 
@@ -282,14 +286,21 @@
       <div class="booking-form-section">
         <h2>Book This Musician</h2>
         <p class="response-time">
-          During normal business hours, we respond to most inquiries within 4 hours.
+          During normal business hours, we respond to most inquiries within 4
+          hours.
         </p>
 
         <form id="booking-form" class="booking-form">
           <div class="form-row">
             <div class="form-group">
               <label for="person-name-field">Musician Name*</label>
-              <input type="text" id="person-name-field" name="artistName" required readonly />
+              <input
+                type="text"
+                id="person-name-field"
+                name="artistName"
+                required
+                readonly
+              />
             </div>
             <div class="form-group">
               <label for="event-name">Event Name*</label>
@@ -362,7 +373,12 @@
 
           <div class="form-group full-width">
             <label for="event-details">Event Details*</label>
-            <textarea id="event-details" name="eventDetails" rows="5" required></textarea>
+            <textarea
+              id="event-details"
+              name="eventDetails"
+              rows="5"
+              required
+            ></textarea>
           </div>
 
           <button type="submit" class="submit-button">
@@ -378,7 +394,8 @@
         const artistName = urlParams.get("name");
 
         if (!artistName) {
-          document.getElementById("person-bio").textContent = "No musician specified.";
+          document.getElementById("person-bio").textContent =
+            "No musician specified.";
           return;
         }
 
@@ -402,7 +419,8 @@
           if (data.data && data.data.length > 0) {
             const person = data.data[0];
 
-            document.getElementById("person-department").textContent = "Musician/Singer";
+            document.getElementById("person-department").textContent =
+              "Musician/Singer";
 
             // Set image
             const imageElement = document.getElementById("person-image");
@@ -411,7 +429,8 @@
                 person.picture_xl || person.picture_big || person.picture;
               imageElement.alt = person.name;
             } else {
-              imageElement.src = "https://via.placeholder.com/300x400?text=No+Image";
+              imageElement.src =
+                "https://via.placeholder.com/300x400?text=No+Image";
               imageElement.alt = "No image available";
             }
 

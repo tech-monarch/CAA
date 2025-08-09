@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAA</title>
+    <link href="fonts/style.css" rel="stylesheet" />
+    <style>
+      body {
+        background: #2c2f34;
+        color: #fff;
+        font-family: "PFDinTextPro-Bold", "PFDinTextPro-Regular", Arial,
+          sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .main-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 420px;
+        margin: 0 auto;
+        height: 100vh;
+        padding-left: 40px;
+      }
+      .caa-logo {
+        font-size: 5.5rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-weight: bold;
+        letter-spacing: -2px;
+        color: #cd2a2a;
+        margin-top: 36px;
+        margin-bottom: 0;
+        margin-left: 0;
+      }
+      .main-links {
+        margin-top: 120px;
+        margin-bottom: 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .main-link {
+        color: #e0e0e0;
+        font-size: 2rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        font-weight: bold;
+        text-decoration: none;
+        margin-bottom: 0;
+        transition: color 0.2s;
+      }
+      .main-link:hover {
+        color: #fff;
+      }
+      .secondary-links {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .secondary-link {
+        color: #bfc3c7;
+        font-size: 1.08rem;
+        font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+        text-decoration: none;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+      }
+      .secondary-link:hover {
+        color: #fff;
+      }
+      @media (max-width: 600px) {
+        .main-container {
+          padding-left: 16px;
+          max-width: 98vw;
+        }
+        .caa-logo {
+          font-size: 2.2rem;
+          margin-top: 24px;
+        }
+        .main-links {
+          margin-top: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="preloader-content">
+        <div class="preloader-logo">CAA</div>
+        <div class="preloader-circles">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <style>
+    /* Preloader Styles */ #preloader { position: fixed; top: 0; left: 0; width:
+    100vw; height: 100vh; background: rgba(44,47,52,0.92); z-index: 9999;
+    display: flex; align-items: center; justify-content: center; transition:
+    opacity 0.4s; } .preloader-content { display: flex; flex-direction: column;
+    align-items: center; justify-content: center; } .preloader-logo { font-size:
+    2.8rem; font-family: 'PFDinTextPro-Bold', Arial, sans-serif; color: #fff;
+    margin-bottom: 36px; letter-spacing: -2px; font-weight: bold; }
+    .preloader-circles { display: flex; gap: 18px; } .preloader-circles span {
+    display: block; width: 18px; height: 18px; border-radius: 50%; background:
+    red; opacity: 0.7; animation: preloader-bounce 1.2s infinite
+    cubic-bezier(.4,0,.2,1); } .preloader-circles span:nth-child(2) {
+    animation-delay: 0.2s; } .preloader-circles span:nth-child(3) {
+    animation-delay: 0.4s; } .preloader-circles span:nth-child(4) {
+    animation-delay: 0.6s; } @keyframes preloader-bounce { 0%, 100% { transform:
+    translateY(0); opacity: 0.7; } 50% { transform: translateY(-22px); opacity:
+    1; } }</style>
+    
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      setTimeout(function () {
+        document.getElementById("preloader").style.opacity = 0;
+        setTimeout(function () {
+          document.getElementById("preloader").style.display = "none";
+          document.querySelector(".main-container").style.opacity = 1;
+        }, 400);
+      }, 1200);
+    });
+  </script>
+    </div>
+    <div class="main-container" style="opacity: 0">
+      <div class="caa-logo">CAA</div>
+      <div class="main-links">
+        <a href="index.html" class="main-link">Home</a>
+        <a href="popular people.html" class="main-link">Popular People</a>
+        <a href="musicians-singers.html" class="main-link"
+          >Musicians & Singers</a
+        >
+        <a href="actors-actresses.html" class="main-link"
+          >Actors and Actresses</a
+        >
+        <a href="sports-personalities.html" class="main-link"
+          >Sports Personalities</a
+        >
+      </div>
+      <div class="secondary-links">
+        <a href="about-us.html" class="secondary-link">About</a>
+        <a href="career.html" class="secondary-link">Careers</a>
+        <a href="contact.html" class="secondary-link">Contact</a>
+      </div>
+    </div>
+  </body>
+</html>

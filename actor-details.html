@@ -13,7 +13,7 @@
       body {
         background: #292d34;
         color: #fff;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        font-family: "Segoe UI", sans-serif;
         min-height: 100vh;
         margin: 0;
         padding: 0;
@@ -191,7 +191,7 @@
         border: 2px solid #e5e5e5;
         border-radius: 8px;
         font-size: 1rem;
-        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
+        font-family: "Segoe UI", sans-serif;
         transition: border-color 0.3s ease;
       }
 
@@ -283,34 +283,80 @@
         </div>
       </div>
       <style>
-    /* Preloader Styles */ #preloader { position: fixed; top: 0; left: 0; width:
-    100vw; height: 100vh; background: rgba(44,47,52,0.92); z-index: 9999;
-    display: flex; align-items: center; justify-content: center; transition:
-    opacity 0.4s; } .preloader-content { display: flex; flex-direction: column;
-    align-items: center; justify-content: center; } .preloader-logo { font-size:
-    2.8rem; font-family: 'PFDinTextPro-Bold', Arial, sans-serif; color: #fff;
-    margin-bottom: 36px; letter-spacing: -2px; font-weight: bold; }
-    .preloader-circles { display: flex; gap: 18px; } .preloader-circles span {
-    display: block; width: 18px; height: 18px; border-radius: 50%; background:
-    red; opacity: 0.7; animation: preloader-bounce 1.2s infinite
-    cubic-bezier(.4,0,.2,1); } .preloader-circles span:nth-child(2) {
-    animation-delay: 0.2s; } .preloader-circles span:nth-child(3) {
-    animation-delay: 0.4s; } .preloader-circles span:nth-child(4) {
-    animation-delay: 0.6s; } @keyframes preloader-bounce { 0%, 100% { transform:
-    translateY(0); opacity: 0.7; } 50% { transform: translateY(-22px); opacity:
-    1; } }</style>
-    
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      setTimeout(function () {
-        document.getElementById("preloader").style.opacity = 0;
-        setTimeout(function () {
-          document.getElementById("preloader").style.display = "none";
-          document.querySelector(".main-container").style.opacity = 1;
-        }, 400);
-      }, 1200);
-    });
-  </script>
+        /* Preloader Styles */
+        #preloader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(44, 47, 52, 0.92);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: opacity 0.4s;
+        }
+        .preloader-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .preloader-logo {
+          font-size: 2.8rem;
+          font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+          color: #fff;
+          margin-bottom: 36px;
+          letter-spacing: -2px;
+          font-weight: bold;
+        }
+        .preloader-circles {
+          display: flex;
+          gap: 18px;
+        }
+        .preloader-circles span {
+          display: block;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: red;
+          opacity: 0.7;
+          animation: preloader-bounce 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .preloader-circles span:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .preloader-circles span:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+        .preloader-circles span:nth-child(4) {
+          animation-delay: 0.6s;
+        }
+        @keyframes preloader-bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translateY(-22px);
+            opacity: 1;
+          }
+        }
+      </style>
+
+      <script>
+        window.addEventListener("DOMContentLoaded", function () {
+          setTimeout(function () {
+            document.getElementById("preloader").style.opacity = 0;
+            setTimeout(function () {
+              document.getElementById("preloader").style.display = "none";
+              document.querySelector(".main-container").style.opacity = 1;
+            }, 400);
+          }, 1200);
+        });
+      </script>
     </div>
     <div class="container">
       <a href="actors-actresses.html" class="back-button"
@@ -448,130 +494,147 @@
     </div>
 
     <script>
-  const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
+      const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
 
-  async function loadPersonDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const personName = urlParams.get("name");
+      async function loadPersonDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const personName = urlParams.get("name");
 
-    if (!personName) {
-      document.getElementById("person-bio").textContent = "No actor specified.";
-      return;
-    }
+        if (!personName) {
+          document.getElementById("person-bio").textContent =
+            "No actor specified.";
+          return;
+        }
 
-    document.getElementById("person-name").textContent = personName;
-    document.title = `${personName} - Actor Details - CAA`;
+        document.getElementById("person-name").textContent = personName;
+        document.title = `${personName} - Actor Details - CAA`;
 
-    try {
-      // 1. Search for the person to get their ID
-      const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(personName)}`;
-      const searchResponse = await fetch(searchUrl);
-      const searchData = await searchResponse.json();
+        try {
+          // 1. Search for the person to get their ID
+          const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(
+            personName
+          )}`;
+          const searchResponse = await fetch(searchUrl);
+          const searchData = await searchResponse.json();
 
-      if (!searchData.results || searchData.results.length === 0) {
-        document.getElementById("person-bio").textContent = "Actor not found in TMDB.";
-        return;
-      }
+          if (!searchData.results || searchData.results.length === 0) {
+            document.getElementById("person-bio").textContent =
+              "Actor not found in TMDB.";
+            return;
+          }
 
-      const person = searchData.results[0];
-      const personId = person.id;
+          const person = searchData.results[0];
+          const personId = person.id;
 
-      // 2. Get full person details
-      const detailsUrl = `https://api.themoviedb.org/3/person/${personId}?api_key=${apiKey}&language=en-US`;
-      const detailsResponse = await fetch(detailsUrl);
-      const detailsData = await detailsResponse.json();
+          // 2. Get full person details
+          const detailsUrl = `https://api.themoviedb.org/3/person/${personId}?api_key=${apiKey}&language=en-US`;
+          const detailsResponse = await fetch(detailsUrl);
+          const detailsData = await detailsResponse.json();
 
-      // 3. Get known-for credits
-      const creditsUrl = `https://api.themoviedb.org/3/person/${personId}/combined_credits?api_key=${apiKey}&language=en-US`;
-      const creditsResponse = await fetch(creditsUrl);
-      const creditsData = await creditsResponse.json();
+          // 3. Get known-for credits
+          const creditsUrl = `https://api.themoviedb.org/3/person/${personId}/combined_credits?api_key=${apiKey}&language=en-US`;
+          const creditsResponse = await fetch(creditsUrl);
+          const creditsData = await creditsResponse.json();
 
-      // Set department
-      document.getElementById("person-department").textContent =
-        detailsData.known_for_department || "Actor/Actress";
+          // Set department
+          document.getElementById("person-department").textContent =
+            detailsData.known_for_department || "Actor/Actress";
 
-      // Set image
-      const imageElement = document.getElementById("person-image");
-      imageElement.src = detailsData.profile_path
-        ? `https://image.tmdb.org/t/p/w500${detailsData.profile_path}`
-        : "https://via.placeholder.com/300x400?text=No+Image";
-      imageElement.alt = detailsData.name;
+          // Set image
+          const imageElement = document.getElementById("person-image");
+          imageElement.src = detailsData.profile_path
+            ? `https://image.tmdb.org/t/p/w500${detailsData.profile_path}`
+            : "https://via.placeholder.com/300x400?text=No+Image";
+          imageElement.alt = detailsData.name;
 
-      // Set bio (show birthday, place of birth, and biography)
-      document.getElementById("person-bio").innerHTML = `
-        ${detailsData.birthday ? `<strong>Born:</strong> ${detailsData.birthday}<br>` : ""}
-        ${detailsData.place_of_birth ? `<strong>Place of Birth:</strong> ${detailsData.place_of_birth}<br><br>` : ""}
+          // Set bio (show birthday, place of birth, and biography)
+          document.getElementById("person-bio").innerHTML = `
+        ${
+          detailsData.birthday
+            ? `<strong>Born:</strong> ${detailsData.birthday}<br>`
+            : ""
+        }
+        ${
+          detailsData.place_of_birth
+            ? `<strong>Place of Birth:</strong> ${detailsData.place_of_birth}<br><br>`
+            : ""
+        }
 
       `;
 
-      // Populate known-for
-      const knownForSection = document.getElementById("known-for");
-      const knownForList = document.getElementById("known-for-list");
-      knownForList.innerHTML = "";
+          // Populate known-for
+          const knownForSection = document.getElementById("known-for");
+          const knownForList = document.getElementById("known-for-list");
+          knownForList.innerHTML = "";
 
-      if (creditsData.cast && creditsData.cast.length > 0) {
-        // Show top 5 most popular known-for works
-        creditsData.cast
-          .slice(0, 5)
-          .forEach((work) => {
-            const item = document.createElement("div");
-            item.className = "known-for-item";
-            item.innerHTML = `
+          if (creditsData.cast && creditsData.cast.length > 0) {
+            // Show top 5 most popular known-for works
+            creditsData.cast.slice(0, 5).forEach((work) => {
+              const item = document.createElement("div");
+              item.className = "known-for-item";
+              item.innerHTML = `
               <strong>${work.title || work.name}</strong><br>
-              <small>${work.release_date || work.first_air_date || "Date unknown"}</small><br>
-              <em>${work.overview ? work.overview.substring(0, 100) + "..." : "No description available"}</em>
+              <small>${
+                work.release_date || work.first_air_date || "Date unknown"
+              }</small><br>
+              <em>${
+                work.overview
+                  ? work.overview.substring(0, 100) + "..."
+                  : "No description available"
+              }</em>
             `;
-            knownForList.appendChild(item);
-          });
+              knownForList.appendChild(item);
+            });
 
-        knownForSection.style.display = "block";
+            knownForSection.style.display = "block";
+          }
+
+          // Pre-fill booking form actor name
+          document.getElementById("person-name-field").value = personName;
+        } catch (error) {
+          console.error("Error loading actor details:", error);
+          document.getElementById("person-bio").textContent =
+            "Error loading actor details.";
+        }
       }
 
-      // Pre-fill booking form actor name
-      document.getElementById("person-name-field").value = personName;
+      // Handle form submission
+      function handleFormSubmission(event) {
+        event.preventDefault();
 
-    } catch (error) {
-      console.error("Error loading actor details:", error);
-      document.getElementById("person-bio").textContent = "Error loading actor details.";
-    }
-  }
+        const formData = new FormData(event.target);
+        const bookingData = {
+          personName: formData.get("personName"),
+          eventName: formData.get("eventName"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          sex: formData.get("sex"),
+          airport: formData.get("airport"),
+          budget: formData.get("budget"),
+          eventType: formData.get("eventType"),
+          eventDetails: formData.get("eventDetails"),
+        };
 
-  // Handle form submission
-  function handleFormSubmission(event) {
-    event.preventDefault();
+        console.log("Booking request submitted:", bookingData);
+        alert(
+          "Thank you for your booking request! We will respond within 4 hours during normal business hours."
+        );
 
-    const formData = new FormData(event.target);
-    const bookingData = {
-      personName: formData.get("personName"),
-      eventName: formData.get("eventName"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      sex: formData.get("sex"),
-      airport: formData.get("airport"),
-      budget: formData.get("budget"),
-      eventType: formData.get("eventType"),
-      eventDetails: formData.get("eventDetails"),
-    };
+        event.target.reset();
+        const urlParams = new URLSearchParams(window.location.search);
+        const personName = urlParams.get("name");
+        if (personName) {
+          document.getElementById("person-name-field").value = personName;
+        }
+      }
 
-    console.log("Booking request submitted:", bookingData);
-    alert("Thank you for your booking request! We will respond within 4 hours during normal business hours.");
-
-    event.target.reset();
-    const urlParams = new URLSearchParams(window.location.search);
-    const personName = urlParams.get("name");
-    if (personName) {
-      document.getElementById("person-name-field").value = personName;
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    loadPersonDetails();
-    const bookingForm = document.getElementById("booking-form");
-    if (bookingForm) {
-      bookingForm.addEventListener("submit", handleFormSubmission);
-    }
-  });
-</script>
-
+      document.addEventListener("DOMContentLoaded", function () {
+        loadPersonDetails();
+        const bookingForm = document.getElementById("booking-form");
+        if (bookingForm) {
+          bookingForm.addEventListener("submit", handleFormSubmission);
+        }
+      });
+    </script>
   </body>
 </html>
