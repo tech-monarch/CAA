@@ -1256,19 +1256,31 @@
 
     <script>
       // Card rendering logic
-      function renderCelebrityCards(musicians) {
-        const celebrityCards = document.getElementById("celebrity-cards");
-        celebrityCards.innerHTML = "";
-        musicians.forEach((musician) => {
-          const card = document.createElement("div");
-          card.className = "celebrity-card";
-          card.innerHTML = `
-            <img src="${musician.image}" alt="${musician.name}" onerror="this.onerror=null;this.src='celebrities.jpg';">
-            <h3>${musician.name}</h3>
-          `;
-          celebrityCards.appendChild(card);
-        });
-      }
+function renderCelebrityCards(musicians) {
+  const celebrityCards = document.getElementById("celebrity-cards");
+  celebrityCards.innerHTML = "";
+  
+  musicians.forEach((musician) => {
+    const card = document.createElement("div");
+    card.className = "celebrity-card";
+
+    const img = document.createElement("img");
+    img.src = musician.image;
+    img.alt = musician.name;
+
+    img.onerror = function () {
+      card.remove(); // Remove the whole card if image fails
+    };
+
+    const name = document.createElement("h3");
+    name.textContent = musician.name;
+
+    card.appendChild(img);
+    card.appendChild(name);
+    celebrityCards.appendChild(card);
+  });
+}
+
       // --- Search Form Logic ---
       document
         .querySelector(".hero-search-form")

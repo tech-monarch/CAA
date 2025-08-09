@@ -13,7 +13,7 @@
       body {
         background: #292d34;
         color: #fff;
-        font-family: 'Segoe UI', sans-serif;;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         min-height: 100vh;
         margin: 0;
         padding: 0;
@@ -220,7 +220,7 @@
         color: #bfc3c7;
         text-decoration: none;
         font-size: 1.2rem;
-        font-family: 'Segoe UI', sans-serif;;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         transition: color 0.3s;
       }
 
@@ -294,7 +294,7 @@
 
       .about-caa-text {
         font-size: 1rem;
-        font-family: 'Segoe UI', sans-serif;;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         color: #292d34;
         margin-bottom: 1.2rem;
         line-height: 1.6;
@@ -317,7 +317,7 @@
         background: #b71c2c;
         color: #fff;
         padding: 0 0 32px 0;
-        font-family: 'Segoe UI', sans-serif;;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         margin-top: 0;
         border: none;
         max-height: 70vh;
@@ -562,7 +562,7 @@
         width: 320px;
         background: transparent;
         color: #333;
-        font-family: 'Segoe UI', sans-serif;;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
         position: relative;
       }
 
@@ -699,7 +699,7 @@
         font-size: 0.95em;
         margin-bottom: 10px;
         font-style: italic;
-        font-family: 'Segoe UI', sans-serif;;
+        font-family: "PFDinTextPro-Regular", Arial, sans-serif;
       }
 
       .person-price {
@@ -1045,21 +1045,21 @@
   <footer class="caa-footer">
     <div class="caa-footer-content desktop-footer">
       <div class="footer-main-row">
-        <div class="footer-logo-col">
+        <div class="" style="margin-bottom: 2rem;" >
           <div class="caa-footer-logo">CAA</div>
         </div>
         <div class="footer-links-col">
           <ul class="footer-links-list">
-            <li><a href="#">About Us</a></li>
+            <li><a href="about-us.html">About Us</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#">Client Privacy Notice</a></li>
+            <li><a href="about-us.html">Client Privacy Notice</a></li>
           </ul>
         </div>
         <div class="footer-links-col">
-          <ul class="footer-links-list">
-            <li><a href="#">Social Responsibility</a></li>
-            <li><a href="#">Foundation</a></li>
-            <li><a href="#">Contact Us</a></li>
+          <ul class=" footer-links-list">
+            <li><a href="index.html">Social Responsibility</a></li>
+            <li><a href="index.html">Foundation</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>
@@ -1105,26 +1105,41 @@
   });
 
   // Render cards into ANY container
-  function renderCelebrityCards(athletes, containerId) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = ""; // Clear container
-    athletes.forEach((athlete) => {
+  // Render cards into ANY container
+function renderCelebrityCards(athletes, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = ""; // Clear container
+
+  athletes.forEach((athlete) => {
+    // Skip if no image URL is provided
+    if (!athlete.image) return;
+
+    const img = new Image();
+    img.src = athlete.image;
+
+    img.onload = function () {
       const card = document.createElement("div");
       card.className = "actor-card";
       card.innerHTML = `
-  <div onclick="window.location.href='sports-personalities-details.html?name=${encodeURIComponent(athlete.name)}'">
-    <img src="${athlete.image || 'sports-mock.webp'}" alt="${athlete.name}" class="actor-img" onerror="this.onerror=null;this.src='sports-mock.webp';">
-    <div class="actor-info">
-      <b>${athlete.name}</b>
-      ${athlete.sport ? `<p>${athlete.sport}</p>` : ""}
-      ${athlete.team ? `<p>${athlete.team}</p>` : ""}
-    </div>
-  </div>
-`;
-
+        <div onclick="window.location.href='sports-personalities-details.html?name=${encodeURIComponent(athlete.name)}'">
+          <img src="${athlete.image}" alt="${athlete.name}" class="actor-img">
+          <div class="actor-info">
+            <b>${athlete.name}</b>
+            ${athlete.sport ? `<p>${athlete.sport}</p>` : ""}
+            ${athlete.team ? `<p>${athlete.team}</p>` : ""}
+          </div>
+        </div>
+      `;
       container.appendChild(card);
-    });
-  }
+    };
+
+    // If image fails, just skip adding the card
+    img.onerror = function () {
+      console.warn(`Image missing for: ${athlete.name}`);
+    };
+  });
+}
+
 
   // Load default data into celebrity-cards
   document.addEventListener("DOMContentLoaded", async () => {
