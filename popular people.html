@@ -1033,6 +1033,13 @@
                 department: person.known_for_department || "Acting",
               }));
 
+              // Add Bri Teresi manually
+              people.unshift({
+                name: "Bri Teresi",
+                image: "image.png",
+                department: "Model",
+              });
+
               // Render cards
               const container = document.getElementById("celebrity-cards");
               container.innerHTML = "";
@@ -1104,7 +1111,7 @@
       });
     </script>
 
-    <!-- Search Functionality Script -->
+    <!-- Search Functionality Script (Modified to include Bri Teresi) -->
     <script>
       // Search form functionality
       document
@@ -1131,8 +1138,82 @@
               resultDiv.innerHTML = "";
               displaySearchResults(data.results.slice(0, 10));
             } else {
+              // No TMDB results, clear any previous content
+              resultDiv.innerHTML = "";
+            }
+
+            // After displaying TMDB results (or if none), check for Bri Teresi match
+            const briName = "Bri Teresi".toLowerCase();
+            const queryLower = query.toLowerCase();
+            const isBriMatch = briName.includes(queryLower) || (queryLower.includes("bri") && queryLower.includes("teresi"));
+
+            if (isBriMatch) {
+              // Find the carousel container (if TMDB results exist)
+              let container = document.querySelector("#search-result .carousel-container");
+              
+              // If no container exists (no TMDB results), create a new carousel with Bri only
+              if (!container) {
+                const wrapper = document.createElement("div");
+                wrapper.className = "carousel-wrapper";
+                container = document.createElement("div");
+                container.className = "carousel-container";
+                wrapper.appendChild(container);
+                
+                // Add navigation arrows
+                const leftArrow = document.createElement("button");
+                leftArrow.className = "carousel-arrow left";
+                leftArrow.innerHTML = "&#8592;";
+                leftArrow.onclick = () => container.scrollBy({ left: -260, behavior: "smooth" });
+                const rightArrow = document.createElement("button");
+                rightArrow.className = "carousel-arrow right";
+                rightArrow.innerHTML = "&#8594;";
+                rightArrow.onclick = () => container.scrollBy({ left: 260, behavior: "smooth" });
+                wrapper.appendChild(leftArrow);
+                wrapper.appendChild(rightArrow);
+                
+                resultDiv.appendChild(wrapper);
+              }
+
+              // Create Bri's card
+              const briCard = document.createElement("div");
+              briCard.className = "person-card";
+              briCard.style.cursor = "pointer";
+              briCard.addEventListener("click", function () {
+                window.location.href = `popular-person-details.html?name=${encodeURIComponent("Bri Teresi")}`;
+              });
+
+              const img = document.createElement("img");
+              img.className = "person-img";
+              img.src = "image.png";
+              img.alt = "Bri Teresi";
+              img.onerror = function () {
+                this.src = "https://via.placeholder.com/180x240?text=No+Image";
+              };
+
+              const personInfo = document.createElement("div");
+              personInfo.className = "person-info";
+
+              const name = document.createElement("b");
+              name.textContent = "Bri Teresi";
+
+              const department = document.createElement("div");
+              department.className = "person-department";
+              department.textContent = "Model";
+
+              personInfo.appendChild(name);
+              personInfo.appendChild(department);
+              briCard.appendChild(img);
+              briCard.appendChild(personInfo);
+
+              // Insert Bri at the beginning of the carousel
+              container.prepend(briCard);
+            }
+
+            // If no results at all (no TMDB and no Bri match), show a message
+            if (!data.results?.length && !isBriMatch) {
               resultDiv.innerHTML = "No results found.";
             }
+
           } catch (error) {
             console.error("Error searching people:", error);
             resultDiv.innerHTML = "Error occurred while searching.";

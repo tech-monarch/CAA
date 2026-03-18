@@ -504,17 +504,7 @@
                       if (data.locations && data.locations.length > 0) {
                         data.locations.forEach((location) => {
                           const li = document.createElement("li");
-                          li.textContent = `${location.name} (${
-                            location.code
-                          }) - ${
-                            location.city && location.city.name
-                              ? location.city.name
-                              : ""
-                          }, ${
-                            location.country && location.country.name
-                              ? location.country.name
-                              : ""
-                          }`;
+                          li.textContent = `${location.name} (${location.code}) - ${location.city?.name || ""}, ${location.country?.name || ""}`;
                           li.style.padding = "8px";
                           li.style.cursor = "pointer";
                           li.addEventListener("click", () => {
@@ -607,9 +597,59 @@
           return;
         }
 
+        // Set person name in header and form
         document.getElementById("person-name").textContent = personName;
+        document.getElementById("person-name-field").value = personName;
         document.title = `${personName} - Popular Person Details - CAA`;
 
+        // Check if this is Bri Teresi (case-insensitive)
+        if (personName.toLowerCase() === "bri teresi") {
+          // Hardcoded details for Bri Teresi
+          document.getElementById("person-department").textContent = "Model";
+          
+          // Set image
+          const imageElement = document.getElementById("person-image");
+          imageElement.src = "image.png";
+          imageElement.alt = "Bri Teresi";
+          
+          // Bio
+          document.getElementById("person-bio").innerHTML = `
+            <strong>Birthday:</strong> October 8, 1994<br>
+            <strong>Birth Sign:</strong> Libra<br>
+            <strong>Birthplace:</strong> Auburn, CA<br>
+            <strong>Age:</strong> 31 years old<br>
+            <strong>Followers:</strong> 1.4+ million on Instagram<br><br>
+            Model and fitness guru who has appeared in publications such as FHM, GQ, and Maxim. Known for her golf content and as a Guess Girl. She majored in political science at San Jose State University, where she was an honors student.
+          `;
+          
+          // Known For section
+          const knownForSection = document.getElementById("known-for");
+          const knownForList = document.getElementById("known-for-list");
+          knownForList.innerHTML = "";
+          
+          const works = [
+            "Featured in FHM",
+            "Featured in GQ",
+            "Featured in Maxim",
+            "Guess Girl",
+            "Golf influencer",
+            "Founded clothing line 'Teresi'",
+            "Co-hosts 'Tag Team' podcast"
+          ];
+          
+          works.forEach(work => {
+            const item = document.createElement("div");
+            item.className = "known-for-item";
+            item.innerHTML = `<strong>${work}</strong>`;
+            knownForList.appendChild(item);
+          });
+          
+          knownForSection.style.display = "block";
+          
+          return; // Exit early, no need to fetch TMDB
+        }
+
+        // Otherwise, proceed with TMDB fetch for other persons
         const apiKey = "cf324c1862aff1f7ccd25c8e397e7ced";
         const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(
           personName
@@ -664,23 +704,14 @@
                 item.className = "known-for-item";
                 item.innerHTML = `
                   <strong>${work.title || work.name}</strong><br>
-                  <small>${
-                    work.release_date || work.first_air_date || "Date unknown"
-                  }</small><br>
-                  <em>${
-                    work.overview
-                      ? work.overview.substring(0, 100) + "..."
-                      : "No description available"
-                  }</em>
+                  <small>${work.release_date || work.first_air_date || "Date unknown"}</small><br>
+                  <em>${work.overview ? work.overview.substring(0, 100) + "..." : "No description available"}</em>
                 `;
                 knownForList.appendChild(item);
               });
 
               knownForSection.style.display = "block";
             }
-
-            // Populate the booking form with person name
-            document.getElementById("person-name-field").value = personName;
           } else {
             document.getElementById("person-bio").textContent =
               "Person details not found in our database.";
@@ -693,65 +724,51 @@
       }
 
       // Handle form submission
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Auto-fill actor name from query param
-  const urlParams = new URLSearchParams(window.location.search);
-  const personName = urlParams.get("name");
-  if (personName) {
-    document.getElementById("person-name-field").value = personName;
-  }
-
-  const bookingForm = document.getElementById("booking-form");
-
-  bookingForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Send via AJAX to Formspree
-    const formData = new FormData(bookingForm);
-
-    fetch(bookingForm.action, {
-      method: "POST",
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Booking Request Sent!',
-          text: 'Thank you! We will respond within 4 hours during business hours.',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          window.location.href = "index.html"; // Redirect after OK
-        });
-        bookingForm.reset();
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops!',
-          text: 'Something went wrong. Please try again.',
-        });
-      }
-    })
-    .catch(() => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Error sending message. Please try again later.',
-      });
-    });
-  });
-});
-
       document.addEventListener("DOMContentLoaded", function () {
-        loadPersonDetails();
+        // Auto-fill actor name from query param already handled in loadPersonDetails
 
-        // Add form submission handler
-        //const bookingForm = document.getElementById("booking-form");
-        //if (bookingForm) {
-        //  bookingForm.addEventListener("submit", handleFormSubmission);
-        //}
+        const bookingForm = document.getElementById("booking-form");
+
+        bookingForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Send via AJAX to Formspree
+          const formData = new FormData(bookingForm);
+
+          fetch(bookingForm.action, {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(response => {
+            if (response.ok) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Booking Request Sent!',
+                text: 'Thank you! We will respond within 4 hours during business hours.',
+                confirmButtonText: 'OK'
+              }).then(() => {
+                window.location.href = "index.html"; // Redirect after OK
+              });
+              bookingForm.reset();
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops!',
+                text: 'Something went wrong. Please try again.',
+              });
+            }
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Error sending message. Please try again later.',
+            });
+          });
+        });
+
+        loadPersonDetails();
       });
     </script>
   </body>
