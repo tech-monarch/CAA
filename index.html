@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -1058,7 +1058,7 @@
           margin: 0 auto;
           padding: 20px;
           color: black;
-          font-family: 'Segoe UI', sans-serif;
+          font-family: &quot;Segoe UI&quot;, sans-serif;
           display: flex;
           flex-wrap: wrap;
           gap: 20px;
@@ -1211,8 +1211,8 @@
                 font-size: 0.9rem;
                 transition: background 0.3s ease;
               "
-              onmouseover="this.style.background='#b02053';"
-              onmouseout="this.style.background='#d32f2f';"
+              onmouseover="this.style.background = '#b02053'"
+              onmouseout="this.style.background = '#d32f2f'"
             >
               Book Now!!
             </a>
@@ -1263,8 +1263,8 @@
                 font-size: 0.9rem;
                 transition: background 0.3s ease;
               "
-              onmouseover="this.style.background='#b02053';"
-              onmouseout="this.style.background='#d32f2f';"
+              onmouseover="this.style.background = '#b02053'"
+              onmouseout="this.style.background = '#d32f2f'"
             >
               Book Now!!
             </a>
@@ -1314,8 +1314,8 @@
                 font-size: 0.9rem;
                 transition: background 0.3s ease;
               "
-              onmouseover="this.style.background='#b02053';"
-              onmouseout="this.style.background='#d32f2f';"
+              onmouseover="this.style.background = '#b02053'"
+              onmouseout="this.style.background = '#d32f2f'"
             >
               Book Now!!
             </a>
@@ -1365,8 +1365,8 @@
                 font-size: 0.9rem;
                 transition: background 0.3s ease;
               "
-              onmouseover="this.style.background='#b02053';"
-              onmouseout="this.style.background='#d32f2f';"
+              onmouseover="this.style.background = '#b02053'"
+              onmouseout="this.style.background = '#d32f2f'"
             >
               Book Now!!
             </a>
@@ -1382,12 +1382,15 @@
         staggeredEls.forEach(function (el, i) {
           el.style.opacity = 0;
           el.style.transform = "translateY(24px)";
-          setTimeout(function () {
-            el.style.transition =
-              "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
-            el.style.opacity = 1;
-            el.style.transform = "translateY(0)";
-          }, 400 + i * 200);
+          setTimeout(
+            function () {
+              el.style.transition =
+                "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
+              el.style.opacity = 1;
+              el.style.transform = "translateY(0)";
+            },
+            400 + i * 200,
+          );
         });
       });
     </script>
@@ -1605,6 +1608,26 @@
           };
         }
       });
+    </script>
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "3da5d7492dcac0eb1ae1bde5aa3f0b3ec4fe1fff";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
     </script>
   </body>
 </html>

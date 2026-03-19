@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,8 +9,8 @@
       body {
         background: #2c2f34;
         color: #fff;
-        font-family: "PFDinTextPro-Bold", "PFDinTextPro-Regular", Arial,
-          sans-serif;
+        font-family:
+          "PFDinTextPro-Bold", "PFDinTextPro-Regular", Arial, sans-serif;
         margin: 0;
         min-height: 100vh;
         display: flex;
@@ -99,34 +99,80 @@
         </div>
       </div>
       <style>
-    /* Preloader Styles */ #preloader { position: fixed; top: 0; left: 0; width:
-    100vw; height: 100vh; background: rgba(44,47,52,0.92); z-index: 9999;
-    display: flex; align-items: center; justify-content: center; transition:
-    opacity 0.4s; } .preloader-content { display: flex; flex-direction: column;
-    align-items: center; justify-content: center; } .preloader-logo { font-size:
-    2.8rem; font-family: 'PFDinTextPro-Bold', Arial, sans-serif; color: #fff;
-    margin-bottom: 36px; letter-spacing: -2px; font-weight: bold; }
-    .preloader-circles { display: flex; gap: 18px; } .preloader-circles span {
-    display: block; width: 18px; height: 18px; border-radius: 50%; background:
-    red; opacity: 0.7; animation: preloader-bounce 1.2s infinite
-    cubic-bezier(.4,0,.2,1); } .preloader-circles span:nth-child(2) {
-    animation-delay: 0.2s; } .preloader-circles span:nth-child(3) {
-    animation-delay: 0.4s; } .preloader-circles span:nth-child(4) {
-    animation-delay: 0.6s; } @keyframes preloader-bounce { 0%, 100% { transform:
-    translateY(0); opacity: 0.7; } 50% { transform: translateY(-22px); opacity:
-    1; } }</style>
-    
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      setTimeout(function () {
-        document.getElementById("preloader").style.opacity = 0;
-        setTimeout(function () {
-          document.getElementById("preloader").style.display = "none";
-          document.querySelector(".main-container").style.opacity = 1;
-        }, 400);
-      }, 1200);
-    });
-  </script>
+        /* Preloader Styles */
+        #preloader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(44, 47, 52, 0.92);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: opacity 0.4s;
+        }
+        .preloader-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .preloader-logo {
+          font-size: 2.8rem;
+          font-family: "PFDinTextPro-Bold", Arial, sans-serif;
+          color: #fff;
+          margin-bottom: 36px;
+          letter-spacing: -2px;
+          font-weight: bold;
+        }
+        .preloader-circles {
+          display: flex;
+          gap: 18px;
+        }
+        .preloader-circles span {
+          display: block;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: red;
+          opacity: 0.7;
+          animation: preloader-bounce 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .preloader-circles span:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .preloader-circles span:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+        .preloader-circles span:nth-child(4) {
+          animation-delay: 0.6s;
+        }
+        @keyframes preloader-bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translateY(-22px);
+            opacity: 1;
+          }
+        }
+      </style>
+
+      <script>
+        window.addEventListener("DOMContentLoaded", function () {
+          setTimeout(function () {
+            document.getElementById("preloader").style.opacity = 0;
+            setTimeout(function () {
+              document.getElementById("preloader").style.display = "none";
+              document.querySelector(".main-container").style.opacity = 1;
+            }, 400);
+          }, 1200);
+        });
+      </script>
     </div>
     <div class="main-container" style="opacity: 0">
       <div class="caa-logo">CAA</div>
@@ -149,5 +195,25 @@
         <a href="contact.html" class="secondary-link">Contact</a>
       </div>
     </div>
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "3da5d7492dcac0eb1ae1bde5aa3f0b3ec4fe1fff";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
   </body>
 </html>

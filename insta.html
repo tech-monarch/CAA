@@ -1,148 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Instagram User Search</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Instagram User Search</title>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<style>
+    <style>
+      body {
+        font-family: Arial;
+        background: #0f0f0f;
+        color: white;
+        text-align: center;
+        padding: 40px;
+      }
 
-body{
-    font-family: Arial;
-    background:#0f0f0f;
-    color:white;
-    text-align:center;
-    padding:40px;
-}
+      input {
+        padding: 12px;
+        width: 260px;
+        border-radius: 6px;
+        border: none;
+      }
 
-input{
-    padding:12px;
-    width:260px;
-    border-radius:6px;
-    border:none;
-}
+      button {
+        padding: 12px 20px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
 
-button{
-    padding:12px 20px;
-    margin-left:10px;
-    cursor:pointer;
-}
+      #results {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 170px);
+        gap: 20px;
+        justify-content: center;
+      }
 
-#results{
-    margin-top:30px;
-    display:grid;
-    grid-template-columns:repeat(auto-fill,170px);
-    gap:20px;
-    justify-content:center;
-}
+      .card {
+        background: #1b1b1b;
+        padding: 15px;
+        border-radius: 10px;
+      }
 
-.card{
-    background:#1b1b1b;
-    padding:15px;
-    border-radius:10px;
-}
+      .card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
 
-.card img{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-}
+      .username {
+        font-weight: bold;
+      }
 
-.username{
-    font-weight:bold;
-}
+      .fullname {
+        font-size: 13px;
+        color: #aaa;
+      }
 
-.fullname{
-    font-size:13px;
-    color:#aaa;
-}
+      .verified {
+        color: #1da1f2;
+        font-size: 12px;
+      }
 
-.verified{
-    color:#1da1f2;
-    font-size:12px;
-}
+      .private {
+        color: #ff6b6b;
+        font-size: 12px;
+      }
+    </style>
+  </head>
 
-.private{
-    color:#ff6b6b;
-    font-size:12px;
-}
+  <body>
+    <h2>Instagram People Search</h2>
 
-</style>
-</head>
+    <input id="searchInput" placeholder="Search name or username" />
+    <button onclick="loadUsers()">Fetch Users</button>
 
-<body>
+    <div id="results"></div>
 
-<h2>Instagram People Search</h2>
+    <script>
+      let allUsers = [];
 
-<input id="searchInput" placeholder="Search name or username">
-<button onclick="loadUsers()">Fetch Users</button>
-
-<div id="results"></div>
-
-<script>
-
-let allUsers = [];
-
-function loadUsers(){
-
-    const settings = {
-        async: true,
-        crossDomain: true,
-        url: 'https://instagram-scraper-stable-api.p.rapidapi.com/get_ig_user_followers_v2.php',
-        method: 'POST',
-        headers: {
-            'x-rapidapi-key': 'efb02353e8msh12998c371346153p13d193jsnf3c188326c80',
-            'x-rapidapi-host': 'instagram-scraper-stable-api.p.rapidapi.com',
-            'Content-Type': 'application/json'
-        },
-        data: JSON.stringify({
+      function loadUsers() {
+        const settings = {
+          async: true,
+          crossDomain: true,
+          url: "https://instagram-scraper-stable-api.p.rapidapi.com/get_ig_user_followers_v2.php",
+          method: "POST",
+          headers: {
+            "x-rapidapi-key":
+              "efb02353e8msh12998c371346153p13d193jsnf3c188326c80",
+            "x-rapidapi-host": "instagram-scraper-stable-api.p.rapidapi.com",
+            "Content-Type": "application/json",
+          },
+          data: JSON.stringify({
             username_or_url: "https://www.instagram.com/adorn_quran/",
             data: "following",
             amount: "25",
-            pagination_token: ""
-        })
-    };
+            pagination_token: "",
+          }),
+        };
 
-    $("#results").html("Loading users...");
+        $("#results").html("Loading users...");
 
-    $.ajax(settings).done(function (response) {
+        $.ajax(settings)
+          .done(function (response) {
+            console.log("API RESPONSE:", response);
 
-        console.log("API RESPONSE:", response);
+            if (!response || !response.users) {
+              $("#results").html("No users returned from API.");
+              return;
+            }
 
-        if(!response || !response.users){
-            $("#results").html("No users returned from API.");
-            return;
+            allUsers = response.users;
+
+            displayUsers(allUsers);
+          })
+          .fail(function (err) {
+            console.error("API ERROR:", err);
+            $("#results").html("API request failed. Check console.");
+          });
+      }
+
+      function displayUsers(users) {
+        if (!users || users.length === 0) {
+          $("#results").html("No users found.");
+          return;
         }
 
-        allUsers = response.users;
+        $("#results").html("");
 
-        displayUsers(allUsers);
+        users.forEach((user) => {
+          const verified = user.is_verified
+            ? `<div class="verified">✔ Verified</div>`
+            : "";
+          const privateAcc = user.is_private
+            ? `<div class="private">Private</div>`
+            : "";
 
-    }).fail(function(err){
-
-        console.error("API ERROR:", err);
-        $("#results").html("API request failed. Check console.");
-
-    });
-
-}
-
-function displayUsers(users){
-
-    if(!users || users.length === 0){
-        $("#results").html("No users found.");
-        return;
-    }
-
-    $("#results").html("");
-
-    users.forEach(user => {
-
-        const verified = user.is_verified ? `<div class="verified">✔ Verified</div>` : "";
-        const privateAcc = user.is_private ? `<div class="private">Private</div>` : "";
-
-        $("#results").append(`
+          $("#results").append(`
             <div class="card">
                 <img src="${user.profile_pic_url}">
                 <div class="username">${user.username}</div>
@@ -151,27 +146,43 @@ function displayUsers(users){
                 ${privateAcc}
             </div>
         `);
+        });
+      }
 
-    });
+      $("#searchInput").on("keyup", function () {
+        const value = $(this).val().toLowerCase();
 
-}
+        if (!allUsers || allUsers.length === 0) return;
 
-$("#searchInput").on("keyup", function(){
+        const filtered = allUsers.filter(
+          (user) =>
+            (user.username && user.username.toLowerCase().includes(value)) ||
+            (user.full_name && user.full_name.toLowerCase().includes(value)),
+        );
 
-    const value = $(this).val().toLowerCase();
+        displayUsers(filtered);
+      });
+    </script>
 
-    if(!allUsers || allUsers.length === 0) return;
-
-    const filtered = allUsers.filter(user =>
-        (user.username && user.username.toLowerCase().includes(value)) ||
-        (user.full_name && user.full_name.toLowerCase().includes(value))
-    );
-
-    displayUsers(filtered);
-
-});
-
-</script>
-
-</body>
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "3da5d7492dcac0eb1ae1bde5aa3f0b3ec4fe1fff";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
+  </body>
 </html>

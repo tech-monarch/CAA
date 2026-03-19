@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -1055,7 +1055,7 @@
             card.style.cursor = "pointer";
             card.addEventListener("click", function () {
               window.location.href = `musician-details.html?name=${encodeURIComponent(
-                actor.name
+                actor.name,
               )}`;
             });
             if (actor.image) {
@@ -1076,7 +1076,7 @@
         }
         document.addEventListener(
           "DOMContentLoaded",
-          getPopularActorsWithPricing
+          getPopularActorsWithPricing,
         );
       </script>
     </section>
@@ -1088,12 +1088,15 @@
         staggeredEls.forEach(function (el, i) {
           el.style.opacity = 0;
           el.style.transform = "translateY(24px)";
-          setTimeout(function () {
-            el.style.transition =
-              "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
-            el.style.opacity = 1;
-            el.style.transform = "translateY(0)";
-          }, 400 + i * 200);
+          setTimeout(
+            function () {
+              el.style.transition =
+                "opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1)";
+              el.style.opacity = 1;
+              el.style.transform = "translateY(0)";
+            },
+            400 + i * 200,
+          );
         });
       });
     </script>
@@ -1256,30 +1259,30 @@
 
     <script>
       // Card rendering logic
-function renderCelebrityCards(musicians) {
-  const celebrityCards = document.getElementById("celebrity-cards");
-  celebrityCards.innerHTML = "";
-  
-  musicians.forEach((musician) => {
-    const card = document.createElement("div");
-    card.className = "celebrity-card";
+      function renderCelebrityCards(musicians) {
+        const celebrityCards = document.getElementById("celebrity-cards");
+        celebrityCards.innerHTML = "";
 
-    const img = document.createElement("img");
-    img.src = musician.image;
-    img.alt = musician.name;
+        musicians.forEach((musician) => {
+          const card = document.createElement("div");
+          card.className = "celebrity-card";
 
-    img.onerror = function () {
-      card.remove(); // Remove the whole card if image fails
-    };
+          const img = document.createElement("img");
+          img.src = musician.image;
+          img.alt = musician.name;
 
-    const name = document.createElement("h3");
-    name.textContent = musician.name;
+          img.onerror = function () {
+            card.remove(); // Remove the whole card if image fails
+          };
 
-    card.appendChild(img);
-    card.appendChild(name);
-    celebrityCards.appendChild(card);
-  });
-}
+          const name = document.createElement("h3");
+          name.textContent = musician.name;
+
+          card.appendChild(img);
+          card.appendChild(name);
+          celebrityCards.appendChild(card);
+        });
+      }
 
       // --- Search Form Logic ---
       document
@@ -1298,7 +1301,7 @@ function renderCelebrityCards(musicians) {
             musicians = await res.json();
           } catch (err) {}
           let filtered = musicians.filter((m) =>
-            m.name.toLowerCase().includes(query.toLowerCase())
+            m.name.toLowerCase().includes(query.toLowerCase()),
           );
           let allMatches = filtered.map((m) => ({
             name: m.name,
@@ -1311,8 +1314,8 @@ function renderCelebrityCards(musicians) {
               const proxy = "https://corsproxy.io/?";
               const deezerRes = await fetch(
                 `${proxy}https://api.deezer.com/search/artist?q=${encodeURIComponent(
-                  query
-                )}`
+                  query,
+                )}`,
               );
               const deezerData = await deezerRes.json();
               if (deezerData.data && deezerData.data.length > 0) {
@@ -1343,20 +1346,20 @@ function renderCelebrityCards(musicians) {
                 .map(
                   (a) =>
                     `<div class="actor-card" data-name="${encodeURIComponent(
-                      a.name
+                      a.name,
                     )}">
                       <img src="${a.image}" alt="${
-                      a.name
-                    }" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
+                        a.name
+                      }" class="actor-img" onerror="this.onerror=null;this.src='celebrities.jpg';">
                       <div class="actor-info"><b>${a.name}</b></div>
-                    </div>`
+                    </div>`,
                 )
                 .join("")}
             </div>`;
           // Add click handler for navigation
           setTimeout(() => {
             const container = document.getElementById(
-              "vertical-list-container"
+              "vertical-list-container",
             );
             if (container) {
               container.querySelectorAll(".actor-card").forEach((card) => {
@@ -1391,55 +1394,56 @@ function renderCelebrityCards(musicians) {
         border-radius: 4px;
       }
       .actor-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 24px 28px 20px 28px;
-  width: 240px;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  border-radius: 12px;
-  border: none;
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #ffffff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        padding: 24px 28px 20px 28px;
+        width: 240px;
+        cursor: pointer;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+        border-radius: 12px;
+        border: none;
+      }
 
-.actor-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
-}
+      .actor-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+      }
 
-.actor-img {
-  width: 180px;
-  height: 240px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  border: none;
-  background: #f5f5f5;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
+      .actor-img {
+        width: 180px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border: none;
+        background: #f5f5f5;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
 
-.actor-info {
-  text-align: center;
-  color: #222;
-  line-height: 1.4;
-}
+      .actor-info {
+        text-align: center;
+        color: #222;
+        line-height: 1.4;
+      }
 
-.actor-info b {
-  color: #111;
-  font-size: 1.25em;
-  font-weight: 600;
-  display: block;
-}
+      .actor-info b {
+        color: #111;
+        font-size: 1.25em;
+        font-weight: 600;
+        display: block;
+      }
 
-.actor-price {
-  color: #2d7a4b; /* Nice green for price */
-  font-weight: bold;
-  font-size: 1.15em;
-  margin-top: 8px;
-}
-
+      .actor-price {
+        color: #2d7a4b; /* Nice green for price */
+        font-weight: bold;
+        font-size: 1.15em;
+        margin-top: 8px;
+      }
     </style>
     <!-- Removed redundant script that interfered with carousel functionality -->
     <style>
@@ -1466,5 +1470,25 @@ function renderCelebrityCards(musicians) {
         }
       }
     </style>
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "3da5d7492dcac0eb1ae1bde5aa3f0b3ec4fe1fff";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
   </body>
 </html>

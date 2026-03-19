@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -396,8 +396,12 @@
           We typically respond within 4 hours during normal business hours.
         </p>
 
-        
-        <form id="booking-form" class="booking-form" method="POST" action="sendmail.php">
+        <form
+          id="booking-form"
+          class="booking-form"
+          method="POST"
+          action="sendmail.php"
+        >
           <div class="form-row">
             <div class="form-group">
               <label for="person-name-field">Musician Name*</label>
@@ -465,7 +469,7 @@
             <script>
               const input = document.getElementById("airport");
               const suggestionBox = document.getElementById(
-                "airport-suggestions"
+                "airport-suggestions",
               );
 
               let timeout = null;
@@ -482,8 +486,8 @@
                 timeout = setTimeout(() => {
                   fetch(
                     `https://api.skypicker.com/locations/?term=${encodeURIComponent(
-                      query
-                    )}&locale=en-US&location_types=airport&limit=5&active_only=true&sort=name`
+                      query,
+                    )}&locale=en-US&location_types=airport&limit=5&active_only=true&sort=name`,
                   )
                     .then((res) => res.json())
                     .then((data) => {
@@ -602,8 +606,8 @@
           // Fetch from TheSportsDB API
           const response = await fetch(
             `https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=${encodeURIComponent(
-              personName
-            )}`
+              personName,
+            )}`,
           );
 
           if (!response.ok) throw new Error("Failed to fetch player data");
@@ -628,7 +632,7 @@
             player.strThumb ||
             player.strCutout ||
             `https://via.placeholder.com/300x400/b71c2c/ffffff?text=${encodeURIComponent(
-              personName
+              personName,
             )}`;
           imageElement.alt = personName;
 
@@ -638,8 +642,8 @@
         <strong>Team:</strong> ${player.strTeam || "N/A"}<br>
         <strong>Position:</strong> ${player.strPosition || "N/A"}<br>
         <strong>Born:</strong> ${player.dateBorn || "N/A"} in ${
-            player.strBirthLocation || "N/A"
-          }<br>
+          player.strBirthLocation || "N/A"
+        }<br>
       `;
 
           // Hide career highlights (not available in API)
@@ -711,6 +715,26 @@
           .getElementById("booking-form")
           .addEventListener("submit", handleFormSubmission);
       });
+    </script>
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "3da5d7492dcac0eb1ae1bde5aa3f0b3ec4fe1fff";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
     </script>
   </body>
 </html>
